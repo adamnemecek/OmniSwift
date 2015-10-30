@@ -45,17 +45,22 @@ public class FluctuatingNoise1D: CustomStringConvertible {
     ///The value the noise is divided by to fix its range to [-1.0, 1.0].
     public let noiseDivisor:CGFloat = 0.7
     
+    ///The type of noise used.
+    public var noiseType = GLSPerlinNoiseSprite.NoiseType.Default
+    
     private var storedValue:CGFloat = 0.0
     public var value:CGFloat {
-        return self.noise.noiseAt(self.time) / self.noiseDivisor * self.range + self.middleValue
-    }
-    public var fractalValue:CGFloat {
-        var val = self.noise.noiseAt(self.time)
-        for iii in 1...4 {
-            let factor = CGFloat(iii << 2)
-            val += self.noise.noiseAt(self.time * factor) / factor
+        switch self.noiseType {
+        case .Default:
+            return self.noise.noiseAt(self.time) / self.noiseDivisor * self.range + self.middleValue
+        case .Fractal:
+            return self.baseNoise(4) / self.noiseDivisor * self.range + self.middleValue
+        case .Abs:
+            return abs(self.baseNoise(4) / self.noiseDivisor) * self.range + self.middleValue
+        case .Sin:
+            let val = abs(self.baseNoise(4) / self.noiseDivisor) * self.range + self.middleValue
+            return sin(CGFloat(M_PI) * self.time + val)
         }
-        return val / self.noiseDivisor * self.range + self.middleValue
     }
     
     public var description:String { return "Noise(\(self.noise.seed)) \(self.extremeValues)" }
@@ -84,4 +89,12 @@ public class FluctuatingNoise1D: CustomStringConvertible {
         self.time += self.speed * dt
     }
     
+    private func baseNoise(iterations:Int) -> CGFloat {
+        var noiseValue:CGFloat = 0.0
+        for i in 1...iterations {
+            let factor = CGFloat(1 << i)
+            noiseValue += self.noise.noiseAt(self.time * factor) / factor
+        }
+        return noiseValue
+    }
 }

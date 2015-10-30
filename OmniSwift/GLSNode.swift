@@ -142,7 +142,6 @@ public class GLSNode: NSObject {
     public var alpha:CGFloat = 1.0 {
         
         didSet {
-            
             if (inAnimationBlock) {
                 add1Animation(oldValue, end: alpha) { [unowned self] in self.alpha = $0 }
                 self.alpha = oldValue
@@ -153,6 +152,7 @@ public class GLSNode: NSObject {
                     self.alphaIsDirty = true
                 }
             }
+            
         }//did set
         
     }//alpha observors

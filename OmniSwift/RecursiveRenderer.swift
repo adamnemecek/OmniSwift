@@ -229,6 +229,7 @@ public class RecursiveRenderer: NSObject {
         self.setIndicesStartingAt(range.startIndex)
     }
     
+    var times = 0
     public func update() {
         
         for op in self.operations {

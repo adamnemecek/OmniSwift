@@ -59,6 +59,14 @@ public class GLSSprite: GLSNode {
         self.init(size: CGSize.zero, texture: texture)
     }//initialize (only using texture)
     
+    override public func contentSizeChanged() {
+        let sizeAsPoint = self.contentSize.getCGPoint()
+        for iii in 0..<TexturedQuad.verticesPerQuad {
+            vertices[iii].position = (TexturedQuad.pointForIndex(iii) * sizeAsPoint).getGLTuple()
+        }
+        self.verticesAreDirty = true
+    }
+    
     override public func loadProgram() {
         
         glGenBuffers(1, &vertexBuffer)

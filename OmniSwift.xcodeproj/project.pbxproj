@@ -11,7 +11,7 @@
 		DC284A611B33AA6900C6139A /* Direction2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC284A601B33AA6900C6139A /* Direction2D.swift */; };
 		DC32D3291B30B3D800FAC796 /* GLSRadialGradientSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC32D3281B30B3D800FAC796 /* GLSRadialGradientSprite.swift */; };
 		DC37E8B91BB740D700313B10 /* OmniSwiftShapes.h in Headers */ = {isa = PBXBuildFile; fileRef = DC37E8B81BB740D700313B10 /* OmniSwiftShapes.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DC37E8C01BB740D700313B10 /* OmniSwiftShapes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC37E8B61BB740D700313B10 /* OmniSwiftShapes.framework */; settings = {ASSET_TAGS = (); }; };
+		DC37E8C01BB740D700313B10 /* OmniSwiftShapes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC37E8B61BB740D700313B10 /* OmniSwiftShapes.framework */; };
 		DC37E8C51BB740D700313B10 /* OmniSwiftShapesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC37E8C41BB740D700313B10 /* OmniSwiftShapesTests.swift */; };
 		DC4266F11B40D63700EF80E5 /* ViewList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4266F01B40D63700EF80E5 /* ViewList.swift */; };
 		DC46D6B61B619EDA00878B85 /* MultiTexturedQuad.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC46D6B51B619EDA00878B85 /* MultiTexturedQuad.swift */; };
@@ -108,13 +108,14 @@
 		DC7703C61B4F28F80053C516 /* Primitives+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7703C51B4F28F80053C516 /* Primitives+Convenience.swift */; };
 		DC8272471B5AB9D500DF9F97 /* TimeTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8272461B5AB9D500DF9F97 /* TimeTracker.swift */; };
 		DC90CA091B9CE85500284480 /* NSScanner+Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC90CA081B9CE85500284480 /* NSScanner+Swift.swift */; };
+		DC9276031BE07A6F00334C6D /* GLSRecursivePropertyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9276021BE07A6F00334C6D /* GLSRecursivePropertyNode.swift */; };
 		DC9D2ED91B1D072900CF8C40 /* GLSFireSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9D2ED81B1D072900CF8C40 /* GLSFireSprite.swift */; };
 		DC9D2EDB1B1D088C00CF8C40 /* TrilinearArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9D2EDA1B1D088C00CF8C40 /* TrilinearArray.swift */; };
 		DC9D2EDD1B1D08BA00CF8C40 /* BilinearArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9D2EDC1B1D08BA00CF8C40 /* BilinearArray.swift */; };
 		DC9D2EE11B1D093100CF8C40 /* NoiseArray2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9D2EE01B1D093100CF8C40 /* NoiseArray2D.swift */; };
 		DC9D2EE31B1D094A00CF8C40 /* NoiseArray3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9D2EE21B1D094A00CF8C40 /* NoiseArray3D.swift */; };
 		DCA9D5D51B4C7DAC00425D73 /* GLProgramDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA9D5D41B4C7DAC00425D73 /* GLProgramDictionary.swift */; };
-		DCABE78D1BD2D8B7000CED7B /* CGRect+Enumeration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCABE78C1BD2D8B7000CED7B /* CGRect+Enumeration.swift */; settings = {ASSET_TAGS = (); }; };
+		DCABE78D1BD2D8B7000CED7B /* CGRect+Enumeration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCABE78C1BD2D8B7000CED7B /* CGRect+Enumeration.swift */; };
 		DCB64B7F1B4F4D3A001C689C /* RecursiveRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB64B7E1B4F4D3A001C689C /* RecursiveRenderer.swift */; };
 		DCB786241B16830A00DC4638 /* ScaleDelta.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB786231B16830A00DC4638 /* ScaleDelta.swift */; };
 		DCB786291B168D5B00DC4638 /* String+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB786281B168D5B00DC4638 /* String+Convenience.swift */; };
@@ -123,9 +124,9 @@
 		DCBED5591B93C65E009CD82B /* GLBufferedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBED5581B93C65E009CD82B /* GLBufferedView.swift */; };
 		DCBED55B1B93CD1C009CD82B /* ColorWheelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBED55A1B93CD1C009CD82B /* ColorWheelView.swift */; };
 		DCD3A9091B82B6CC00D1E9F1 /* CADisplayLinkWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD3A9081B82B6CC00D1E9F1 /* CADisplayLinkWrapper.swift */; };
-		DCD956E21BCE016200A007F4 /* FluctuatingNoise1D.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD956E11BCE016200A007F4 /* FluctuatingNoise1D.swift */; settings = {ASSET_TAGS = (); }; };
-		DCE484121BCDF93000AF81C2 /* NoiseArray1D.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE484111BCDF93000AF81C2 /* NoiseArray1D.swift */; settings = {ASSET_TAGS = (); }; };
-		DCE484141BCDF95900AF81C2 /* LinearArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE484131BCDF95900AF81C2 /* LinearArray.swift */; settings = {ASSET_TAGS = (); }; };
+		DCD956E21BCE016200A007F4 /* FluctuatingNoise1D.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD956E11BCE016200A007F4 /* FluctuatingNoise1D.swift */; };
+		DCE484121BCDF93000AF81C2 /* NoiseArray1D.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE484111BCDF93000AF81C2 /* NoiseArray1D.swift */; };
+		DCE484141BCDF95900AF81C2 /* LinearArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE484131BCDF95900AF81C2 /* LinearArray.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -253,6 +254,7 @@
 		DC7703C51B4F28F80053C516 /* Primitives+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Primitives+Convenience.swift"; sourceTree = "<group>"; };
 		DC8272461B5AB9D500DF9F97 /* TimeTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTracker.swift; sourceTree = "<group>"; };
 		DC90CA081B9CE85500284480 /* NSScanner+Swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSScanner+Swift.swift"; sourceTree = "<group>"; };
+		DC9276021BE07A6F00334C6D /* GLSRecursivePropertyNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLSRecursivePropertyNode.swift; sourceTree = "<group>"; };
 		DC9D2ED81B1D072900CF8C40 /* GLSFireSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLSFireSprite.swift; sourceTree = "<group>"; };
 		DC9D2EDA1B1D088C00CF8C40 /* TrilinearArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrilinearArray.swift; sourceTree = "<group>"; };
 		DC9D2EDC1B1D08BA00CF8C40 /* BilinearArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BilinearArray.swift; sourceTree = "<group>"; };
@@ -390,6 +392,7 @@
 				DC72AA821B166CB20035BF49 /* GLSParticleEmitter.swift */,
 				DC72AA831B166CB20035BF49 /* GLSPerlinNoiseSprite.swift */,
 				DC32D3281B30B3D800FAC796 /* GLSRadialGradientSprite.swift */,
+				DC9276021BE07A6F00334C6D /* GLSRecursivePropertyNode.swift */,
 				DC46D6B71B61C71900878B85 /* GLSRepeatedNoiseSprite.swift */,
 				DC72AA841B166CB20035BF49 /* GLSSprite.swift */,
 			);
@@ -401,7 +404,6 @@
 			children = (
 				DC72AA5D1B166CB20035BF49 /* CCTexture.swift */,
 				DC72AA5E1B166CB20035BF49 /* CCTextureOrganizer.swift */,
-				DCD956E11BCE016200A007F4 /* FluctuatingNoise1D.swift */,
 				DC72AA711B166CB20035BF49 /* GLAttributeBridger.swift */,
 				DC72AA721B166CB20035BF49 /* GLGradientTexture2D.swift */,
 				DC72AA731B166CB20035BF49 /* GLKOmniController.swift */,
@@ -457,6 +459,7 @@
 			isa = PBXGroup;
 			children = (
 				DC9D2EDC1B1D08BA00CF8C40 /* BilinearArray.swift */,
+				DCD956E11BCE016200A007F4 /* FluctuatingNoise1D.swift */,
 				DCE484131BCDF95900AF81C2 /* LinearArray.swift */,
 				DC72AA891B166CB20035BF49 /* LinearInterpolation.swift */,
 				DCE484111BCDF93000AF81C2 /* NoiseArray1D.swift */,
@@ -800,6 +803,7 @@
 				DCABE78D1BD2D8B7000CED7B /* CGRect+Enumeration.swift in Sources */,
 				DCBED55B1B93CD1C009CD82B /* ColorWheelView.swift in Sources */,
 				DC72AAE01B166CB20035BF49 /* LinearInterpolation.swift in Sources */,
+				DC9276031BE07A6F00334C6D /* GLSRecursivePropertyNode.swift in Sources */,
 				DC72AAFB1B166CB20035BF49 /* UIViewController+Geometry.swift in Sources */,
 				DC72AAB81B166CB20035BF49 /* CGRect+Math.swift in Sources */,
 				DC72AAE41B166CB20035BF49 /* NSObject+Convenience.swift in Sources */,

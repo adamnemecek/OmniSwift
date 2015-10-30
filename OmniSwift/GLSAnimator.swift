@@ -18,7 +18,7 @@ public enum AnimationModes: CustomStringConvertible {
     case Sputter
     case Cycle(CGFloat)
     case Autoreverse
-    case Fluctuate(FluctuatingNoise1D, Bool)
+    case Fluctuate(FluctuatingNoise1D)
     
     public var description:String {
         switch self {
@@ -38,8 +38,8 @@ public enum AnimationModes: CustomStringConvertible {
             return "Cycle(\(speed))"
         case .Autoreverse:
             return "Autoreverse"
-        case let .Fluctuate(fNoise, useFractal):
-            return "Fluctuate(\(fNoise), \(useFractal))"
+        case let .Fluctuate(fNoise):
+            return "Fluctuate(\(fNoise))"
         }
     }
     
@@ -124,12 +124,8 @@ public class GLSAnimationHelper: NSObject {
         case .Autoreverse:
             return (1.0 - cos(CGFloat(2.0 * M_PI) * t)) / 2.0
             
-        case let .Fluctuate(fNoise, useFractal):
-            if useFractal {
-                return fNoise.fractalValue
-            } else {
-                return fNoise.value
-            }
+        case let .Fluctuate(fNoise):
+            return fNoise.value
             
         }//get time for mode
     }
@@ -138,7 +134,7 @@ public class GLSAnimationHelper: NSObject {
         
         self.time += dt
         
-        if case let .Fluctuate(fNoise, _) = self.mode {
+        if case let .Fluctuate(fNoise) = self.mode {
             fNoise.update(dt)
         }
         
