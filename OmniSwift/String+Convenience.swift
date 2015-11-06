@@ -16,6 +16,8 @@ extension String {
     
     public func getCGFloatValue() -> CGFloat   { return CGFloat((self as NSString).floatValue) }
     
+    public func getBoolValue() -> Bool          { return (self as NSString).boolValue }
+    
     // MARK: - Characters
     
     public var characterCount:Int {

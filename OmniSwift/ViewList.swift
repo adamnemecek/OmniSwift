@@ -156,16 +156,7 @@ public class ViewList: NSObject {
         
     }
     
-    public func centerVerticallyInRect(rect:CGRect) {
-        
-        if self.views.count <= 0 {
-            return
-        }
-        
-//        let minX = rect.minX + self.buffer
-//        let width = rect.width - self.buffer * 2.0
-        
-        let frames = self.framesInRect(rect)
+    private func alignedIndicesForFrames(frames:[CGRect]) -> [[Int]] {
         
         var indices:[[Int]] = []
         var currentArray:[Int] = []
@@ -183,6 +174,18 @@ public class ViewList: NSObject {
             indices.append(currentArray)
         }
         
+        return indices
+    }
+    
+    public func centerVerticallyInRect(rect:CGRect) {
+        
+        if self.views.count <= 0 {
+            return
+        }
+        
+        let frames = self.framesInRect(rect)
+        let indices = self.alignedIndicesForFrames(frames)
+        
         for array in indices {
             let minX = frames[array.first!].minX
             let maxX = frames[array.last! ].maxX
@@ -197,6 +200,46 @@ public class ViewList: NSObject {
             
         }
         
+    }
+    
+    public func centerInRect(rect:CGRect) {
+        
+        if self.views.count <= 0 {
+            return
+        }
+        
+        self.centerVerticallyInRect(rect)
+        let totalFrame = CGRect(rects: self.views.map() { $0.frame })
+        let offset = rect.center.y - totalFrame.center.y
+        for i in self.views.range {
+            self.views[i].frame.center.y += offset
+        }
+        /*
+        let frames = self.framesInRect(rect)
+        let totalFrame = CGRect(rects: frames)
+        let offset = rect.center - totalFrame.center
+        
+        for (i, frame) in frames.enumerate() {
+            self.views[i].frame = frame + offset
+        }
+        /*
+        let indices = self.alignedIndicesForFrames(frames)
+        
+        for array in indices {
+            let minX = frames[array.first!].minX
+            let maxX = frames[array.last! ].maxX
+            let w = maxX - minX
+            
+            for index in array {
+                let frame = frames[index]
+                let percent = (frame.midX - minX) / w - 0.5
+                let center = CGPoint(x: percent * w + rect.midX, y: frame.midY)
+                self.views[index].frame = CGRect(center: center, size: frame.size)
+            }
+
+        }
+         */
+        */
     }
     
     

@@ -116,6 +116,8 @@
 		DC9D2EE31B1D094A00CF8C40 /* NoiseArray3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9D2EE21B1D094A00CF8C40 /* NoiseArray3D.swift */; };
 		DCA9D5D51B4C7DAC00425D73 /* GLProgramDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA9D5D41B4C7DAC00425D73 /* GLProgramDictionary.swift */; };
 		DCABE78D1BD2D8B7000CED7B /* CGRect+Enumeration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCABE78C1BD2D8B7000CED7B /* CGRect+Enumeration.swift */; };
+		DCB3CCD81BE7289300CA52EF /* CCSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB3CCD61BE7289300CA52EF /* CCSound.swift */; };
+		DCB3CCD91BE7289300CA52EF /* CCSoundPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB3CCD71BE7289300CA52EF /* CCSoundPlayer.swift */; };
 		DCB64B7F1B4F4D3A001C689C /* RecursiveRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB64B7E1B4F4D3A001C689C /* RecursiveRenderer.swift */; };
 		DCB786241B16830A00DC4638 /* ScaleDelta.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB786231B16830A00DC4638 /* ScaleDelta.swift */; };
 		DCB786291B168D5B00DC4638 /* String+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB786281B168D5B00DC4638 /* String+Convenience.swift */; };
@@ -262,6 +264,8 @@
 		DC9D2EE21B1D094A00CF8C40 /* NoiseArray3D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoiseArray3D.swift; sourceTree = "<group>"; };
 		DCA9D5D41B4C7DAC00425D73 /* GLProgramDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLProgramDictionary.swift; sourceTree = "<group>"; };
 		DCABE78C1BD2D8B7000CED7B /* CGRect+Enumeration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGRect+Enumeration.swift"; sourceTree = "<group>"; };
+		DCB3CCD61BE7289300CA52EF /* CCSound.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCSound.swift; sourceTree = "<group>"; };
+		DCB3CCD71BE7289300CA52EF /* CCSoundPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCSoundPlayer.swift; sourceTree = "<group>"; };
 		DCB64B7E1B4F4D3A001C689C /* RecursiveRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecursiveRenderer.swift; sourceTree = "<group>"; };
 		DCB786231B16830A00DC4638 /* ScaleDelta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleDelta.swift; sourceTree = "<group>"; };
 		DCB786281B168D5B00DC4638 /* String+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Convenience.swift"; sourceTree = "<group>"; };
@@ -500,6 +504,8 @@
 				DC72AA5A1B166CB20035BF49 /* AutoOrientingImageView.swift */,
 				DC663BFC1B5D6BB2002F78FF /* BoolList.swift */,
 				DC5CE0F01B3A0CCD00441A9B /* ButtonSwitch.swift */,
+				DCB3CCD61BE7289300CA52EF /* CCSound.swift */,
+				DCB3CCD71BE7289300CA52EF /* CCSoundPlayer.swift */,
 				DCBED55A1B93CD1C009CD82B /* ColorWheelView.swift */,
 				DC50F9D01B2490CE005A50C8 /* Convenience */,
 				DC72AA631B166CB20035BF49 /* ColorGradient1D.swift */,
@@ -818,6 +824,7 @@
 				DC72AAAF1B166CB20035BF49 /* AnimationDelta.swift in Sources */,
 				DC72AB011B166CB20035BF49 /* UniversalRenderProgram.swift in Sources */,
 				DC8272471B5AB9D500DF9F97 /* TimeTracker.swift in Sources */,
+				DCB3CCD81BE7289300CA52EF /* CCSound.swift in Sources */,
 				DC72AAF21B166CB20035BF49 /* SCVector4+Color.swift in Sources */,
 				DCB786291B168D5B00DC4638 /* String+Convenience.swift in Sources */,
 				DC72AAE31B166CB20035BF49 /* NoiseTexture2D.swift in Sources */,
@@ -848,6 +855,7 @@
 				DC72AAEC1B166CB20035BF49 /* SCMatrix4+Transformation.swift in Sources */,
 				DC72AAD31B166CB20035BF49 /* GLSGroupNode.swift in Sources */,
 				DC5CE0F11B3A0CCD00441A9B /* ButtonSwitch.swift in Sources */,
+				DCB3CCD91BE7289300CA52EF /* CCSoundPlayer.swift in Sources */,
 				DC72AABD1B166CB20035BF49 /* CSSLineSegment.swift in Sources */,
 				DC72AAD41B166CB20035BF49 /* GLSNode.swift in Sources */,
 				DC7703C61B4F28F80053C516 /* Primitives+Convenience.swift in Sources */,

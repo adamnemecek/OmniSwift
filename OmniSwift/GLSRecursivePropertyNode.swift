@@ -15,6 +15,12 @@ import UIKit
 */
 public class GLSRecursivePropertyNode: GLSNode {
     
+    override public var hidden:Bool {
+        didSet {
+            self.iterateChildrenRecursively() { [unowned self] in $0.hidden = self.hidden }
+        }
+    }
+    
     override public var tintColor:SCVector3 {
         didSet {
             self.iterateChildrenRecursively() { [unowned self] in $0.tintColor = self.tintColor }
