@@ -307,6 +307,7 @@ public struct SliceEnumerateSequence<Base: SequenceType>: SequenceType {
     public func generate() -> Generator {
         return SliceEnumerateGenerator(base: base.generate(), range: range)
     }
+    
 }
 
 public func enumerate<Seq : SequenceType>(sequence:Seq, range:Range<Int>) -> SliceEnumerateSequence<Seq> {

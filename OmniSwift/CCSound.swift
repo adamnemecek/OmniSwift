@@ -111,7 +111,6 @@ public class CCSound: NSObject {
     }//initialize
     
     private func playSound() -> Bool {
-        
 //        if (self.canPlay) {
         if let buffer = self.buffer where self.canPlay {
         

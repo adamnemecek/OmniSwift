@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 public protocol AnimationDeltaProtocol: Interpolatable {
 //    func *(CGFloat, Self) -> Self
 //    func +(Self, Self) -> Self
@@ -57,4 +56,5 @@ public class AnimationDelta<T: AnimationDeltaProtocol> {
     public subscript(time:CGFloat) -> T {
         return self.valueForTime(time)
     }
+    
 }

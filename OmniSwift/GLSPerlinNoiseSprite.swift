@@ -31,6 +31,7 @@ public class GLSPerlinNoiseSprite: GLSSprite, DoubleBuffered {
         let u_Offset:GLint
         let u_NoiseDivisor:GLint
         let u_Alpha:GLint
+        let u_Period:GLint
         let a_Position:GLint
         let a_Texture:GLint
         let a_NoiseTexture:GLint
@@ -61,6 +62,7 @@ public class GLSPerlinNoiseSprite: GLSSprite, DoubleBuffered {
             self.u_Offset           = glGetUniformLocation(program, "u_Offset")
             self.u_NoiseDivisor     = glGetUniformLocation(program, "u_NoiseDivisor")
             self.u_Alpha            = glGetUniformLocation(program, "u_Alpha")
+            self.u_Period           = glGetUniformLocation(program, "u_Period")
             self.a_Position     = glGetAttribLocation(program, "a_Position")
             self.a_Texture      = glGetAttribLocation(program, "a_Texture")
             self.a_NoiseTexture = glGetAttribLocation(program, "a_NoiseTexture")
@@ -153,6 +155,33 @@ public class GLSPerlinNoiseSprite: GLSSprite, DoubleBuffered {
     ///How much the noise is blended with the rest of the texture. 0.0 for no noise and 1.0 for full noise.
     public var noiseAlpha:CGFloat = 1.0
     
+    ///The period is how long it takes for the noise to begin repeating. Defaults to 256 (which doesn't actually have an effect).
+    public var period:(x:Int, y:Int, z:Int) = (256, 256, 256)
+    public var xyPeriod:(x:Int, y:Int) {
+        get {
+            return (self.period.x, self.period.y)
+        }
+        set {
+            self.period = (newValue.x, newValue.y, self.period.z)
+        }
+    }
+    public var yzPeriod:(y:Int, z:Int) {
+        get {
+            return (self.period.y, self.period.z)
+        }
+        set {
+            self.period = (self.period.x, newValue.y, newValue.z)
+        }
+    }
+    public var xzPeriod:(x:Int, z:Int) {
+        get {
+            return (self.period.x, self.period.z)
+        }
+        set {
+            self.period = (newValue.x, self.period.y, newValue.z)
+        }
+    }
+    
     /**
     What to divide the 3D Noise Value by.
     
@@ -243,7 +272,7 @@ public class GLSPerlinNoiseSprite: GLSSprite, DoubleBuffered {
         glBindBuffer(GLenum(GL_ARRAY_BUFFER), self.noiseProgram.attributeBridger.vertexBuffer)
         glBufferData(GLenum(GL_ARRAY_BUFFER), self.noiseVertices.size, self.noiseVertices.vertices, GLenum(GL_STATIC_DRAW))
         
-        //        let proj = GLSUniversalRenderer.sharedInstance.projection
+//        let proj = GLSUniversalRenderer.sharedInstance.projection
         let proj = self.projection
         glUniformMatrix4fv(self.noiseProgram.u_Projection, 1, 0, proj.values)
         
@@ -267,6 +296,7 @@ public class GLSPerlinNoiseSprite: GLSSprite, DoubleBuffered {
         self.bridgeUniform3f(self.noiseProgram.u_Offset, vector: self.offset)
         glUniform1f(self.noiseProgram.u_NoiseDivisor, GLfloat(self.noiseDivisor))
         glUniform1f(self.noiseProgram.u_Alpha, GLfloat(self.noiseAlpha))
+        glUniform3i(self.noiseProgram.u_Period, GLint(self.period.x), GLint(self.period.y), GLint(self.period.z))
         
         self.noiseProgram.attributeBridger.enableAttributes()
         self.noiseProgram.attributeBridger.bridgeAttributesWithSizes([2, 2, 3], stride: self.noiseVertices.stride)

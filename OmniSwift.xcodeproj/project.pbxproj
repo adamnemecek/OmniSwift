@@ -27,6 +27,8 @@
 		DC67A26C1B29EC3200EE4B09 /* Int+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC67A26B1B29EC3200EE4B09 /* Int+Convenience.swift */; };
 		DC687A671B36134700CFCEB2 /* Bool+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC687A661B36134700CFCEB2 /* Bool+Convenience.swift */; };
 		DC6C81CD1B4712110071229D /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6C81CC1B4712110071229D /* Stack.swift */; };
+		DC71DBC51BF274E500B38E92 /* SCCloudSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC71DBC41BF274E500B38E92 /* SCCloudSingleton.swift */; };
+		DC71DBD11BF2763700B38E92 /* SCCloudSingleton+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC71DBD01BF2763700B38E92 /* SCCloudSingleton+Convenience.swift */; };
 		DC72AA411B166C7D0035BF49 /* OmniSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = DC72AA401B166C7D0035BF49 /* OmniSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DC72AA471B166C7D0035BF49 /* OmniSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC72AA3B1B166C7D0035BF49 /* OmniSwift.framework */; };
 		DC72AA4E1B166C7D0035BF49 /* OmniSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC72AA4D1B166C7D0035BF49 /* OmniSwiftTests.swift */; };
@@ -125,10 +127,12 @@
 		DCBED5551B938EF4009CD82B /* NSFileManager+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBED5541B938EF4009CD82B /* NSFileManager+Convenience.swift */; };
 		DCBED5591B93C65E009CD82B /* GLBufferedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBED5581B93C65E009CD82B /* GLBufferedView.swift */; };
 		DCBED55B1B93CD1C009CD82B /* ColorWheelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBED55A1B93CD1C009CD82B /* ColorWheelView.swift */; };
+		DCD0451C1BF3FAE300EC9273 /* CombineIteration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD0451B1BF3FAE300EC9273 /* CombineIteration.swift */; };
 		DCD3A9091B82B6CC00D1E9F1 /* CADisplayLinkWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD3A9081B82B6CC00D1E9F1 /* CADisplayLinkWrapper.swift */; };
 		DCD956E21BCE016200A007F4 /* FluctuatingNoise1D.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD956E11BCE016200A007F4 /* FluctuatingNoise1D.swift */; };
 		DCE484121BCDF93000AF81C2 /* NoiseArray1D.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE484111BCDF93000AF81C2 /* NoiseArray1D.swift */; };
 		DCE484141BCDF95900AF81C2 /* LinearArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE484131BCDF95900AF81C2 /* LinearArray.swift */; };
+		DCE6F6581BF284B10059D4C6 /* NSNotificationCenter+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC71DBD41BF281F700B38E92 /* NSNotificationCenter+Convenience.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -172,6 +176,9 @@
 		DC67A26B1B29EC3200EE4B09 /* Int+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Convenience.swift"; sourceTree = "<group>"; };
 		DC687A661B36134700CFCEB2 /* Bool+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bool+Convenience.swift"; sourceTree = "<group>"; };
 		DC6C81CC1B4712110071229D /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
+		DC71DBC41BF274E500B38E92 /* SCCloudSingleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCCloudSingleton.swift; sourceTree = "<group>"; };
+		DC71DBD01BF2763700B38E92 /* SCCloudSingleton+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SCCloudSingleton+Convenience.swift"; sourceTree = "<group>"; };
+		DC71DBD41BF281F700B38E92 /* NSNotificationCenter+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotificationCenter+Convenience.swift"; sourceTree = "<group>"; };
 		DC72AA3B1B166C7D0035BF49 /* OmniSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OmniSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC72AA3F1B166C7D0035BF49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC72AA401B166C7D0035BF49 /* OmniSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OmniSwift.h; sourceTree = "<group>"; };
@@ -273,6 +280,7 @@
 		DCBED5541B938EF4009CD82B /* NSFileManager+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFileManager+Convenience.swift"; sourceTree = "<group>"; };
 		DCBED5581B93C65E009CD82B /* GLBufferedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLBufferedView.swift; sourceTree = "<group>"; };
 		DCBED55A1B93CD1C009CD82B /* ColorWheelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorWheelView.swift; sourceTree = "<group>"; };
+		DCD0451B1BF3FAE300EC9273 /* CombineIteration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CombineIteration.swift; sourceTree = "<group>"; };
 		DCD3A9081B82B6CC00D1E9F1 /* CADisplayLinkWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CADisplayLinkWrapper.swift; sourceTree = "<group>"; };
 		DCD956E11BCE016200A007F4 /* FluctuatingNoise1D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluctuatingNoise1D.swift; sourceTree = "<group>"; };
 		DCE484111BCDF93000AF81C2 /* NoiseArray1D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoiseArray1D.swift; sourceTree = "<group>"; };
@@ -358,9 +366,11 @@
 				DCABE78C1BD2D8B7000CED7B /* CGRect+Enumeration.swift */,
 				DC72AA611B166CB20035BF49 /* CGRect+Math.swift */,
 				DC72AA621B166CB20035BF49 /* CGSize+Math.swift */,
+				DCD0451B1BF3FAE300EC9273 /* CombineIteration.swift */,
 				DC72AA701B166CB20035BF49 /* GeometrySubclass.swift */,
 				DC67A26B1B29EC3200EE4B09 /* Int+Convenience.swift */,
 				DCBED5541B938EF4009CD82B /* NSFileManager+Convenience.swift */,
+				DC71DBD41BF281F700B38E92 /* NSNotificationCenter+Convenience.swift */,
 				DC72AA8D1B166CB20035BF49 /* NSObject+Convenience.swift */,
 				DC72AA8E1B166CB20035BF49 /* NSOperation+Convenience.swift */,
 				DC90CA081B9CE85500284480 /* NSScanner+Swift.swift */,
@@ -519,6 +529,8 @@
 				DC284A551B338F5100C6139A /* HasComponentsProtocol.swift */,
 				DC72AA881B166CB20035BF49 /* ImageCache.swift */,
 				DC50F9D61B24924F005A50C8 /* Noise */,
+				DC71DBC41BF274E500B38E92 /* SCCloudSingleton.swift */,
+				DC71DBD01BF2763700B38E92 /* SCCloudSingleton+Convenience.swift */,
 				DC50F9D41B2491FD005A50C8 /* SC Math */,
 				DC72AA9D1B166CB20035BF49 /* SimpleStringParser.swift */,
 				DC6C81CC1B4712110071229D /* Stack.swift */,
@@ -800,6 +812,7 @@
 				DC72AADB1B166CB20035BF49 /* GLSSprite.swift in Sources */,
 				DC72AADD1B166CB20035BF49 /* GLSUniversalRenderer.swift in Sources */,
 				DC72AAC91B166CB20035BF49 /* GLGradientTexture2D.swift in Sources */,
+				DCE6F6581BF284B10059D4C6 /* NSNotificationCenter+Convenience.swift in Sources */,
 				DC72AAFE1B166CB20035BF49 /* UniversalEmitterRenderProgram.swift in Sources */,
 				DCE484141BCDF95900AF81C2 /* LinearArray.swift in Sources */,
 				DC4C61D41B531C03008640FC /* LabeledView.swift in Sources */,
@@ -828,6 +841,7 @@
 				DC72AAF21B166CB20035BF49 /* SCVector4+Color.swift in Sources */,
 				DCB786291B168D5B00DC4638 /* String+Convenience.swift in Sources */,
 				DC72AAE31B166CB20035BF49 /* NoiseTexture2D.swift in Sources */,
+				DC71DBD11BF2763700B38E92 /* SCCloudSingleton+Convenience.swift in Sources */,
 				DC32D3291B30B3D800FAC796 /* GLSRadialGradientSprite.swift in Sources */,
 				DC72AAF41B166CB20035BF49 /* SimpleStringParser.swift in Sources */,
 				DC72AAB41B166CB20035BF49 /* CCTexture.swift in Sources */,
@@ -848,6 +862,7 @@
 				DC9D2EE31B1D094A00CF8C40 /* NoiseArray3D.swift in Sources */,
 				DC72AAED1B166CB20035BF49 /* SCMatrix4Array.swift in Sources */,
 				DC72AAEA1B166CB20035BF49 /* SCMatrix3Array.swift in Sources */,
+				DCD0451C1BF3FAE300EC9273 /* CombineIteration.swift in Sources */,
 				DC687A671B36134700CFCEB2 /* Bool+Convenience.swift in Sources */,
 				DC4266F11B40D63700EF80E5 /* ViewList.swift in Sources */,
 				DC72AAC81B166CB20035BF49 /* GLAttributeBridger.swift in Sources */,
@@ -858,6 +873,7 @@
 				DCB3CCD91BE7289300CA52EF /* CCSoundPlayer.swift in Sources */,
 				DC72AABD1B166CB20035BF49 /* CSSLineSegment.swift in Sources */,
 				DC72AAD41B166CB20035BF49 /* GLSNode.swift in Sources */,
+				DC71DBC51BF274E500B38E92 /* SCCloudSingleton.swift in Sources */,
 				DC7703C61B4F28F80053C516 /* Primitives+Convenience.swift in Sources */,
 				DC72AAD61B166CB20035BF49 /* GLSNode+UniversalRendering.swift in Sources */,
 				DCBED5551B938EF4009CD82B /* NSFileManager+Convenience.swift in Sources */,
