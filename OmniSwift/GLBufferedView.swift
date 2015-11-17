@@ -14,7 +14,7 @@ public class GLBufferedView: UIImageView {
     
     override public var frame:CGRect {
         didSet {
-            self.regenerateBuffer()
+            self.buffer = self.regenerateBuffer()
         }
     }
     

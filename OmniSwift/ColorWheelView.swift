@@ -14,10 +14,10 @@ public class ColorWheelView: GLBufferedView {
     
     private class ColorWheelProgram: GLProgramDictionary {
         
-        init() {
+        private init() {
             ColorWheelView.prepareOpenGL()
             
-            let program = ShaderHelper.programForString("Dummy Shader")!
+            let program = ShaderHelper.programForString("Color Wheel Shader")!
             super.init(program: program, locations: [
                 "u_Projection",
                 "u_Brightness",
@@ -39,9 +39,15 @@ public class ColorWheelView: GLBufferedView {
     private lazy var pinchRecognizer:UIPinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: "handlePinch:")
     private let scaleDelta = ScaleDelta(scale: 1.0)
     private lazy var panRecognizer:UIPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: "handlePan:")
+    private lazy var rotationRecognizer:UIRotationGestureRecognizer = UIRotationGestureRecognizer(target: self, action: "handleRotation:")
+    private var wheelAlpha:CGFloat = 1.0
+    private var currentWheelAlpha:CGFloat = 1.0
+    private let anchorImage = UIImageView(image: UIImage.imageWithPDFFile("CircleAnchor", size: CGSize(square: 48.0)))
     
     private(set) var currentColor = UIColor.whiteColor()
     public var colorChangedHandler:((UIColor) -> Void)? = nil
+    
+    public var enableRotation = false
     
     override public var frame:CGRect {
         didSet {
@@ -59,6 +65,10 @@ public class ColorWheelView: GLBufferedView {
         self.userInteractionEnabled = true
         self.addGestureRecognizer(self.pinchRecognizer)
         self.addGestureRecognizer(self.panRecognizer)
+        self.addGestureRecognizer(self.rotationRecognizer)
+        
+        self.anchorImage.center = frame.size.center
+        self.addSubview(self.anchorImage)
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -69,6 +79,10 @@ public class ColorWheelView: GLBufferedView {
         self.userInteractionEnabled = true
         self.addGestureRecognizer(self.pinchRecognizer)
         self.addGestureRecognizer(self.panRecognizer)
+        self.addGestureRecognizer(self.rotationRecognizer)
+        
+        self.anchorImage.center = self.frame.size.center
+        self.addSubview(self.anchorImage)
     }
     
     override public func encodeWithCoder(aCoder: NSCoder) {
@@ -85,7 +99,6 @@ public class ColorWheelView: GLBufferedView {
             vertex.texture  = (point * 2.0 - 1.0).getGLTuple()
             vertex.texture.0 *= -1.0
         }
-        
         return super.regenerateBuffer()
     }
     
@@ -96,6 +109,8 @@ public class ColorWheelView: GLBufferedView {
         
         self.program.use()
         self.vertices.bufferData(GL_STATIC_DRAW)
+        
+        SCVector4().bindGLClearColor()
         
         let proj = GLSNode.universalProjection
         glUniformMatrix4fv(self.program["u_Projection"], 1, 0, proj.values)
@@ -108,8 +123,6 @@ public class ColorWheelView: GLBufferedView {
         self.vertices.drawArrays()
         glFinish()
         self.program.disableAttributes()
-        
-        self.image = self.buffer.getImage()
     }
     
     public func handlePinch(sender:UIPinchGestureRecognizer) {
@@ -127,8 +140,32 @@ public class ColorWheelView: GLBufferedView {
         let hue = (angle / CGFloat(M_PI) + 1.0) / 2.0
         let saturation = clampedLocation.distanceFrom(CGPoint.zero)
         
-        self.currentColor = UIColor(hue: hue, saturation: saturation, brightness: self.brightness, alpha: 1.0)
+        self.currentColor = UIColor(hue: hue, saturation: saturation, brightness: self.brightness, alpha: self.wheelAlpha)
         self.colorChangedHandler?(self.currentColor)
+        
+        let anchorAngle = atan2(clampedLocation.y, clampedLocation.x)
+        let distance = location.distanceFrom(self.frame.size.center)
+        self.anchorImage.center = CGPoint(angle: anchorAngle, length: min(distance, self.frame.size.width / 2.0)) + self.frame.size.center
+    }
+    
+    public func handleRotation(sender:UIRotationGestureRecognizer) {
+        guard self.enableRotation else {
+            return
+        }
+        
+        self.wheelAlpha = self.currentWheelAlpha + CGFloat(sender.rotation) * 2.0 / CGFloat(M_PI)
+        
+        switch sender.state {
+        case .Ended:
+            self.currentWheelAlpha = self.wheelAlpha
+        default:
+            break
+        }
+        
+        self.alpha = self.wheelAlpha
+        self.currentColor = self.currentColor.colorWithAlphaComponent(self.wheelAlpha)
+        self.colorChangedHandler?(self.currentColor)
+//        self.renderToBuffer()
     }
     
 }
