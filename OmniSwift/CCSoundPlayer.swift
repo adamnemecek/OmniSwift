@@ -304,3 +304,13 @@ extension CCSoundPlayer {
     }
     
 }
+
+extension CCSoundPlayer: SequenceType {
+    
+    public typealias Generator = Array<CCSound>.Generator
+    
+    public func generate() -> Generator {
+        return self.sounds.map() { $0.1 } .generate()
+    }
+    
+}

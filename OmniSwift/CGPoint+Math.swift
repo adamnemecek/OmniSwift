@@ -237,4 +237,7 @@ public extension CGPoint {
         return self.dot(unitVector) * unitVector
     }//components in direction of 'vector'
     
+    public func flip() -> CGPoint {
+        return CGPoint(x: self.y, y: self.x)
+    }
 }//extend

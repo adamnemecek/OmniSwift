@@ -118,6 +118,10 @@ public extension CGSize {
         
     }//get as CGPoint
     
+    public func flip() -> CGSize {
+        return CGSize(width: self.height, height: self.width)
+    }
+    
 }//size
 /*
 public extension CGSize: FloatLiteralConvertible {

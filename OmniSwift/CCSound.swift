@@ -20,11 +20,19 @@ To use the terminal to convert sounds to .caf, use *afconvert* like so:
 */
 public class CCSound: NSObject {
     
+    private enum State {
+        case Ready
+        case Playing
+        case Paused
+        case Invalid
+    }
+    
     private let engine = AVAudioEngine()
     private let player = AVAudioPlayerNode()
     
     ///Whether or not the sound can play.
     public let canPlay:Bool
+    private var state = State.Invalid
     
     private let file:AVAudioFile?
     private let buffer:AVAudioPCMBuffer?
@@ -46,6 +54,8 @@ public class CCSound: NSObject {
     ///Whether or not the file loops indefinitely. Default value is *false*.
     public var loops = false
     public internal(set) var isMusic = false
+    
+    public var isPlaying:Bool { return self.state == .Playing }
     
     public var propertyDictionary:[String:String] {
         get {
@@ -85,7 +95,6 @@ public class CCSound: NSObject {
             do {
                 let url = NSURL(fileURLWithPath: path)
                 
-                var loadFileError:NSError? = nil
                 let file = try AVAudioFile(forReading: url/*, error: &loadFileError*/)
                 let buffer = AVAudioPCMBuffer(PCMFormat: file.processingFormat, frameCapacity: AVAudioFrameCount(file.length))
                 
@@ -97,6 +106,7 @@ public class CCSound: NSObject {
                 
                 self.file   = file
                 self.buffer = buffer
+                self.state  = .Ready
             } catch {
                 self.file = nil
                 self.buffer = nil
@@ -110,17 +120,58 @@ public class CCSound: NSObject {
         
     }//initialize
     
+    ///Invokes start on engine, returning true if successful and false if not, setting state accordingly.
+    private func tryStart() -> Bool {
+        do {
+            try self.engine.start()
+        } catch {
+            self.state = .Invalid
+            return false
+        }
+        
+        return true
+    }
+    
+    /**
+    Prepares the sound to play depending on the current state.
+
+    :returns - true if the sound is able to play.
+    */
+    private func prepare() -> Bool {
+        if !self.engine.running {
+            return self.tryStart()
+        }
+        
+        switch self.state {
+        case .Ready:
+            return true
+        case .Playing:
+            return true
+        case .Paused:
+            return self.tryStart()
+        case .Invalid:
+            return false
+        }
+        
+    }
+    
     private func playSound() -> Bool {
-//        if (self.canPlay) {
+        
         if let buffer = self.buffer where self.canPlay {
         
+            if !self.prepare() {
+                return false
+            }
+            
             var options = AVAudioPlayerNodeBufferOptions.Interrupts
             if self.loops {
                 options.unionInPlace(.Loops)
             }
-            self.player.scheduleBuffer(buffer, atTime: nil, options: options, completionHandler: nil)
+            self.player.scheduleBuffer(buffer, atTime: nil, options: options) { [unowned self] in
+                self.state = .Ready
+            }
             self.player.play()
-            
+            self.state = .Playing
             return true
         }
         
@@ -156,6 +207,22 @@ public class CCSound: NSObject {
             return true
         }
         return false
+    }
+    
+    /**
+     Pauses the sound.
+     
+     : returns - true if the sound was succesfully paused, false otherwise.
+    */
+    public func pause() -> Bool {
+        switch self.state {
+        case .Playing:
+            self.player.pause()
+            self.state = .Paused
+            return true
+        default:
+            return false
+        }
     }
     
 }

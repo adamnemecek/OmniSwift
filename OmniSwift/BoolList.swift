@@ -36,6 +36,10 @@ public class BoolList: NSObject, NSCoding, ArrayLiteralConvertible {
         self.values = values
     }
     
+    public convenience init(string:String) {
+        self.init(values: string.componentsSeparatedByString(", ").map() { BoolType($0.getIntegerValue()) })
+    }
+    
     // MARK: - ArrayLiteralConvertible
     
     public required init(arrayLiteral elements:Element...) {
@@ -62,6 +66,7 @@ public class BoolList: NSObject, NSCoding, ArrayLiteralConvertible {
             self.values.append(UInt32(curValue))
         }
         
+        super.init()
     }
     
     public func encodeWithCoder(aCoder: NSCoder) {
@@ -136,6 +141,14 @@ public class BoolList: NSObject, NSCoding, ArrayLiteralConvertible {
         
     }//get indices for index
     
+    public func getString() -> String {
+        var str = "\(self.values[0])"
+        for (_, val) in self.values.enumerateSkipFirst() {
+            str += ", \(val)"
+        }
+        return str
+    }
+    
     public subscript(index:Int) -> Bool {
         
         get {
@@ -164,4 +177,15 @@ public class BoolList: NSObject, NSCoding, ArrayLiteralConvertible {
     
     public override var description:String { return "\(self.values)" }
     
+}
+
+public func |(lhs:BoolList, rhs:BoolList) -> BoolList {
+    let orList = BoolList(values: lhs.values)
+    orList.combineWithBoolList(rhs)
+    return orList
+}
+
+infix operator |= { associativity none precedence 90 }
+public func |=(lhs:BoolList, rhs:BoolList) {
+    lhs.combineWithBoolList(rhs)
 }
