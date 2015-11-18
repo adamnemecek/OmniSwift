@@ -22,6 +22,8 @@ public class ColorWheelView: GLBufferedView {
                 "u_Projection",
                 "u_Brightness",
                 "u_Gradient",
+                "u_Alpha",
+                "u_OutlineColor",
                 "a_Position",
                 "a_Texture"
                 ])
@@ -31,6 +33,8 @@ public class ColorWheelView: GLBufferedView {
     
     // MARK: - Properties
     
+    private var hue:CGFloat = 0.0
+    private var saturation:CGFloat = 0.0
     public var brightness:CGFloat = 1.0
     private let program = ColorWheelProgram()
     public let vertices = TexturedQuadVertices(vertex: UVertex())
@@ -47,7 +51,8 @@ public class ColorWheelView: GLBufferedView {
     private(set) var currentColor = UIColor.whiteColor()
     public var colorChangedHandler:((UIColor) -> Void)? = nil
     
-    public var enableRotation = false
+    public var enableRotation   = false
+    public var outlineColor     = SCVector4.blackColor
     
     override public var frame:CGRect {
         didSet {
@@ -104,6 +109,11 @@ public class ColorWheelView: GLBufferedView {
     
     // MARK: - Logic
     
+    private func regenerateColor() {
+        self.currentColor = UIColor(hue: self.hue, saturation: self.saturation, brightness: self.brightness, alpha: self.wheelAlpha)
+        self.colorChangedHandler?(self.currentColor)
+    }
+    
     override public func render() {
         glBindFramebuffer(GLenum(GL_FRAMEBUFFER), self.buffer.framebuffer)
         
@@ -117,6 +127,8 @@ public class ColorWheelView: GLBufferedView {
         glUniform1f(self.program["u_Brightness"], GLfloat(self.brightness))
         glBindTexture(GLenum(GL_TEXTURE_2D), self.gradient.textureName)
         glUniform1f(self.program["u_Gradient"], 0.0)
+        glUniform1f(self.program["u_Alpha"], GLfloat(self.wheelAlpha))
+        self.program.uniform4f("u_OutlineColor", value: self.outlineColor)
         
         self.program.enableAttributes()
         self.program.bridgeAttributesWithSizes([2, 2], stride: self.vertices.stride)
@@ -128,6 +140,7 @@ public class ColorWheelView: GLBufferedView {
     public func handlePinch(sender:UIPinchGestureRecognizer) {
         self.scaleDelta.handlePinch(sender)
         self.brightness = self.scaleDelta.currentScale
+        self.regenerateColor()
         self.renderToBuffer()
     }
     
@@ -140,8 +153,9 @@ public class ColorWheelView: GLBufferedView {
         let hue = (angle / CGFloat(M_PI) + 1.0) / 2.0
         let saturation = clampedLocation.distanceFrom(CGPoint.zero)
         
-        self.currentColor = UIColor(hue: hue, saturation: saturation, brightness: self.brightness, alpha: self.wheelAlpha)
-        self.colorChangedHandler?(self.currentColor)
+        self.hue = hue
+        self.saturation = saturation
+        self.regenerateColor()
         
         let anchorAngle = atan2(clampedLocation.y, clampedLocation.x)
         let distance = location.distanceFrom(self.frame.size.center)
@@ -154,6 +168,7 @@ public class ColorWheelView: GLBufferedView {
         }
         
         self.wheelAlpha = self.currentWheelAlpha + CGFloat(sender.rotation) * 2.0 / CGFloat(M_PI)
+        self.wheelAlpha = min(max(self.wheelAlpha, 0.0), 1.0)
         
         switch sender.state {
         case .Ended:
@@ -162,10 +177,21 @@ public class ColorWheelView: GLBufferedView {
             break
         }
         
-        self.alpha = self.wheelAlpha
-        self.currentColor = self.currentColor.colorWithAlphaComponent(self.wheelAlpha)
-        self.colorChangedHandler?(self.currentColor)
-//        self.renderToBuffer()
+//        self.alpha = self.wheelAlpha
+        self.renderToBuffer()
+        self.regenerateColor()
     }
     
+    public func setColor(color:UIColor, animated:Bool) {
+        let comps = color.getHSBComponents()
+        if animated {
+            
+        } else {
+            self.hue        = comps[0]
+            self.saturation = comps[1]
+            self.brightness = comps[2]
+            self.wheelAlpha = comps[3]
+            self.regenerateColor()
+        }
+    }
 }

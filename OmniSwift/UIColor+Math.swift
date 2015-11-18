@@ -62,6 +62,15 @@ public extension UIColor {
         return [red, green, blue, alpha]
     }//get components
     
+    public func getHSBComponents() -> [CGFloat] {
+        var hue:CGFloat         = 0.0
+        var saturation:CGFloat  = 0.0
+        var brightness:CGFloat  = 0.0
+        var alpha:CGFloat       = 0.0
+        self.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha)
+        return [hue, saturation, brightness, alpha]
+    }
+    
     public func getVector3() -> SCVector3 {
         
         let comps = self.getComponents()

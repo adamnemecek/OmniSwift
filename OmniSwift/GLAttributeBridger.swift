@@ -73,7 +73,6 @@ public class GLAttributeBridger: NSObject {
             glDisableVertexAttribArray(cur)
         }
     }
-    
 
     deinit {
         glDeleteBuffers(1, &self.vertexBuffer)

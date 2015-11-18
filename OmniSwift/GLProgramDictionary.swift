@@ -88,4 +88,20 @@ public class GLProgramDictionary: GLAttributeBridger {
         glBindBuffer(GLenum(GL_ARRAY_BUFFER), self.vertexBuffer)
     }
     
+    
+    ///Invokes glUniform2f with the given location and value.
+    public func uniform2f(location:String, value:CGPoint) {
+        glUniform2f(self[location], GLfloat(value.x), GLfloat(value.y))
+    }
+    
+    ///Invokes glUniform3f with the given location and value.
+    public func uniform3f(location:String, value:SCVector3) {
+        glUniform3f(self[location], GLfloat(value.x), GLfloat(value.y), GLfloat(value.z))
+    }
+    
+    ///Invokes glUniform4f with the given location and value.
+    public func uniform4f(location:String, value:SCVector4) {
+        glUniform4f(self[location], GLfloat(value.x), GLfloat(value.y), GLfloat(value.z), GLfloat(value.w))
+    }
+    
 }
