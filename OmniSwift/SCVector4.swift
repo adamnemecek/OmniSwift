@@ -51,6 +51,8 @@ public struct SCVector4: CustomStringConvertible {
         
     }//a
     
+    public var xyz:SCVector3 { return SCVector3(x: self.x, y: self.y, z: self.z) }
+    
     // MARK: - Setup
     
     //Initialization

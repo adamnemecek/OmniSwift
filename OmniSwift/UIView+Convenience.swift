@@ -70,4 +70,32 @@ extension UIView {
     public func setRoundnessWithFactor(factor:CGFloat) {
         self.layer.cornerRadius = self.frame.size.minimum * factor
     }
+    
+    /**
+     Positions views so there is an equal space between each of them horizontally. Centers them vertically.
+     
+     - parameter views: The views to equally space.
+     - parameter rect: The rect to space and center the views in.
+    */
+    public class func spaceViewsEquallyHorizontally(views:[UIView], inRect rect:CGRect) {
+        let totalWidth = views.reduce(0.0) { $0 + $1.frame.width }
+        let buffer = (rect.width - totalWidth) / CGFloat(views.count + 1)
+        var x = rect.minX + buffer
+        for view in views {
+            x += view.frame.width / 2.0
+            view.center = CGPoint(x: x, y: rect.midY)
+            x += view.frame.width / 2.0 + buffer
+        }
+    }
+    
+    public class func spaceViewsEquallyVertically(views:[UIView], inRect rect:CGRect) {
+        let totalHeight = views.reduce(0.0) { $0 + $1.frame.height }
+        let buffer = (rect.height - totalHeight) / CGFloat(views.count + 1)
+        var y = rect.minY + buffer
+        for view in views {
+            view.center = CGPoint(x: rect.midX, y: y + view.frame.height / 2.0)
+            y += view.frame.height + buffer
+        }
+    }
+    
 }

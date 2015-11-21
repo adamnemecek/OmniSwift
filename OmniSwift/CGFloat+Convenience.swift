@@ -61,3 +61,13 @@ extension CGFloat {
     }//get value that is nearest to this value
     
 }//CGFloat
+
+public func positions(count:Int, ofSize objectSize:CGFloat, inSize windowSize:CGFloat) -> [CGFloat] {
+    let buffer = (windowSize - CGFloat(count) * objectSize) / CGFloat(count + 1)
+    var positions:[CGFloat] = []
+    for i in 0..<count {
+        let fi = CGFloat(i)
+        positions.append(buffer * (fi + 1.0) + objectSize * (fi + 0.5))
+    }
+    return positions
+}

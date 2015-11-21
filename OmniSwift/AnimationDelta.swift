@@ -25,10 +25,12 @@ extension CGPoint:      AnimationDeltaProtocol {}
 extension SCVector3:    AnimationDeltaProtocol {}
 extension SCVector4:    AnimationDeltaProtocol {}
 
-public class AnimationDelta<T: AnimationDeltaProtocol> {
+public class AnimationDelta<T: AnimationDeltaProtocol>: CustomStringConvertible {
     
     public let initialValue:T
     public let deltaValue:T
+    
+    public var description:String { return "Initial = \(self.initialValue), Delta = \(self.deltaValue)" }
     
     public init(start:T, delta:T) {
         

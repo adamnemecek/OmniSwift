@@ -8,9 +8,42 @@
 
 import UIKit
 
-public class ColorWheelView: GLBufferedView {
+public class ColorWheelView: GLBufferedView, UIGestureRecognizerDelegate {
     
     // MARK: - Types
+    
+    private class ColorWheelAnimation {
+        private let hueDelta:AnimationDelta<CGFloat>
+        private let saturationDelta:AnimationDelta<CGFloat>
+        private let brightnessDelta:AnimationDelta<CGFloat>
+        private let alphaDelta:AnimationDelta<CGFloat>
+        private let positionDelta:AnimationDelta<CGPoint>
+        private var time:CGFloat = 0.0
+        private let duration:CGFloat
+        private var isFinished:Bool { return self.duration <= self.time }
+        
+        private var position:CGPoint { return self.positionDelta[self.time / self.duration] }
+        
+        private init(wheel:ColorWheelView, hue:CGFloat, saturation:CGFloat, brightness:CGFloat, alpha:CGFloat, position:CGPoint, duration:CGFloat) {
+            self.hueDelta           = AnimationDelta(start: wheel.hue, end: hue)
+            self.saturationDelta    = AnimationDelta(start: wheel.saturation, end: saturation)
+            self.brightnessDelta    = AnimationDelta(start: wheel.brightness, end: brightness)
+            self.alphaDelta         = AnimationDelta(start: wheel.wheelAlpha, end: alpha)
+            self.positionDelta      = AnimationDelta(start: wheel.anchorImage.center, end: position)
+            self.duration           = duration
+        }
+        
+        private func update(dt:CGFloat) -> UIColor {
+            self.time += dt
+            let t = self.time / self.duration
+            let h = self.hueDelta[t]
+            let s = self.saturationDelta[t]
+            let b = self.brightnessDelta[t]
+            let a = self.alphaDelta[t]
+            return UIColor(hue: h, saturation: s, brightness: b, alpha: a)
+        }
+        
+    }
     
     private class ColorWheelProgram: GLProgramDictionary {
         
@@ -41,12 +74,14 @@ public class ColorWheelView: GLBufferedView {
     public let gradient = GLGradientTexture2D(gradient: ColorGradient1D.hueGradient)
     
     private lazy var pinchRecognizer:UIPinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: "handlePinch:")
-    private let scaleDelta = ScaleDelta(scale: 1.0)
+    private var scaleDelta = ScaleDelta(scale: 2.0)
     private lazy var panRecognizer:UIPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: "handlePan:")
     private lazy var rotationRecognizer:UIRotationGestureRecognizer = UIRotationGestureRecognizer(target: self, action: "handleRotation:")
     private var wheelAlpha:CGFloat = 1.0
     private var currentWheelAlpha:CGFloat = 1.0
     private let anchorImage = UIImageView(image: UIImage.imageWithPDFFile("CircleAnchor", size: CGSize(square: 48.0)))
+    
+    private var currentAnimation:ColorWheelAnimation? = nil
     
     private(set) var currentColor = UIColor.whiteColor()
     public var colorChangedHandler:((UIColor) -> Void)? = nil
@@ -65,18 +100,25 @@ public class ColorWheelView: GLBufferedView {
     // MARK: - Setup
     
     override public init(frame:CGRect) {
+        self.scaleDelta.minimumScale = 1.0
+        self.scaleDelta.maximumScale = 2.0
         super.init(frame: frame)
         
         self.userInteractionEnabled = true
         self.addGestureRecognizer(self.pinchRecognizer)
         self.addGestureRecognizer(self.panRecognizer)
         self.addGestureRecognizer(self.rotationRecognizer)
+//        self.pinchRecognizer.delegate       = self
+//        self.panRecognizer.delegate         = self
+//        self.rotationRecognizer.delegate    = self
         
         self.anchorImage.center = frame.size.center
         self.addSubview(self.anchorImage)
     }
     
     required public init?(coder aDecoder: NSCoder) {
+        self.scaleDelta.minimumScale = 1.0
+        self.scaleDelta.maximumScale = 2.0
         self.brightness = CGFloat(aDecoder.decodeDoubleForKey("Brightness"))
         
         super.init(coder: aDecoder)
@@ -85,6 +127,9 @@ public class ColorWheelView: GLBufferedView {
         self.addGestureRecognizer(self.pinchRecognizer)
         self.addGestureRecognizer(self.panRecognizer)
         self.addGestureRecognizer(self.rotationRecognizer)
+//        self.pinchRecognizer.delegate       = self
+//        self.panRecognizer.delegate         = self
+//        self.rotationRecognizer.delegate    = self
         
         self.anchorImage.center = self.frame.size.center
         self.addSubview(self.anchorImage)
@@ -109,9 +154,18 @@ public class ColorWheelView: GLBufferedView {
     
     // MARK: - Logic
     
-    private func regenerateColor() {
+    private func anchorPositionForColor(color:UIColor) -> CGPoint {
+        let comps = color.getHSBComponents()
+        let angle = -(2.0 * comps[0]) * CGFloat(M_PI)
+        let distance = self.frame.width / 2.0 * comps[1]
+        return CGPoint(angle: angle, length: distance) + self.frame.size.center
+    }
+    
+    private func regenerateColor(invokeHandler:Bool) {
         self.currentColor = UIColor(hue: self.hue, saturation: self.saturation, brightness: self.brightness, alpha: self.wheelAlpha)
-        self.colorChangedHandler?(self.currentColor)
+        if invokeHandler {
+            self.colorChangedHandler?(self.currentColor)
+        }
     }
     
     override public func render() {
@@ -139,8 +193,10 @@ public class ColorWheelView: GLBufferedView {
     
     public func handlePinch(sender:UIPinchGestureRecognizer) {
         self.scaleDelta.handlePinch(sender)
-        self.brightness = self.scaleDelta.currentScale
-        self.regenerateColor()
+        //Subtract 1.0, because I add 1.0 when I set the scaleDelta
+        //because ScaleDeltas don't work when scale hits 0
+        self.brightness = self.scaleDelta.currentScale - 1.0
+        self.regenerateColor(true)
         self.renderToBuffer()
     }
     
@@ -155,7 +211,7 @@ public class ColorWheelView: GLBufferedView {
         
         self.hue = hue
         self.saturation = saturation
-        self.regenerateColor()
+        self.regenerateColor(true)
         
         let anchorAngle = atan2(clampedLocation.y, clampedLocation.x)
         let distance = location.distanceFrom(self.frame.size.center)
@@ -177,21 +233,51 @@ public class ColorWheelView: GLBufferedView {
             break
         }
         
-//        self.alpha = self.wheelAlpha
         self.renderToBuffer()
-        self.regenerateColor()
+        self.regenerateColor(true)
     }
     
     public func setColor(color:UIColor, animated:Bool) {
         let comps = color.getHSBComponents()
         if animated {
-            
+            let comps = color.getHSBComponents()
+            self.currentAnimation = ColorWheelAnimation(wheel: self, hue: comps[0], saturation: comps[1], brightness: comps[2], alpha: comps[3], position: self.anchorPositionForColor(color), duration: 0.5)
         } else {
             self.hue        = comps[0]
             self.saturation = comps[1]
             self.brightness = comps[2]
             self.wheelAlpha = comps[3]
-            self.regenerateColor()
+            
+            self.currentWheelAlpha  = self.wheelAlpha
+            //Add 1.0, because ScaleDeltas don't work at all when scale hits 0
+            self.scaleDelta         = ScaleDelta(scale: self.brightness + 1.0)
+            self.scaleDelta.minimumScale = 1.0
+            self.scaleDelta.maximumScale = 2.0
+            
+            self.anchorImage.center = self.anchorPositionForColor(color)
+            self.renderToBuffer()
+            self.regenerateColor(false)
+        }
+    }
+    
+    public func updateAnimation(dt:CGFloat) {
+        if let anim = self.currentAnimation {
+            self.setColor(anim.update(dt), animated: false)
+            self.anchorImage.center = anim.position
+            if anim.isFinished {
+                self.currentAnimation = nil
+            }
+        }
+    }
+    
+    // MARK: - UIGestureRecognizerDelegate
+    
+    public func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOfGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        switch (gestureRecognizer, otherGestureRecognizer) {
+        case (self.pinchRecognizer, self.panRecognizer):
+            return true
+        default:
+            return false
         }
     }
 }
