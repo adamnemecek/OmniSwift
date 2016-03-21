@@ -38,7 +38,6 @@ public class GLProgramDictionary: GLAttributeBridger {
                 value = glGetUniformLocation(program, name)
             } else /* a_ */ {
                 value = glGetAttribLocation(program, name)
-                
                 if value < 0 {
                     print("Error: \(name) location is \(value).")
                     print("Is the value used in the shader?")

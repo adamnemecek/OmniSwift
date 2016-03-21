@@ -20,6 +20,14 @@ public class AnimationStructContainer {
 
 public extension GLSNode {
     
+    // MARK: - Types
+    
+    enum Timing {
+        case After
+        case With
+    }
+    typealias AnimationDictionary = [String:Any]
+    
     // MARK: - Variables
     
     public class var animationInstance:AnimationStructContainer {
@@ -100,6 +108,77 @@ public extension GLSNode {
     ///Uses .EaseInOut mode and default speed of 1.0
     public class func animateWithDuration(duration:CGFloat, block:() -> ()) {
         GLSNode.animateWithDuration(duration, mode: .EaseInOut, block: block)
+    }
+    
+    public class func performAnimation(animation:AnimationDictionary) {
+        guard let block = animation["Block"] as? () -> () else {
+            return
+        }
+        
+        func parseCGFloat(key:String) -> CGFloat? {
+            switch animation[key] {
+            case let dur as CGFloat:
+                return dur
+            case let dur as Double:
+                return CGFloat(dur)
+            case let dur as Float:
+                return CGFloat(dur)
+            case let dur as Int:
+                return CGFloat(dur)
+            default:
+                return nil
+            }
+        }
+        
+        let duration    = parseCGFloat("Duration")
+        let mode        = animation["Mode"] as? AnimationModes ?? .Smoothstep
+        let complete    = animation["Complete"] as? () -> ()
+//        let timing      = animation["Timing"] as? Timing ?? .After
+        let delay       = parseCGFloat("Delay")
+        
+        let finalBlock  = {
+            if let complete = complete {
+                GLSNode.animateWithDuration(duration, mode: mode, block: block, complete: complete)
+            } else {
+                GLSNode.animateWithDuration(duration, mode: mode, block: block)
+            }
+        }
+        
+        if let delay = delay {
+            NSObject.dispatchAfter(delay) {
+                finalBlock()
+            }
+        } else {
+            finalBlock()
+        }
+    }
+    
+    public class func performAnimations(var animations:[AnimationDictionary]) {
+        guard var animation = animations.first else {
+            return
+        }
+        
+        animations.removeFirst()
+        if let nextAnimation = animations.first {
+            switch nextAnimation["Timing"] as? Timing {
+            case .With?:
+                GLSNode.performAnimation(animation)
+                GLSNode.performAnimations(animations)
+            case .After?:
+                fallthrough
+            default:
+                let oldCompleteBlock = animation["Complete"] as? () -> ()
+                animation["Complete"] = {
+                    oldCompleteBlock?()
+                    GLSNode.performAnimations(animations)
+                }
+                GLSNode.performAnimation(animation)
+                break
+            }
+        } else {
+            GLSNode.performAnimation(animation)
+        }
+        
     }
     
     // MARK: - Handling Animations

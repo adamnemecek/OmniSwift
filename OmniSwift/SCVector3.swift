@@ -205,7 +205,7 @@ public struct SCVector3: CustomStringConvertible {
         
     }//too close to zero?
     
-    //Printable Protocol
+    //CustomStringConvertible Protocol
     public var description:String {
         
         get {

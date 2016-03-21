@@ -8,6 +8,7 @@
 
 import GLKit
 
+///**DEPRECATED**
 public class GLSNoiseSprite: GLSNode, DoubleBuffered {
     
     public struct NoiseVertex {
@@ -34,6 +35,7 @@ public class GLSNoiseSprite: GLSNode, DoubleBuffered {
     
     public let buffer:GLSFrameBuffer
     public var shouldRedraw = false
+    public var bufferIsDirty = false
     
     
     private var vertexBuffer:GLuint = 0

@@ -173,7 +173,7 @@ public class BoolList: NSObject, NSCoding, ArrayLiteralConvertible {
         
     }//subscript
     
-    //MARK: - Printable
+    //MARK: - CustomStringConvertible
     
     public override var description:String { return "\(self.values)" }
     

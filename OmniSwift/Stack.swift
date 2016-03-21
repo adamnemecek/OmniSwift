@@ -66,7 +66,7 @@ public class Stack<T>: CustomStringConvertible {
     }
     
     
-    // MARK: - Printable
+    // MARK: - CustomStringConvertible
     
     public var description:String {
         var string = "[\n"

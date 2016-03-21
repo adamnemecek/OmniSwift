@@ -57,14 +57,23 @@ public class GLSDoubleSprite: GLSSprite, DoubleBuffered {
         }
     }
     
-    public var firstTexture:CCTexture?  = nil
-    public var secondTexture:CCTexture? = nil
+    public var firstTexture:CCTexture?  = nil {
+        didSet {
+            self.bufferIsDirty = true
+        }
+    }
+    public var secondTexture:CCTexture? = nil {
+        didSet {
+            self.bufferIsDirty = true
+        }
+    }
     
     public var doubleVertices = [DoubleVertex(), DoubleVertex(), DoubleVertex(), DoubleVertex(), DoubleVertex(), DoubleVertex()]
     
     public let doubleProgram = DoubleShaderProgram()
     public var buffer:GLSFrameBuffer
     public var shouldRedraw = false
+    public private(set) var bufferIsDirty = false
     
     
     public init(size:CGSize, firstTexture:CCTexture?, secondTexture:CCTexture?) {
@@ -140,6 +149,8 @@ public class GLSDoubleSprite: GLSSprite, DoubleBuffered {
         glDisableVertexAttribArray(GLuint(self.doubleProgram.a_Texture2))
         
         self.framebufferStack?.popFramebuffer()
+        
+        self.bufferIsDirty = false
     }//render to texture
     
 }

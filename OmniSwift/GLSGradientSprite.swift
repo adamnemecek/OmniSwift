@@ -61,7 +61,7 @@ public class GLSGradientSprite: GLSSprite, DoubleBuffered {
     /**
     How the sprite renders the gradient.
     
-    If *.Mapped*, then *mapTexture* is used as a color wrap.
+    If *.Mapped*, then *mapTexture* is used as a color map.
     
     If *.Radial*, then *mapTexture* is used as a mask and the
     gradient is rendered radially (counterclockwise, starting at angle 0.0).
@@ -70,6 +70,7 @@ public class GLSGradientSprite: GLSSprite, DoubleBuffered {
         didSet {
             if self.gradientType != oldValue {
                 self.gradientProgram = GradientProgram(type: self.gradientType)
+                self.bufferIsDirty = true
             }
         }
     }
@@ -78,15 +79,21 @@ public class GLSGradientSprite: GLSSprite, DoubleBuffered {
     public var mapTexture:CCTexture? = nil {
         didSet {
             self.mapTextureChanged()
+            self.bufferIsDirty = true
         }
     }
     
     ///The gradient of colors to use.
-    public var gradient:GLGradientTexture2D
+    public var gradient:GLGradientTexture2D {
+        didSet {
+            self.bufferIsDirty = true
+        }
+    }
     
     ///The background buffer that the sprite is drawn to.
     public let buffer:GLSFrameBuffer
     public var shouldRedraw = false
+    public private(set) var bufferIsDirty = false
     
     ///The vertices used to draw the sprite.
     let gradientVertices = TexturedQuadVertices(vertex: GradientVertex())
@@ -152,6 +159,8 @@ public class GLSGradientSprite: GLSSprite, DoubleBuffered {
         self.gradientProgram.disableAttributes()
         self.popTextures()
         self.framebufferStack?.popFramebuffer()
+        
+        self.bufferIsDirty = false
     }
     
     private func mapTextureChanged() {

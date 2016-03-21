@@ -111,28 +111,79 @@
 		DC8272471B5AB9D500DF9F97 /* TimeTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8272461B5AB9D500DF9F97 /* TimeTracker.swift */; };
 		DC90CA091B9CE85500284480 /* NSScanner+Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC90CA081B9CE85500284480 /* NSScanner+Swift.swift */; };
 		DC9276031BE07A6F00334C6D /* GLSRecursivePropertyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9276021BE07A6F00334C6D /* GLSRecursivePropertyNode.swift */; };
+		DC9CB69B1C0B9B9B007E9016 /* HealthBarSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9CB69A1C0B9B9B007E9016 /* HealthBarSprite.swift */; };
 		DC9D2ED91B1D072900CF8C40 /* GLSFireSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9D2ED81B1D072900CF8C40 /* GLSFireSprite.swift */; };
 		DC9D2EDB1B1D088C00CF8C40 /* TrilinearArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9D2EDA1B1D088C00CF8C40 /* TrilinearArray.swift */; };
 		DC9D2EDD1B1D08BA00CF8C40 /* BilinearArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9D2EDC1B1D08BA00CF8C40 /* BilinearArray.swift */; };
 		DC9D2EE11B1D093100CF8C40 /* NoiseArray2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9D2EE01B1D093100CF8C40 /* NoiseArray2D.swift */; };
 		DC9D2EE31B1D094A00CF8C40 /* NoiseArray3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9D2EE21B1D094A00CF8C40 /* NoiseArray3D.swift */; };
 		DCA9D5D51B4C7DAC00425D73 /* GLProgramDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA9D5D41B4C7DAC00425D73 /* GLProgramDictionary.swift */; };
+		DCAA95251C13F36C00E53785 /* PlaygroundOpenGLDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAA95241C13F36C00E53785 /* PlaygroundOpenGLDelegate.swift */; };
 		DCABE78D1BD2D8B7000CED7B /* CGRect+Enumeration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCABE78C1BD2D8B7000CED7B /* CGRect+Enumeration.swift */; };
+		DCB0AF671C017A1100AB89C2 /* BasicGradientShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DCB0AF411C017A1100AB89C2 /* BasicGradientShader.fsh */; };
+		DCB0AF681C017A1100AB89C2 /* BasicGradientShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DCB0AF421C017A1100AB89C2 /* BasicGradientShader.vsh */; };
+		DCB0AF691C017A1100AB89C2 /* BasicShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DCB0AF431C017A1100AB89C2 /* BasicShader.fsh */; };
+		DCB0AF6A1C017A1100AB89C2 /* BasicShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DCB0AF441C017A1100AB89C2 /* BasicShader.vsh */; };
+		DCB0AF6B1C017A1100AB89C2 /* ColorShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DCB0AF451C017A1100AB89C2 /* ColorShader.fsh */; };
+		DCB0AF6C1C017A1100AB89C2 /* ColorShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DCB0AF461C017A1100AB89C2 /* ColorShader.vsh */; };
+		DCB0AF6D1C017A1100AB89C2 /* ColorWheelShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DCB0AF471C017A1100AB89C2 /* ColorWheelShader.fsh */; };
+		DCB0AF6E1C017A1100AB89C2 /* ColorWheelShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DCB0AF481C017A1100AB89C2 /* ColorWheelShader.vsh */; };
+		DCB0AF6F1C017A1100AB89C2 /* DoubleShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DCB0AF491C017A1100AB89C2 /* DoubleShader.fsh */; };
+		DCB0AF701C017A1100AB89C2 /* DoubleShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DCB0AF4A1C017A1100AB89C2 /* DoubleShader.vsh */; };
+		DCB0AF711C017A1100AB89C2 /* DummyShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DCB0AF4B1C017A1100AB89C2 /* DummyShader.fsh */; };
+		DCB0AF721C017A1100AB89C2 /* DummyShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DCB0AF4C1C017A1100AB89C2 /* DummyShader.vsh */; };
+		DCB0AF731C017A1100AB89C2 /* FastBlurShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DCB0AF4D1C017A1100AB89C2 /* FastBlurShader.fsh */; };
+		DCB0AF741C017A1100AB89C2 /* FastBlurShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DCB0AF4E1C017A1100AB89C2 /* FastBlurShader.vsh */; };
+		DCB0AF751C017A1100AB89C2 /* FastFractalShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DCB0AF4F1C017A1100AB89C2 /* FastFractalShader.fsh */; };
+		DCB0AF761C017A1100AB89C2 /* FastFractalShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DCB0AF501C017A1100AB89C2 /* FastFractalShader.vsh */; };
+		DCB0AF771C017A1100AB89C2 /* FireShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DCB0AF511C017A1100AB89C2 /* FireShader.fsh */; };
+		DCB0AF781C017A1100AB89C2 /* FireShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DCB0AF521C017A1100AB89C2 /* FireShader.vsh */; };
+		DCB0AF791C017A1100AB89C2 /* HardBlurShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DCB0AF531C017A1100AB89C2 /* HardBlurShader.fsh */; };
+		DCB0AF7A1C017A1100AB89C2 /* HardBlurShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DCB0AF541C017A1100AB89C2 /* HardBlurShader.vsh */; };
+		DCB0AF7B1C017A1100AB89C2 /* NoiseShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DCB0AF551C017A1100AB89C2 /* NoiseShader.fsh */; };
+		DCB0AF7C1C017A1100AB89C2 /* NoiseShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DCB0AF561C017A1100AB89C2 /* NoiseShader.vsh */; };
+		DCB0AF7D1C017A1100AB89C2 /* PerlinAbsNoiseShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DCB0AF571C017A1100AB89C2 /* PerlinAbsNoiseShader.fsh */; };
+		DCB0AF7E1C017A1100AB89C2 /* PerlinAbsNoiseShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DCB0AF581C017A1100AB89C2 /* PerlinAbsNoiseShader.vsh */; };
+		DCB0AF7F1C017A1100AB89C2 /* PerlinFractalNoiseShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DCB0AF591C017A1100AB89C2 /* PerlinFractalNoiseShader.fsh */; };
+		DCB0AF801C017A1100AB89C2 /* PerlinFractalNoiseShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DCB0AF5A1C017A1100AB89C2 /* PerlinFractalNoiseShader.vsh */; };
+		DCB0AF811C017A1100AB89C2 /* PerlinNoiseShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DCB0AF5B1C017A1100AB89C2 /* PerlinNoiseShader.fsh */; };
+		DCB0AF821C017A1100AB89C2 /* PerlinNoiseShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DCB0AF5C1C017A1100AB89C2 /* PerlinNoiseShader.vsh */; };
+		DCB0AF831C017A1100AB89C2 /* PerlinSinNoiseShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DCB0AF5D1C017A1100AB89C2 /* PerlinSinNoiseShader.fsh */; };
+		DCB0AF841C017A1100AB89C2 /* PerlinSinNoiseShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DCB0AF5E1C017A1100AB89C2 /* PerlinSinNoiseShader.vsh */; };
+		DCB0AF851C017A1100AB89C2 /* RadialGradientShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DCB0AF5F1C017A1100AB89C2 /* RadialGradientShader.fsh */; };
+		DCB0AF861C017A1100AB89C2 /* RadialGradientShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DCB0AF601C017A1100AB89C2 /* RadialGradientShader.vsh */; };
+		DCB0AF871C017A1100AB89C2 /* SoftBlurShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DCB0AF611C017A1100AB89C2 /* SoftBlurShader.fsh */; };
+		DCB0AF881C017A1100AB89C2 /* SoftBlurShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DCB0AF621C017A1100AB89C2 /* SoftBlurShader.vsh */; };
+		DCB0AF891C017A1100AB89C2 /* Universal2DShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DCB0AF631C017A1100AB89C2 /* Universal2DShader.fsh */; };
+		DCB0AF8A1C017A1100AB89C2 /* Universal2DShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DCB0AF641C017A1100AB89C2 /* Universal2DShader.vsh */; };
+		DCB0AF8B1C017A1100AB89C2 /* UniversalParticleShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DCB0AF651C017A1100AB89C2 /* UniversalParticleShader.fsh */; };
+		DCB0AF8C1C017A1100AB89C2 /* UniversalParticleShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DCB0AF661C017A1100AB89C2 /* UniversalParticleShader.vsh */; };
+		DCB0AF9D1C018A3C00AB89C2 /* AlphaHoleShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DCB0AF901C017F8700AB89C2 /* AlphaHoleShader.vsh */; };
+		DCB0AF9F1C018DB000AB89C2 /* AlphaHoleShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DCB0AF9E1C018DB000AB89C2 /* AlphaHoleShader.fsh */; };
+		DCB3A5BA1C02A83C0076A38A /* GLSAlphaHoleSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB3A5B91C02A83C0076A38A /* GLSAlphaHoleSprite.swift */; };
 		DCB3CCD81BE7289300CA52EF /* CCSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB3CCD61BE7289300CA52EF /* CCSound.swift */; };
 		DCB3CCD91BE7289300CA52EF /* CCSoundPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB3CCD71BE7289300CA52EF /* CCSoundPlayer.swift */; };
 		DCB64B7F1B4F4D3A001C689C /* RecursiveRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB64B7E1B4F4D3A001C689C /* RecursiveRenderer.swift */; };
 		DCB786241B16830A00DC4638 /* ScaleDelta.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB786231B16830A00DC4638 /* ScaleDelta.swift */; };
 		DCB786291B168D5B00DC4638 /* String+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB786281B168D5B00DC4638 /* String+Convenience.swift */; };
+		DCB79DE11C6C5FDA001B19F7 /* ParabolaShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DCB79DDF1C6C5FDA001B19F7 /* ParabolaShader.vsh */; };
+		DCB79DE21C6C5FDA001B19F7 /* ParabolaShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DCB79DE01C6C5FDA001B19F7 /* ParabolaShader.fsh */; };
 		DCB808A81B336B3A007BA38D /* SmoothingFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB808A71B336B3A007BA38D /* SmoothingFunctions.swift */; };
 		DCBED5551B938EF4009CD82B /* NSFileManager+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBED5541B938EF4009CD82B /* NSFileManager+Convenience.swift */; };
 		DCBED5591B93C65E009CD82B /* GLBufferedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBED5581B93C65E009CD82B /* GLBufferedView.swift */; };
 		DCBED55B1B93CD1C009CD82B /* ColorWheelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBED55A1B93CD1C009CD82B /* ColorWheelView.swift */; };
 		DCD0451C1BF3FAE300EC9273 /* CombineIteration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD0451B1BF3FAE300EC9273 /* CombineIteration.swift */; };
+		DCD34FDA1C13E30000D28816 /* BoolList2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD34FD91C13E30000D28816 /* BoolList2D.swift */; };
+		DCD34FDD1C13E31F00D28816 /* IntPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD34FDB1C13E31F00D28816 /* IntPoint.swift */; };
+		DCD34FDE1C13E31F00D28816 /* IntPoint+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD34FDC1C13E31F00D28816 /* IntPoint+Operations.swift */; };
 		DCD3A9091B82B6CC00D1E9F1 /* CADisplayLinkWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD3A9081B82B6CC00D1E9F1 /* CADisplayLinkWrapper.swift */; };
+		DCD3BACA1C06C67800730528 /* NSURL+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD3BAC91C06C67800730528 /* NSURL+Convenience.swift */; };
+		DCD94A381C0B7ADE00E266BF /* Set+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD94A371C0B7ADE00E266BF /* Set+Convenience.swift */; };
 		DCD956E21BCE016200A007F4 /* FluctuatingNoise1D.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD956E11BCE016200A007F4 /* FluctuatingNoise1D.swift */; };
 		DCE484121BCDF93000AF81C2 /* NoiseArray1D.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE484111BCDF93000AF81C2 /* NoiseArray1D.swift */; };
 		DCE484141BCDF95900AF81C2 /* LinearArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE484131BCDF95900AF81C2 /* LinearArray.swift */; };
 		DCE6F6581BF284B10059D4C6 /* NSNotificationCenter+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC71DBD41BF281F700B38E92 /* NSNotificationCenter+Convenience.swift */; };
+		DCF768021C9F7A6C0090B637 /* StaticRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF768011C9F7A6C0090B637 /* StaticRenderer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -264,27 +315,78 @@
 		DC8272461B5AB9D500DF9F97 /* TimeTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTracker.swift; sourceTree = "<group>"; };
 		DC90CA081B9CE85500284480 /* NSScanner+Swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSScanner+Swift.swift"; sourceTree = "<group>"; };
 		DC9276021BE07A6F00334C6D /* GLSRecursivePropertyNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLSRecursivePropertyNode.swift; sourceTree = "<group>"; };
+		DC9CB69A1C0B9B9B007E9016 /* HealthBarSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthBarSprite.swift; sourceTree = "<group>"; };
 		DC9D2ED81B1D072900CF8C40 /* GLSFireSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLSFireSprite.swift; sourceTree = "<group>"; };
 		DC9D2EDA1B1D088C00CF8C40 /* TrilinearArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrilinearArray.swift; sourceTree = "<group>"; };
 		DC9D2EDC1B1D08BA00CF8C40 /* BilinearArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BilinearArray.swift; sourceTree = "<group>"; };
 		DC9D2EE01B1D093100CF8C40 /* NoiseArray2D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoiseArray2D.swift; sourceTree = "<group>"; };
 		DC9D2EE21B1D094A00CF8C40 /* NoiseArray3D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoiseArray3D.swift; sourceTree = "<group>"; };
 		DCA9D5D41B4C7DAC00425D73 /* GLProgramDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLProgramDictionary.swift; sourceTree = "<group>"; };
+		DCAA95241C13F36C00E53785 /* PlaygroundOpenGLDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaygroundOpenGLDelegate.swift; sourceTree = "<group>"; };
 		DCABE78C1BD2D8B7000CED7B /* CGRect+Enumeration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGRect+Enumeration.swift"; sourceTree = "<group>"; };
+		DCB0AF411C017A1100AB89C2 /* BasicGradientShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = BasicGradientShader.fsh; sourceTree = "<group>"; };
+		DCB0AF421C017A1100AB89C2 /* BasicGradientShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = BasicGradientShader.vsh; sourceTree = "<group>"; };
+		DCB0AF431C017A1100AB89C2 /* BasicShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = BasicShader.fsh; sourceTree = "<group>"; };
+		DCB0AF441C017A1100AB89C2 /* BasicShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = BasicShader.vsh; sourceTree = "<group>"; };
+		DCB0AF451C017A1100AB89C2 /* ColorShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ColorShader.fsh; sourceTree = "<group>"; };
+		DCB0AF461C017A1100AB89C2 /* ColorShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ColorShader.vsh; sourceTree = "<group>"; };
+		DCB0AF471C017A1100AB89C2 /* ColorWheelShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ColorWheelShader.fsh; sourceTree = "<group>"; };
+		DCB0AF481C017A1100AB89C2 /* ColorWheelShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ColorWheelShader.vsh; sourceTree = "<group>"; };
+		DCB0AF491C017A1100AB89C2 /* DoubleShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = DoubleShader.fsh; sourceTree = "<group>"; };
+		DCB0AF4A1C017A1100AB89C2 /* DoubleShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = DoubleShader.vsh; sourceTree = "<group>"; };
+		DCB0AF4B1C017A1100AB89C2 /* DummyShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = DummyShader.fsh; sourceTree = "<group>"; };
+		DCB0AF4C1C017A1100AB89C2 /* DummyShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = DummyShader.vsh; sourceTree = "<group>"; };
+		DCB0AF4D1C017A1100AB89C2 /* FastBlurShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = FastBlurShader.fsh; sourceTree = "<group>"; };
+		DCB0AF4E1C017A1100AB89C2 /* FastBlurShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = FastBlurShader.vsh; sourceTree = "<group>"; };
+		DCB0AF4F1C017A1100AB89C2 /* FastFractalShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = FastFractalShader.fsh; sourceTree = "<group>"; };
+		DCB0AF501C017A1100AB89C2 /* FastFractalShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = FastFractalShader.vsh; sourceTree = "<group>"; };
+		DCB0AF511C017A1100AB89C2 /* FireShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = FireShader.fsh; sourceTree = "<group>"; };
+		DCB0AF521C017A1100AB89C2 /* FireShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = FireShader.vsh; sourceTree = "<group>"; };
+		DCB0AF531C017A1100AB89C2 /* HardBlurShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = HardBlurShader.fsh; sourceTree = "<group>"; };
+		DCB0AF541C017A1100AB89C2 /* HardBlurShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = HardBlurShader.vsh; sourceTree = "<group>"; };
+		DCB0AF551C017A1100AB89C2 /* NoiseShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = NoiseShader.fsh; sourceTree = "<group>"; };
+		DCB0AF561C017A1100AB89C2 /* NoiseShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = NoiseShader.vsh; sourceTree = "<group>"; };
+		DCB0AF571C017A1100AB89C2 /* PerlinAbsNoiseShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = PerlinAbsNoiseShader.fsh; sourceTree = "<group>"; };
+		DCB0AF581C017A1100AB89C2 /* PerlinAbsNoiseShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = PerlinAbsNoiseShader.vsh; sourceTree = "<group>"; };
+		DCB0AF591C017A1100AB89C2 /* PerlinFractalNoiseShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = PerlinFractalNoiseShader.fsh; sourceTree = "<group>"; };
+		DCB0AF5A1C017A1100AB89C2 /* PerlinFractalNoiseShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = PerlinFractalNoiseShader.vsh; sourceTree = "<group>"; };
+		DCB0AF5B1C017A1100AB89C2 /* PerlinNoiseShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = PerlinNoiseShader.fsh; sourceTree = "<group>"; };
+		DCB0AF5C1C017A1100AB89C2 /* PerlinNoiseShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = PerlinNoiseShader.vsh; sourceTree = "<group>"; };
+		DCB0AF5D1C017A1100AB89C2 /* PerlinSinNoiseShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = PerlinSinNoiseShader.fsh; sourceTree = "<group>"; };
+		DCB0AF5E1C017A1100AB89C2 /* PerlinSinNoiseShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = PerlinSinNoiseShader.vsh; sourceTree = "<group>"; };
+		DCB0AF5F1C017A1100AB89C2 /* RadialGradientShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = RadialGradientShader.fsh; sourceTree = "<group>"; };
+		DCB0AF601C017A1100AB89C2 /* RadialGradientShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = RadialGradientShader.vsh; sourceTree = "<group>"; };
+		DCB0AF611C017A1100AB89C2 /* SoftBlurShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = SoftBlurShader.fsh; sourceTree = "<group>"; };
+		DCB0AF621C017A1100AB89C2 /* SoftBlurShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = SoftBlurShader.vsh; sourceTree = "<group>"; };
+		DCB0AF631C017A1100AB89C2 /* Universal2DShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Universal2DShader.fsh; sourceTree = "<group>"; };
+		DCB0AF641C017A1100AB89C2 /* Universal2DShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Universal2DShader.vsh; sourceTree = "<group>"; };
+		DCB0AF651C017A1100AB89C2 /* UniversalParticleShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = UniversalParticleShader.fsh; sourceTree = "<group>"; };
+		DCB0AF661C017A1100AB89C2 /* UniversalParticleShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = UniversalParticleShader.vsh; sourceTree = "<group>"; };
+		DCB0AF901C017F8700AB89C2 /* AlphaHoleShader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = AlphaHoleShader.vsh; sourceTree = "<group>"; };
+		DCB0AF9E1C018DB000AB89C2 /* AlphaHoleShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = AlphaHoleShader.fsh; sourceTree = "<group>"; };
+		DCB3A5B91C02A83C0076A38A /* GLSAlphaHoleSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLSAlphaHoleSprite.swift; sourceTree = "<group>"; };
 		DCB3CCD61BE7289300CA52EF /* CCSound.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCSound.swift; sourceTree = "<group>"; };
 		DCB3CCD71BE7289300CA52EF /* CCSoundPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCSoundPlayer.swift; sourceTree = "<group>"; };
 		DCB64B7E1B4F4D3A001C689C /* RecursiveRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecursiveRenderer.swift; sourceTree = "<group>"; };
 		DCB786231B16830A00DC4638 /* ScaleDelta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleDelta.swift; sourceTree = "<group>"; };
 		DCB786281B168D5B00DC4638 /* String+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Convenience.swift"; sourceTree = "<group>"; };
+		DCB79DDF1C6C5FDA001B19F7 /* ParabolaShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ParabolaShader.vsh; sourceTree = "<group>"; };
+		DCB79DE01C6C5FDA001B19F7 /* ParabolaShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ParabolaShader.fsh; sourceTree = "<group>"; };
 		DCB808A71B336B3A007BA38D /* SmoothingFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmoothingFunctions.swift; sourceTree = "<group>"; };
 		DCBED5541B938EF4009CD82B /* NSFileManager+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFileManager+Convenience.swift"; sourceTree = "<group>"; };
 		DCBED5581B93C65E009CD82B /* GLBufferedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLBufferedView.swift; sourceTree = "<group>"; };
 		DCBED55A1B93CD1C009CD82B /* ColorWheelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorWheelView.swift; sourceTree = "<group>"; };
 		DCD0451B1BF3FAE300EC9273 /* CombineIteration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CombineIteration.swift; sourceTree = "<group>"; };
+		DCD34FD91C13E30000D28816 /* BoolList2D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoolList2D.swift; sourceTree = "<group>"; };
+		DCD34FDB1C13E31F00D28816 /* IntPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntPoint.swift; sourceTree = "<group>"; };
+		DCD34FDC1C13E31F00D28816 /* IntPoint+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IntPoint+Operations.swift"; sourceTree = "<group>"; };
 		DCD3A9081B82B6CC00D1E9F1 /* CADisplayLinkWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CADisplayLinkWrapper.swift; sourceTree = "<group>"; };
+		DCD3BAC91C06C67800730528 /* NSURL+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURL+Convenience.swift"; sourceTree = "<group>"; };
+		DCD94A371C0B7ADE00E266BF /* Set+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Set+Convenience.swift"; sourceTree = "<group>"; };
 		DCD956E11BCE016200A007F4 /* FluctuatingNoise1D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluctuatingNoise1D.swift; sourceTree = "<group>"; };
 		DCE484111BCDF93000AF81C2 /* NoiseArray1D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoiseArray1D.swift; sourceTree = "<group>"; };
 		DCE484131BCDF95900AF81C2 /* LinearArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinearArray.swift; sourceTree = "<group>"; };
+		DCF768011C9F7A6C0090B637 /* StaticRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticRenderer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -374,10 +476,12 @@
 				DC72AA8D1B166CB20035BF49 /* NSObject+Convenience.swift */,
 				DC72AA8E1B166CB20035BF49 /* NSOperation+Convenience.swift */,
 				DC90CA081B9CE85500284480 /* NSScanner+Swift.swift */,
+				DCD3BAC91C06C67800730528 /* NSURL+Convenience.swift */,
 				DC4C61D31B531C03008640FC /* LabeledView.swift */,
 				DC7703C51B4F28F80053C516 /* Primitives+Convenience.swift */,
 				DC72AA921B166CB20035BF49 /* RotationDelta.swift */,
 				DCB786231B16830A00DC4638 /* ScaleDelta.swift */,
+				DCD94A371C0B7ADE00E266BF /* Set+Convenience.swift */,
 				DCB786281B168D5B00DC4638 /* String+Convenience.swift */,
 				DC4D440F1B45D675009EDC48 /* UIAlertController+Convenience.swift */,
 				DC72AA9F1B166CB20035BF49 /* UIButton+Creation.swift */,
@@ -394,6 +498,7 @@
 		DC50F9D11B24910F005A50C8 /* GLSNode */ = {
 			isa = PBXGroup;
 			children = (
+				DCB3A5B91C02A83C0076A38A /* GLSAlphaHoleSprite.swift */,
 				DC50F9CC1B249062005A50C8 /* GLSBlurSprite.swift */,
 				DC72AA761B166CB20035BF49 /* GLSDoubleSprite.swift */,
 				DC9D2ED81B1D072900CF8C40 /* GLSFireSprite.swift */,
@@ -431,6 +536,7 @@
 				DC5E1AA21B7C335A002737E1 /* NoiseFadeAnimation.swift */,
 				DC72AA8C1B166CB20035BF49 /* NoiseTexture2D.swift */,
 				DC72AA8F1B166CB20035BF49 /* ParticleEmitterBackgroundQueue.swift */,
+				DCAA95241C13F36C00E53785 /* PlaygroundOpenGLDelegate.swift */,
 				DC72AA9C1B166CB20035BF49 /* ShaderHelper.swift */,
 				DC72AA9E1B166CB20035BF49 /* TexturedQuad.swift */,
 			);
@@ -447,6 +553,7 @@
 				DC72AA861B166CB20035BF49 /* GLSUniversalRenderer.swift */,
 				DC72AA871B166CB20035BF49 /* GLSUniversalTextureWrangler.swift */,
 				DCB64B7E1B4F4D3A001C689C /* RecursiveRenderer.swift */,
+				DCF768011C9F7A6C0090B637 /* StaticRenderer.swift */,
 				DC72AAA71B166CB20035BF49 /* UniversalEmitterRenderProgram.swift */,
 				DC72AAAA1B166CB20035BF49 /* UniversalRenderProgram.swift */,
 			);
@@ -510,9 +617,11 @@
 		DC72AA3D1B166C7D0035BF49 /* OmniSwift */ = {
 			isa = PBXGroup;
 			children = (
+				DCB0AF401C0178FD00AB89C2 /* Shaders */,
 				DC72AA581B166CB20035BF49 /* AnimationDelta.swift */,
 				DC72AA5A1B166CB20035BF49 /* AutoOrientingImageView.swift */,
 				DC663BFC1B5D6BB2002F78FF /* BoolList.swift */,
+				DCD34FD91C13E30000D28816 /* BoolList2D.swift */,
 				DC5CE0F01B3A0CCD00441A9B /* ButtonSwitch.swift */,
 				DCB3CCD61BE7289300CA52EF /* CCSound.swift */,
 				DCB3CCD71BE7289300CA52EF /* CCSoundPlayer.swift */,
@@ -527,7 +636,10 @@
 				DC50F9D11B24910F005A50C8 /* GLSNode */,
 				DC50F9D21B249128005A50C8 /* GL Helpers */,
 				DC284A551B338F5100C6139A /* HasComponentsProtocol.swift */,
+				DC9CB69A1C0B9B9B007E9016 /* HealthBarSprite.swift */,
 				DC72AA881B166CB20035BF49 /* ImageCache.swift */,
+				DCD34FDB1C13E31F00D28816 /* IntPoint.swift */,
+				DCD34FDC1C13E31F00D28816 /* IntPoint+Operations.swift */,
 				DC50F9D61B24924F005A50C8 /* Noise */,
 				DC71DBC41BF274E500B38E92 /* SCCloudSingleton.swift */,
 				DC71DBD01BF2763700B38E92 /* SCCloudSingleton+Convenience.swift */,
@@ -569,6 +681,55 @@
 				DC72AA4C1B166C7D0035BF49 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DCB0AF401C0178FD00AB89C2 /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				DCB0AF901C017F8700AB89C2 /* AlphaHoleShader.vsh */,
+				DCB0AF9E1C018DB000AB89C2 /* AlphaHoleShader.fsh */,
+				DCB0AF411C017A1100AB89C2 /* BasicGradientShader.fsh */,
+				DCB0AF421C017A1100AB89C2 /* BasicGradientShader.vsh */,
+				DCB0AF431C017A1100AB89C2 /* BasicShader.fsh */,
+				DCB0AF441C017A1100AB89C2 /* BasicShader.vsh */,
+				DCB0AF451C017A1100AB89C2 /* ColorShader.fsh */,
+				DCB0AF461C017A1100AB89C2 /* ColorShader.vsh */,
+				DCB0AF471C017A1100AB89C2 /* ColorWheelShader.fsh */,
+				DCB0AF481C017A1100AB89C2 /* ColorWheelShader.vsh */,
+				DCB0AF491C017A1100AB89C2 /* DoubleShader.fsh */,
+				DCB0AF4A1C017A1100AB89C2 /* DoubleShader.vsh */,
+				DCB0AF4B1C017A1100AB89C2 /* DummyShader.fsh */,
+				DCB0AF4C1C017A1100AB89C2 /* DummyShader.vsh */,
+				DCB0AF4D1C017A1100AB89C2 /* FastBlurShader.fsh */,
+				DCB0AF4E1C017A1100AB89C2 /* FastBlurShader.vsh */,
+				DCB0AF4F1C017A1100AB89C2 /* FastFractalShader.fsh */,
+				DCB0AF501C017A1100AB89C2 /* FastFractalShader.vsh */,
+				DCB0AF511C017A1100AB89C2 /* FireShader.fsh */,
+				DCB0AF521C017A1100AB89C2 /* FireShader.vsh */,
+				DCB0AF531C017A1100AB89C2 /* HardBlurShader.fsh */,
+				DCB0AF541C017A1100AB89C2 /* HardBlurShader.vsh */,
+				DCB0AF551C017A1100AB89C2 /* NoiseShader.fsh */,
+				DCB0AF561C017A1100AB89C2 /* NoiseShader.vsh */,
+				DCB79DDF1C6C5FDA001B19F7 /* ParabolaShader.vsh */,
+				DCB79DE01C6C5FDA001B19F7 /* ParabolaShader.fsh */,
+				DCB0AF571C017A1100AB89C2 /* PerlinAbsNoiseShader.fsh */,
+				DCB0AF581C017A1100AB89C2 /* PerlinAbsNoiseShader.vsh */,
+				DCB0AF591C017A1100AB89C2 /* PerlinFractalNoiseShader.fsh */,
+				DCB0AF5A1C017A1100AB89C2 /* PerlinFractalNoiseShader.vsh */,
+				DCB0AF5B1C017A1100AB89C2 /* PerlinNoiseShader.fsh */,
+				DCB0AF5C1C017A1100AB89C2 /* PerlinNoiseShader.vsh */,
+				DCB0AF5D1C017A1100AB89C2 /* PerlinSinNoiseShader.fsh */,
+				DCB0AF5E1C017A1100AB89C2 /* PerlinSinNoiseShader.vsh */,
+				DCB0AF5F1C017A1100AB89C2 /* RadialGradientShader.fsh */,
+				DCB0AF601C017A1100AB89C2 /* RadialGradientShader.vsh */,
+				DCB0AF611C017A1100AB89C2 /* SoftBlurShader.fsh */,
+				DCB0AF621C017A1100AB89C2 /* SoftBlurShader.vsh */,
+				DCB0AF631C017A1100AB89C2 /* Universal2DShader.fsh */,
+				DCB0AF641C017A1100AB89C2 /* Universal2DShader.vsh */,
+				DCB0AF651C017A1100AB89C2 /* UniversalParticleShader.fsh */,
+				DCB0AF661C017A1100AB89C2 /* UniversalParticleShader.vsh */,
+			);
+			name = Shaders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -729,6 +890,48 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCB0AF7F1C017A1100AB89C2 /* PerlinFractalNoiseShader.fsh in Resources */,
+				DCB0AF671C017A1100AB89C2 /* BasicGradientShader.fsh in Resources */,
+				DCB0AF7D1C017A1100AB89C2 /* PerlinAbsNoiseShader.fsh in Resources */,
+				DCB0AF681C017A1100AB89C2 /* BasicGradientShader.vsh in Resources */,
+				DCB0AF781C017A1100AB89C2 /* FireShader.vsh in Resources */,
+				DCB0AF6D1C017A1100AB89C2 /* ColorWheelShader.fsh in Resources */,
+				DCB0AF7B1C017A1100AB89C2 /* NoiseShader.fsh in Resources */,
+				DCB0AF9F1C018DB000AB89C2 /* AlphaHoleShader.fsh in Resources */,
+				DCB0AF801C017A1100AB89C2 /* PerlinFractalNoiseShader.vsh in Resources */,
+				DCB0AF7C1C017A1100AB89C2 /* NoiseShader.vsh in Resources */,
+				DCB0AF861C017A1100AB89C2 /* RadialGradientShader.vsh in Resources */,
+				DCB0AF871C017A1100AB89C2 /* SoftBlurShader.fsh in Resources */,
+				DCB0AF7A1C017A1100AB89C2 /* HardBlurShader.vsh in Resources */,
+				DCB0AF731C017A1100AB89C2 /* FastBlurShader.fsh in Resources */,
+				DCB0AF821C017A1100AB89C2 /* PerlinNoiseShader.vsh in Resources */,
+				DCB0AF6C1C017A1100AB89C2 /* ColorShader.vsh in Resources */,
+				DCB0AF751C017A1100AB89C2 /* FastFractalShader.fsh in Resources */,
+				DCB0AF851C017A1100AB89C2 /* RadialGradientShader.fsh in Resources */,
+				DCB0AF761C017A1100AB89C2 /* FastFractalShader.vsh in Resources */,
+				DCB0AF8C1C017A1100AB89C2 /* UniversalParticleShader.vsh in Resources */,
+				DCB79DE21C6C5FDA001B19F7 /* ParabolaShader.fsh in Resources */,
+				DCB0AF8B1C017A1100AB89C2 /* UniversalParticleShader.fsh in Resources */,
+				DCB0AF691C017A1100AB89C2 /* BasicShader.fsh in Resources */,
+				DCB0AF6B1C017A1100AB89C2 /* ColorShader.fsh in Resources */,
+				DCB0AF741C017A1100AB89C2 /* FastBlurShader.vsh in Resources */,
+				DCB0AF9D1C018A3C00AB89C2 /* AlphaHoleShader.vsh in Resources */,
+				DCB0AF891C017A1100AB89C2 /* Universal2DShader.fsh in Resources */,
+				DCB0AF831C017A1100AB89C2 /* PerlinSinNoiseShader.fsh in Resources */,
+				DCB0AF811C017A1100AB89C2 /* PerlinNoiseShader.fsh in Resources */,
+				DCB0AF771C017A1100AB89C2 /* FireShader.fsh in Resources */,
+				DCB0AF6E1C017A1100AB89C2 /* ColorWheelShader.vsh in Resources */,
+				DCB0AF841C017A1100AB89C2 /* PerlinSinNoiseShader.vsh in Resources */,
+				DCB0AF711C017A1100AB89C2 /* DummyShader.fsh in Resources */,
+				DCB79DE11C6C5FDA001B19F7 /* ParabolaShader.vsh in Resources */,
+				DCB0AF6F1C017A1100AB89C2 /* DoubleShader.fsh in Resources */,
+				DCB0AF721C017A1100AB89C2 /* DummyShader.vsh in Resources */,
+				DCB0AF8A1C017A1100AB89C2 /* Universal2DShader.vsh in Resources */,
+				DCB0AF7E1C017A1100AB89C2 /* PerlinAbsNoiseShader.vsh in Resources */,
+				DCB0AF791C017A1100AB89C2 /* HardBlurShader.fsh in Resources */,
+				DCB0AF881C017A1100AB89C2 /* SoftBlurShader.vsh in Resources */,
+				DCB0AF6A1C017A1100AB89C2 /* BasicShader.vsh in Resources */,
+				DCB0AF701C017A1100AB89C2 /* DoubleShader.vsh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -783,6 +986,8 @@
 				DCB786241B16830A00DC4638 /* ScaleDelta.swift in Sources */,
 				DC90CA091B9CE85500284480 /* NSScanner+Swift.swift in Sources */,
 				DC72AAF91B166CB20035BF49 /* UILabel+Creation.swift in Sources */,
+				DCD34FDD1C13E31F00D28816 /* IntPoint.swift in Sources */,
+				DC9CB69B1C0B9B9B007E9016 /* HealthBarSprite.swift in Sources */,
 				DC72AAC01B166CB20035BF49 /* CSSShape+RandomPointProtocol.swift in Sources */,
 				DC72AAAE1B166CB20035BF49 /* AngleDelta.swift in Sources */,
 				DC72AAF51B166CB20035BF49 /* TexturedQuad.swift in Sources */,
@@ -798,10 +1003,12 @@
 				DC72AAF71B166CB20035BF49 /* UIColor+Math.swift in Sources */,
 				DC72AAF31B166CB20035BF49 /* ShaderHelper.swift in Sources */,
 				DC5E1AA31B7C335A002737E1 /* NoiseFadeAnimation.swift in Sources */,
+				DCD94A381C0B7ADE00E266BF /* Set+Convenience.swift in Sources */,
 				DC72AAE51B166CB20035BF49 /* NSOperation+Convenience.swift in Sources */,
 				DC72AAB11B166CB20035BF49 /* AutoOrientingImageView.swift in Sources */,
 				DC72AAEE1B166CB20035BF49 /* SCVector3.swift in Sources */,
 				DC72AACC1B166CB20035BF49 /* GLSCamera.swift in Sources */,
+				DCF768021C9F7A6C0090B637 /* StaticRenderer.swift in Sources */,
 				DC72AB021B166CB20035BF49 /* UniversalSaverBase.swift in Sources */,
 				DC72AAB91B166CB20035BF49 /* CGSize+Math.swift in Sources */,
 				DCB64B7F1B4F4D3A001C689C /* RecursiveRenderer.swift in Sources */,
@@ -818,6 +1025,7 @@
 				DC4C61D41B531C03008640FC /* LabeledView.swift in Sources */,
 				DC4D44101B45D675009EDC48 /* UIAlertController+Convenience.swift in Sources */,
 				DC67A26C1B29EC3200EE4B09 /* Int+Convenience.swift in Sources */,
+				DCB3A5BA1C02A83C0076A38A /* GLSAlphaHoleSprite.swift in Sources */,
 				DC72AAD21B166CB20035BF49 /* GLSFrameSprite.swift in Sources */,
 				DCABE78D1BD2D8B7000CED7B /* CGRect+Enumeration.swift in Sources */,
 				DCBED55B1B93CD1C009CD82B /* ColorWheelView.swift in Sources */,
@@ -851,12 +1059,14 @@
 				DC72AADE1B166CB20035BF49 /* GLSUniversalTextureWrangler.swift in Sources */,
 				DC50F9CD1B249062005A50C8 /* GLSBlurSprite.swift in Sources */,
 				DC72AAF81B166CB20035BF49 /* UIImage+Creation.swift in Sources */,
+				DCAA95251C13F36C00E53785 /* PlaygroundOpenGLDelegate.swift in Sources */,
 				DC663BFD1B5D6BB2002F78FF /* BoolList.swift in Sources */,
 				DC72AAF01B166CB20035BF49 /* SCVector3Array.swift in Sources */,
 				DC6C81CD1B4712110071229D /* Stack.swift in Sources */,
 				DC72AAB01B166CB20035BF49 /* Array+Convenience.swift in Sources */,
 				DC72AAF61B166CB20035BF49 /* UIButton+Creation.swift in Sources */,
 				DC284A611B33AA6900C6139A /* Direction2D.swift in Sources */,
+				DCD34FDE1C13E31F00D28816 /* IntPoint+Operations.swift in Sources */,
 				DC72AADF1B166CB20035BF49 /* ImageCache.swift in Sources */,
 				DC72AAEF1B166CB20035BF49 /* SCVector3+Color.swift in Sources */,
 				DC9D2EE31B1D094A00CF8C40 /* NoiseArray3D.swift in Sources */,
@@ -864,6 +1074,8 @@
 				DC72AAEA1B166CB20035BF49 /* SCMatrix3Array.swift in Sources */,
 				DCD0451C1BF3FAE300EC9273 /* CombineIteration.swift in Sources */,
 				DC687A671B36134700CFCEB2 /* Bool+Convenience.swift in Sources */,
+				DCD34FDA1C13E30000D28816 /* BoolList2D.swift in Sources */,
+				DCD3BACA1C06C67800730528 /* NSURL+Convenience.swift in Sources */,
 				DC4266F11B40D63700EF80E5 /* ViewList.swift in Sources */,
 				DC72AAC81B166CB20035BF49 /* GLAttributeBridger.swift in Sources */,
 				DC72AAEB1B166CB20035BF49 /* SCMatrix4.swift in Sources */,

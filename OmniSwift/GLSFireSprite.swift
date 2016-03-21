@@ -58,9 +58,6 @@ public class GLSFireSprite: GLSSprite, DoubleBuffered {
         var noiseTexture:(GLfloat, GLfloat) = (0.0, 0.0)
     }
     
-    
-    
-    
     // MARK: - Properties
     
     ///The desired noise gradients.
@@ -78,20 +75,35 @@ public class GLSFireSprite: GLSSprite, DoubleBuffered {
     public var noiseSize:CGFloat = 1.0 {
         didSet {
             self.noiseSizeChanged()
+            self.bufferIsDirty = true
         }
     }
     ///What to divide the noise by (to help get noise in desired range).
-    public var noiseDivisor:CGFloat = 0.7
+    public var noiseDivisor:CGFloat = 0.7 {
+        didSet {
+            self.bufferIsDirty = true
+        }
+    }
     ///The baseline of the fire.
-    public var noiseCenter:CGFloat = 0.5
+    public var noiseCenter:CGFloat = 0.5 {
+        didSet {
+            self.bufferIsDirty = true
+        }
+    }
     ///How much the noise should offset from the baseline.
-    public var noiseRange:CGFloat = 1.0
+    public var noiseRange:CGFloat = 1.0 {
+        didSet {
+            self.bufferIsDirty = true
+        }
+    }
     ///Offset into the fire (Y-Values are animated).
     public var offset = CGPoint.zero {
         didSet {
             if self.shouldRedraw && !(self.offset ~= oldValue) {
                 self.renderToTexture()
             }
+            
+            self.bufferIsDirty = true
         }
     }
     ///How fast the offset is changing.
@@ -104,6 +116,7 @@ public class GLSFireSprite: GLSSprite, DoubleBuffered {
     
     ///Whether the sprite should invoke renderToTexture() when the offset is changed.
     public var shouldRedraw = false
+    public private(set) var bufferIsDirty = false
     
     /**
 Initialize a Fire sprite.
@@ -162,6 +175,8 @@ Initialize a Fire sprite.
         self.popTextures()
         
         self.framebufferStack?.popFramebuffer()
+        
+        self.bufferIsDirty = false
     }//render to texture
     
     private func noiseSizeChanged() {

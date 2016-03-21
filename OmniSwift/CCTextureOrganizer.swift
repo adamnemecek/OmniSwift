@@ -235,6 +235,7 @@ public class CCTextureOrganizer: NSObject, XMLFileHandlerDelegate {
     
     public class func createPNGTexture(file:String, size:CGSize) -> GLKTextureInfo {
         let path = NSBundle.mainBundle().pathForResource(file, ofType: "png")
+//        let path = self.pathForPNG(file)
         
         let tex = (try? GLKTextureLoader.textureWithContentsOfFile(path!, options: [GLKTextureLoaderOriginBottomLeft:true]))!
         
@@ -252,6 +253,18 @@ public class CCTextureOrganizer: NSObject, XMLFileHandlerDelegate {
         */
     }//configure texture so it repeats
     
+    private class func pathForPNG(file:String) -> String? {
+        let retinaFactor = GLSFrameBuffer.getRetinaScale()
+        let retinaModifier:String
+        if retinaFactor ~= 3.0 {
+            retinaModifier = "@3x"
+        } else if retinaFactor ~= 2.0 {
+            retinaModifier = "@2x"
+        } else {
+            retinaModifier = ""
+        }
+        return NSBundle.mainBundle().pathForResource("\(file)\(retinaModifier)", ofType: "png")
+    }
     
     public func textureForString(key:String) -> CCTexture? {
         return self.textures[key]

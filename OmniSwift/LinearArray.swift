@@ -93,7 +93,7 @@ public class LinearArray<T: Interpolatable>: CustomStringConvertible {
     }
     
     
-    // MARK: - Printable
+    // MARK: - CustomStringConvertible
     public var description:String { return "\(self.values)" }
     
 }

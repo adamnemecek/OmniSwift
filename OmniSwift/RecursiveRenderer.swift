@@ -31,7 +31,7 @@ public class RecursiveRenderer: NSObject {
         */
         public init() {
             
-            let program = ShaderHelper.programForString("Universal 2D Shader")
+            let program = ShaderHelper.programForString("Universal2 D Shader")
             
             if program == nil {
                 print("Error: Universal 2D Shader does not exist!")
@@ -96,7 +96,7 @@ public class RecursiveRenderer: NSObject {
     public let updateOperationQueue = NSOperationQueue()
     private var operations:[NSOperation] = []
 
-    private var backgroundReferences:[GLSNodeReference] = []
+    private var backgroundReferences:[GLSNodeReference]   = []
     private var backgroundEmitters:[GLSEmitterReference]  = []
     private var backgroundModelMatrices:SCMatrix4Array    = SCMatrix4Array(matrices: [])
     private var backgroundTintColors:SCVector3Array       = SCVector3Array()
@@ -240,7 +240,7 @@ public class RecursiveRenderer: NSObject {
         
         self.operations = self.operations.filter() { !$0.finished }
         
-        let operation = NSBlockOperation() { [unowned self] in
+        let operation = NSBlockOperation() { /*[unowned self] in*/
             self.backgroundModelMatrices.values = self.modelMatrices.values
             var backgroundVertices = self.vertices
             
@@ -376,7 +376,6 @@ public class RecursiveRenderer: NSObject {
 
         self.program.enableAttributes()
         self.program.bridgeAttributesWithSizes([2, 2, 1], stride: sizeof(UVertex))
-        
         
         self.resetArrays()
         

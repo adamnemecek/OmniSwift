@@ -183,12 +183,28 @@ extension Array {
         }
     }
     
-    public func enuerateSkipLast() -> SliceEnumerateSequence<Array> {
+    public func enumerateSkipLast() -> SliceEnumerateSequence<Array> {
         if self.count == 0 {
             return SliceEnumerateSequence(base: self, range: 0..<0)
         } else {
             return self.enumerateRange(0..<self.count - 1)
         }
+    }
+    
+    
+    /**
+     Removes the elements at the given indices, making sure to remove them in the correct order so the right indices are removed.
+     
+     - parameter indices: The indices to remove. It is a set because trying to remove the same index twice would screw up.
+     - returns: The elements at the removed indices.
+    */
+    public mutating func removeAtIndices(indices:Set<Int>) -> [Element] {
+        var removedElements:[Element] = []
+        for index in indices.sort({ $0 > $1 }) {
+            removedElements.append(self.removeAtIndex(index))
+        }
+
+        return removedElements
     }
     
 }//extend Array
@@ -319,6 +335,23 @@ extension SequenceType {
     ///Enumerates the array, returning (index, element) pairs, but only for a given range.
     public func enumerateRange(range:Range<Int>) -> SliceEnumerateSequence<Self> {
         return SliceEnumerateSequence(base: self, range: range)
+    }
+    
+}
+
+extension CollectionType {
+    
+    public func randomElement() -> Self.Generator.Element? {
+        
+        guard self.count > 0 else {
+            return nil
+        }
+        
+        let index = Int(arc4random() % UInt32(self.count.toIntMax()))
+        for (i, element) in self.enumerate() where i == index {
+            return element
+        }
+        return nil
     }
     
 }

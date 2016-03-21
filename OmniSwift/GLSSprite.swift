@@ -109,6 +109,7 @@ public class GLSSprite: GLSNode {
         
         let tFrame = self.texture?.frame ?? CGRect(x: 0.0, y: 0.0, width: 1.0, height: 1.0)
         TexturedQuad.setTexture(tFrame, ofVertices: &self.vertices)
+        self.verticesAreDirty = true
     }//set quad for texture
     
     override public func render(model: SCMatrix4) {
@@ -119,7 +120,7 @@ public class GLSSprite: GLSNode {
         
         
 //        let childModel = self.modelMatrix() * model
-        let childModel = model * modelMatrix()
+        let childModel = modelMatrix() * model
         self.storedMatrix = childModel
 
         glUseProgram(program)

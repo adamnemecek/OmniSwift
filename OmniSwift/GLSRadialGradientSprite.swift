@@ -50,11 +50,13 @@ public class GLSRadialGradientSprite: GLSSprite, DoubleBuffered {
     public var shadeTexture:CCTexture? = nil {
         didSet {
             self.shadeTextureChanged()
+            self.bufferIsDirty = true
         }
     }
     
     let radialVertices = TexturedQuadVertices(vertex: RadialVertex())
     public var shouldRedraw = false
+    public private(set) var bufferIsDirty = false
     
     public init(size:CGSize, gradient:GLGradientTexture2D) {
         
@@ -99,6 +101,7 @@ public class GLSRadialGradientSprite: GLSSprite, DoubleBuffered {
         self.framebufferStack?.popFramebuffer()
         
         self.popTextures()
+        self.bufferIsDirty = false
     }
     
     private func shadeTextureChanged() {
@@ -110,4 +113,5 @@ public class GLSRadialGradientSprite: GLSSprite, DoubleBuffered {
             return
         }
     }
+    
 }

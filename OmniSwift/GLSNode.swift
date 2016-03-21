@@ -237,7 +237,11 @@ public class GLSNode: NSObject {
     
     public var children:[GLSNode] = []
     public weak var superNode:GLSNode? = nil
-    public weak var framebufferStack:GLSFramebufferStack? = nil
+    public weak var framebufferStack:GLSFramebufferStack? = nil {
+        didSet {
+            self.iterateChildrenRecursively() { $0.framebufferStack = self.framebufferStack }
+        }
+    }
     public var framebufferReference = GLSFramebufferReference()
     
     /** Only directly assign to this once. When you create the main node,
@@ -680,7 +684,7 @@ public extension GLSNode {
 }// OpenGL + Convenience
 
  extension GLSNode {
-    // MARK: - Printable
+    // MARK: - CustomStringConvertible
     
     public override var description:String {
         return "\(super.description) (\(self.title))"

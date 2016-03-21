@@ -19,8 +19,9 @@ extension NSFileManager {
     */
     public func allFilesOfType(type:String, removeExtensions:Bool = true) -> [NSURL] {
         var paths:[NSURL] = []
-        
-        if let path = NSBundle.mainBundle().resourcePath, let enumerator = self.enumeratorAtPath(path) {
+        let omniSwiftBundle = NSBundle.allFrameworks().filter() { $0.bundlePath.hasSuffix(("OmniSwift.framework")) } .objectAtIndex(0)
+//        if let path = NSBundle.mainBundle().resourcePath, let enumerator = self.enumeratorAtPath(path) {
+        if let path = omniSwiftBundle?.resourcePath, let enumerator = self.enumeratorAtPath(path) {
             while let currentPath = enumerator.nextObject() as? String, let currentURL = NSURL(string: currentPath) {
                 if currentURL.pathExtension == type {
                     paths.append(currentURL)
@@ -60,5 +61,10 @@ extension NSFileManager {
     
     public func documentsDirectory() -> NSURL? {
         return NSFileManager.defaultManager().URLsForDirectory(NSSearchPathDirectory.DocumentDirectory, inDomains: NSSearchPathDomainMask.UserDomainMask).first
+    }
+    
+    public class func fileExistsInDocuments(file:String, fileExtension:String) -> Bool {
+        let path = UniversalSaverBase.pathForFile(file, fileExtension: fileExtension)
+        return NSFileManager.defaultManager().fileExistsAtPath(path)
     }
 }

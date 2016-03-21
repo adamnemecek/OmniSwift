@@ -60,6 +60,16 @@ extension CGFloat {
         
     }//get value that is nearest to this value
     
+    public func signOf() -> CGFloat {
+        if self < 0.0 {
+            return -1.0
+        } else if self > 0.0 {
+            return +1.0
+        } else {
+            return 00.0
+        }
+    }
+    
 }//CGFloat
 
 public func positions(count:Int, ofSize objectSize:CGFloat, inSize windowSize:CGFloat) -> [CGFloat] {

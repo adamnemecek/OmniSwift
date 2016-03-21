@@ -109,6 +109,12 @@ public extension UIColor {
         }
     }
     
+    ///Lightens or darkens only the RGB values (not the alpha).
+    public func scaleRGB(factor:CGFloat) -> UIColor {
+        let rgba = self.getComponents()
+        return UIColor(red: rgba[0] * factor, green: rgba[1] * factor, blue: rgba[2] * factor, alpha: rgba[3])
+    }
+    
 }// UIKit + Math
 
 

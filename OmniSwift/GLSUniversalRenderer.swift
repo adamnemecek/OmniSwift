@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 public struct UVertex: CustomStringConvertible {
     
     public var position:(GLfloat, GLfloat) = (0.0, 0.0)

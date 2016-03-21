@@ -11,7 +11,9 @@ import GLKit
 public protocol DoubleBuffered {
     var buffer:GLSFrameBuffer { get }
     var shouldRedraw:Bool { get set }
+    var bufferIsDirty:Bool { get }
     func renderToTexture()
+    
 }
 
 public class GLSPerlinNoiseSprite: GLSSprite, DoubleBuffered {
@@ -35,6 +37,8 @@ public class GLSPerlinNoiseSprite: GLSSprite, DoubleBuffered {
         let a_Position:GLint
         let a_Texture:GLint
         let a_NoiseTexture:GLint
+        
+        let u_NoiseAngle:GLint
         
         init(type:NoiseType) {
             
@@ -66,11 +70,18 @@ public class GLSPerlinNoiseSprite: GLSSprite, DoubleBuffered {
             self.a_Position     = glGetAttribLocation(program, "a_Position")
             self.a_Texture      = glGetAttribLocation(program, "a_Texture")
             self.a_NoiseTexture = glGetAttribLocation(program, "a_NoiseTexture")
-            
+
             self.attributeBridger = GLAttributeBridger(program: program)
             
             let atts = [self.a_Position, self.a_Texture, self.a_NoiseTexture]
             self.attributeBridger.addAttributes(atts)
+            
+            if (type == .Sin) {
+                self.u_NoiseAngle = glGetUniformLocation(program, "u_NoiseAngle")
+            } else {
+                self.u_NoiseAngle = 0
+            }
+            
         }//initialize
         
     }
@@ -79,6 +90,7 @@ public class GLSPerlinNoiseSprite: GLSSprite, DoubleBuffered {
         var position:(GLfloat, GLfloat) = (0.0, 0.0)
         var texture:(GLfloat, GLfloat)  = (0.0, 0.0)
         public var noiseTexture:(GLfloat, GLfloat, GLfloat) = (0.0, 0.0, 0.0)
+        var aspectRatio:(GLfloat, GLfloat) = (0.0, 0.0)
     }
     
     public enum NoiseType: String {
@@ -104,12 +116,14 @@ public class GLSPerlinNoiseSprite: GLSSprite, DoubleBuffered {
     }
     
     public let noiseVertices:TexturedQuadVertices<PerlinNoiseVertex> = []
-    public let buffer:GLSFrameBuffer
+//    public let buffer:GLSFrameBuffer
+    public private(set) var buffer:GLSFrameBuffer
     
     ///What type of noise is drawn (Default, Fractal, etc.)
     public var noiseType:NoiseType = NoiseType.Default {
         didSet {
             self.noiseProgram = PerlinNoiseProgram(type: noiseType)
+            self.bufferIsDirty = true
         }
     }
     
@@ -119,6 +133,8 @@ public class GLSPerlinNoiseSprite: GLSSprite, DoubleBuffered {
             self.noiseSizeChanged()
             if self.shouldRedraw && !(noiseSize.width ~= oldValue.width || noiseSize.height ~= oldValue.height) {
                 self.renderToTexture()
+            } else {
+                self.bufferIsDirty = true
             }
         }
     }
@@ -147,6 +163,8 @@ public class GLSPerlinNoiseSprite: GLSSprite, DoubleBuffered {
             self.offset = SCVector3(x: self.offset.x % 255.0, y: self.offset.y % 255.0, z: self.offset.z % 255.0)
             if self.shouldRedraw && !(self.offset ~= oldValue) {
                 self.renderToTexture()
+            } else {
+                self.bufferIsDirty = true
             }
         }
     }
@@ -156,7 +174,11 @@ public class GLSPerlinNoiseSprite: GLSSprite, DoubleBuffered {
     public var noiseAlpha:CGFloat = 1.0
     
     ///The period is how long it takes for the noise to begin repeating. Defaults to 256 (which doesn't actually have an effect).
-    public var period:(x:Int, y:Int, z:Int) = (256, 256, 256)
+    public var period:(x:Int, y:Int, z:Int) = (256, 256, 256) {
+        didSet {
+            self.bufferIsDirty = true
+        }
+    }
     public var xyPeriod:(x:Int, y:Int) {
         get {
             return (self.period.x, self.period.y)
@@ -197,10 +219,19 @@ public class GLSPerlinNoiseSprite: GLSSprite, DoubleBuffered {
             if self.noiseDivisor <= 0.0 {
                 self.noiseDivisor = 1.0
             }
+            self.bufferIsDirty = true
+        }
+    }
+    
+    public var noiseAngle:CGFloat = 0.0 {
+        didSet {
+            self.noiseAngle = self.noiseAngle % CGFloat(2.0 * M_PI)
+            self.bufferIsDirty = true;
         }
     }
     
     public var shouldRedraw = false
+    public private(set) var bufferIsDirty = false
     
     public private(set) var fadeAnimation:NoiseFadeAnimation? = nil
     
@@ -238,6 +269,8 @@ public class GLSPerlinNoiseSprite: GLSSprite, DoubleBuffered {
             vertex.position = (curPoint * sizeAsPoint).getGLTuple()
             
             vertex.noiseTexture = (vertex.texture.0, vertex.texture.1, 0.0)
+            
+            vertex.aspectRatio = (curPoint * CGPoint(x: 1.0, y: size.height / size.width)).getGLTuple()
             return
         }
         
@@ -263,7 +296,11 @@ public class GLSPerlinNoiseSprite: GLSSprite, DoubleBuffered {
     
     ///Render noise to background texture (*buffer*).
     public func renderToTexture() {
-        self.framebufferStack?.pushGLSFramebuffer(self.buffer)
+        guard let success = self.framebufferStack?.pushGLSFramebuffer(self.buffer) where success else {
+            print("Error: Couldn't push framebuffer!")
+            print("Stack: \(self.framebufferStack)")
+            return
+        }
         
         glClearColor(0.0, 0.0, 0.0, 0.0)
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT))
@@ -298,6 +335,10 @@ public class GLSPerlinNoiseSprite: GLSSprite, DoubleBuffered {
         glUniform1f(self.noiseProgram.u_Alpha, GLfloat(self.noiseAlpha))
         glUniform3i(self.noiseProgram.u_Period, GLint(self.period.x), GLint(self.period.y), GLint(self.period.z))
         
+        if (self.noiseType == .Sin) {
+            glUniform1f(self.noiseProgram.u_NoiseAngle, GLfloat(self.noiseAngle))
+        }
+        
         self.noiseProgram.attributeBridger.enableAttributes()
         self.noiseProgram.attributeBridger.bridgeAttributesWithSizes([2, 2, 3], stride: self.noiseVertices.stride)
         
@@ -306,6 +347,8 @@ public class GLSPerlinNoiseSprite: GLSSprite, DoubleBuffered {
         self.noiseProgram.attributeBridger.disableAttributes()
         self.framebufferStack?.popFramebuffer()
         glActiveTexture(GLenum(GL_TEXTURE0))
+        
+        self.bufferIsDirty = false
     }
     
     public func shadeTextureChanged() {
@@ -345,6 +388,19 @@ public class GLSPerlinNoiseSprite: GLSSprite, DoubleBuffered {
         
     }//noise size changed
     
+    public override func contentSizeChanged() {
+        self.buffer = GLSFrameBuffer(size: self.contentSize)
+        self.texture = self.buffer.ccTexture
+        
+        let sizeAsPoint = self.contentSize.getCGPoint()
+        self.noiseVertices.iterateWithHandler() { index, vertex in
+            let curPoint = TexturedQuad.pointForIndex(index)
+            vertex.position = (curPoint * sizeAsPoint).getGLTuple()
+        }
+        
+        super.contentSizeChanged()
+    }
+    
     public func performFadeWithDuration(duration:CGFloat, appearing:Bool, completion:dispatch_block_t?) {
         let fadeAnimation = NoiseFadeAnimation(sprite: self, duration: duration, appearing: appearing)
         if let completion = completion {
@@ -352,4 +408,5 @@ public class GLSPerlinNoiseSprite: GLSSprite, DoubleBuffered {
         }
         self.fadeAnimation = fadeAnimation
     }
+    
 }

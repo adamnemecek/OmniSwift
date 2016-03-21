@@ -23,9 +23,9 @@ public struct SCMatrix4 : CustomStringConvertible {
     //Initialization
     public init() {
         self.values =  [1.0, 0.0, 0.0, 0.0,
-            0.0, 1.0, 0.0, 0.0,
-            0.0, 0.0, 1.0, 0.0,
-            0.0, 0.0, 0.0, 1.0]
+                        0.0, 1.0, 0.0, 0.0,
+                        0.0, 0.0, 1.0, 0.0,
+                        0.0, 0.0, 0.0, 1.0]
     }//identity
     
     public init(array:[GLfloat]) {
@@ -370,7 +370,7 @@ public struct SCMatrix4 : CustomStringConvertible {
         
     }//subscript
     
-    //Printable Protocol
+    //CustomStringConvertible Protocol
     public var description:String {
         
         get {

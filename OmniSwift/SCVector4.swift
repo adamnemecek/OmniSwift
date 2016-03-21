@@ -133,7 +133,7 @@ public struct SCVector4: CustomStringConvertible {
         return (GLfloat(x), GLfloat(y), GLfloat(z), GLfloat(w))
     }//get vector as GLfloat tuple
     
-    //Printable Protocol
+    //CustomStringConvertible Protocol
     public var description:String {
         
         get {

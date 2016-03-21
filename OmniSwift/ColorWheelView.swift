@@ -85,6 +85,7 @@ public class ColorWheelView: GLBufferedView, UIGestureRecognizerDelegate {
     
     private(set) var currentColor = UIColor.whiteColor()
     public var colorChangedHandler:((UIColor) -> Void)? = nil
+    public var colorStoppedChangingHandler:((UIColor) -> Void)? = nil
     
     public var enableRotation   = false
     public var outlineColor     = SCVector4.blackColor
@@ -168,6 +169,13 @@ public class ColorWheelView: GLBufferedView, UIGestureRecognizerDelegate {
         }
     }
     
+    private func invokeColorStoppedChangingHandler(sender:UIGestureRecognizer) {
+        
+        if let handler = self.colorStoppedChangingHandler where sender.state == .Ended {
+            handler(self.currentColor)
+        }
+    }
+    
     override public func render() {
         glBindFramebuffer(GLenum(GL_FRAMEBUFFER), self.buffer.framebuffer)
         
@@ -197,6 +205,7 @@ public class ColorWheelView: GLBufferedView, UIGestureRecognizerDelegate {
         //because ScaleDeltas don't work when scale hits 0
         self.brightness = self.scaleDelta.currentScale - 1.0
         self.regenerateColor(true)
+        self.invokeColorStoppedChangingHandler(sender)
         self.renderToBuffer()
     }
     
@@ -216,6 +225,8 @@ public class ColorWheelView: GLBufferedView, UIGestureRecognizerDelegate {
         let anchorAngle = atan2(clampedLocation.y, clampedLocation.x)
         let distance = location.distanceFrom(self.frame.size.center)
         self.anchorImage.center = CGPoint(angle: anchorAngle, length: min(distance, self.frame.size.width / 2.0)) + self.frame.size.center
+        
+        self.invokeColorStoppedChangingHandler(sender)
     }
     
     public func handleRotation(sender:UIRotationGestureRecognizer) {
@@ -234,6 +245,7 @@ public class ColorWheelView: GLBufferedView, UIGestureRecognizerDelegate {
         }
         
         self.renderToBuffer()
+        self.invokeColorStoppedChangingHandler(sender)
         self.regenerateColor(true)
     }
     
@@ -280,4 +292,5 @@ public class ColorWheelView: GLBufferedView, UIGestureRecognizerDelegate {
             return false
         }
     }
+    
 }

@@ -8,7 +8,7 @@
 
 import GLKit
 
-public class CCTexture: NSObject {
+public class CCTexture: NSObject, StringLiteralConvertible {
     
     // MARK: - Properties
     
@@ -30,6 +30,23 @@ public class CCTexture: NSObject {
         
     }//initialize
     
+    // MARK: - StringLiteralConvertible
+    public typealias ExtendedGraphemeClusterLiteralType = StringLiteralType
+    public typealias UnicodeScalarLiteralType = StringLiteralType
+    
+    public required convenience init(unicodeScalarLiteral value: UnicodeScalarLiteralType) {
+        self.init(stringLiteral: "\(value)")
+    }
+    
+    public required convenience init(extendedGraphemeClusterLiteral value: ExtendedGraphemeClusterLiteralType) {
+        self.init(stringLiteral: "\(value)")
+    }
+    
+    public required convenience init(stringLiteral value:StringLiteralType) {
+        let copiedTex = CCTextureOrganizer.textureForString(value)!
+        self.init(name: copiedTex.name, frame: copiedTex.frame)
+    }
+    
     // MARK: - Logic
     
     public func makeRepeating() {
@@ -38,7 +55,7 @@ public class CCTexture: NSObject {
         glTexParameteri(GLenum(GL_TEXTURE_2D), GLenum(GL_TEXTURE_WRAP_T), GL_REPEAT)
     }
     
-    // MARK: - Printable
+    // MARK: - CustomStringConvertible
     
     override public var description:String {
         return "\(name)-\(frame)"
