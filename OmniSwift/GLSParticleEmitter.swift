@@ -21,7 +21,7 @@ public struct PEVertex: CustomStringConvertible {
     }
 }
 
-public class GLSParticleEmitter: GLSNode {
+public class GLSParticleEmitter: GLSNode, DoubleBuffered {
     
     // MARK: - Types
     
@@ -99,6 +99,10 @@ public class GLSParticleEmitter: GLSNode {
     public let buffer:GLSFrameBuffer
     
     public let particleProgram = ParticleProgram()
+    
+    public private(set) var bufferIsDirty = false
+    ///CURRENTLY DOES NOTHING. Other GLSNode subclasses invoke renderToTexture in update method if this is true.
+    public var shouldRedraw = false
     
     // MARK: - Setup
     
@@ -214,6 +218,8 @@ public class GLSParticleEmitter: GLSNode {
         
         self.particles = filteredParticles
         self.particleData = filteredData
+        
+        self.bufferIsDirty = true
     }
     /*
     public func updateParticles(dt:CGFloat) -> (particles:[PEVertex], data:[PEVertexData]) {
@@ -300,6 +306,9 @@ public class GLSParticleEmitter: GLSNode {
         self.framebufferStack?.pushGLSFramebuffer(self.buffer)
         self.buffer.bindClearColor()
         
+        glBlendColor(0, 0, 0, 1.0);
+        glBlendFunc(GLenum(GL_SRC_ALPHA), GLenum(GL_CONSTANT_ALPHA));
+        
         glUseProgram(self.particleProgram.program)
         glBindBuffer(GLenum(GL_ARRAY_BUFFER), self.particleProgram.vertexBuffer)
         glBufferData(GLenum(GL_ARRAY_BUFFER), sizeof(PEVertex) * self.particles.count, self.particles, GLenum(GL_STATIC_DRAW))
@@ -324,6 +333,7 @@ public class GLSParticleEmitter: GLSNode {
         
         glDrawArrays(GLenum(GL_POINTS), 0, GLsizei(self.particles.count))
         
+        glBlendFunc(GLenum(GL_SRC_ALPHA), GLenum(GL_ONE_MINUS_SRC_ALPHA))
         self.particleProgram.disableAttributes()
         self.framebufferStack?.popFramebuffer()
     }
