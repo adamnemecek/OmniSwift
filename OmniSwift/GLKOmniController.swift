@@ -158,7 +158,7 @@ public class GLKOmniController: GLKViewController {
     }//convert point to OpenGL
     
     public func convertPointFromOpenGL(point:CGPoint, container:GLSNode) -> CGPoint {
-        let scale = container.scale
+        let scale = CGPoint(x: container.scaleX, y: container.scaleY)
         let c = container.position - container.anchor * container.contentSize * scale
         let location = point * scale + c
         return CGPoint(x: location.x, y: self.view.frame.size.height - location.y)
