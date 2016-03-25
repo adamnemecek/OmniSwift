@@ -41,7 +41,8 @@ public class Updater: NSObject {
         
         self.stop()
         
-        self.backgroundThread = NSThread(target: self, selector: "mainThreadMethod:", object: nil)
+        
+        self.backgroundThread = NSThread(target: self, selector: #selector(mainThreadMethod), object: nil)
         self.backgroundThread?.start()
         self.active = true
         
@@ -61,7 +62,7 @@ public class Updater: NSObject {
         
         let runLoop = NSRunLoop.currentRunLoop()
         
-        let uTimer = NSTimer.scheduledTimerWithTimeInterval(NSTimeInterval(self.deltaTime), target: self, selector: "mainTimerMethod:", userInfo: nil, repeats: true)
+        let uTimer = NSTimer.scheduledTimerWithTimeInterval(NSTimeInterval(self.deltaTime), target: self, selector: #selector(mainThreadMethod), userInfo: nil, repeats: true)
         self.updateTimer = uTimer
         
         self.currentDate = NSDate()
@@ -72,7 +73,7 @@ public class Updater: NSObject {
         
         let dt = CGFloat(NSDate().timeIntervalSinceDate(self.currentDate))
         self.totalDT += dt
-        self.dtCount++
+        self.dtCount += 1
         self.currentDate = NSDate()
         
         self.updateBlock?(dt)

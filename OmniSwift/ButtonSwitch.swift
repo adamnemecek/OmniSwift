@@ -122,10 +122,10 @@ public class ButtonSwitch: UIControl {
         
         self.backgroundColor = UIColor.clearColor()
         
-        self.addTarget(self, action: "didTouchDownInside:", forControlEvents: .TouchDown)
-        self.addTarget(self, action: "didTouchUpInside:",   forControlEvents: .TouchUpInside)
-        self.addTarget(self, action: "didTouchUpInside:",   forControlEvents: .TouchCancel)
-        self.addTarget(self, action: "didTouchUpOutside:",  forControlEvents: .TouchUpOutside)
+        self.addTarget(self, action: #selector(didTouchDownInside), forControlEvents: .TouchDown)
+        self.addTarget(self, action: #selector(didTouchUpInside),   forControlEvents: .TouchUpInside)
+        self.addTarget(self, action: #selector(didTouchUpInside),   forControlEvents: .TouchCancel)
+        self.addTarget(self, action: #selector(didTouchUpOutside),  forControlEvents: .TouchUpOutside)
     }
 
     /**

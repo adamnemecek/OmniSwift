@@ -153,7 +153,8 @@ public extension GLSNode {
         }
     }
     
-    public class func performAnimations(var animations:[AnimationDictionary]) {
+    public class func performAnimations(initialAnimations:[AnimationDictionary]) {
+        var animations = initialAnimations
         guard var animation = animations.first else {
             return
         }

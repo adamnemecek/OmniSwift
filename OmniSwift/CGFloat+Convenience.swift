@@ -70,6 +70,14 @@ extension CGFloat {
         }
     }
     
+    public func floorTowardZero() -> CGFloat {
+        return floor(abs(self)) * self.signOf()
+    }
+    
+    public func ceilTowardZero() -> CGFloat {
+        return ceil(abs(self)) * self.signOf()
+    }
+    
 }//CGFloat
 
 public func positions(count:Int, ofSize objectSize:CGFloat, inSize windowSize:CGFloat) -> [CGFloat] {
