@@ -63,7 +63,7 @@ public class StaticRenderer: NSObject {
     private var doubleBufferedSprites:[DoubleBuffered] = []
     
     public var asynchronous                 = false
-    public var clearColor                   = SCVector4.blackColor
+    public var clearColor:SCVector4?        = SCVector4.blackColor
     private var onFirstRender               = true
     
     // MARK: - Setup
@@ -172,7 +172,7 @@ public class StaticRenderer: NSObject {
             sprite.renderToTexture()
         }
         
-        self.clearColor.bindGLClearColor()
+        self.clearColor?.bindGLClearColor()
         self.program.use()
 
         for i in self.allVertices.range {
@@ -203,7 +203,7 @@ public class StaticRenderer: NSObject {
             dispatch_sync(dispatch_get_main_queue()) {
                 if self.onFirstRender {
                     self.onFirstRender = false
-                    self.clearColor.bindGLClearColor()
+                    self.clearColor?.bindGLClearColor()
                 }
                 let count = GLsizei(self.count)
                 

@@ -179,6 +179,7 @@
 		DCD34FDE1C13E31F00D28816 /* IntPoint+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD34FDC1C13E31F00D28816 /* IntPoint+Operations.swift */; };
 		DCD3A9091B82B6CC00D1E9F1 /* CADisplayLinkWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD3A9081B82B6CC00D1E9F1 /* CADisplayLinkWrapper.swift */; };
 		DCD3BACA1C06C67800730528 /* NSURL+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD3BAC91C06C67800730528 /* NSURL+Convenience.swift */; };
+		DCD6F93E1CA75E360011BDC6 /* GLSTileSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD6F93D1CA75E360011BDC6 /* GLSTileSprite.swift */; };
 		DCD94A381C0B7ADE00E266BF /* Set+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD94A371C0B7ADE00E266BF /* Set+Convenience.swift */; };
 		DCD956E21BCE016200A007F4 /* FluctuatingNoise1D.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD956E11BCE016200A007F4 /* FluctuatingNoise1D.swift */; };
 		DCE484121BCDF93000AF81C2 /* NoiseArray1D.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE484111BCDF93000AF81C2 /* NoiseArray1D.swift */; };
@@ -384,6 +385,7 @@
 		DCD34FDC1C13E31F00D28816 /* IntPoint+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IntPoint+Operations.swift"; sourceTree = "<group>"; };
 		DCD3A9081B82B6CC00D1E9F1 /* CADisplayLinkWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CADisplayLinkWrapper.swift; sourceTree = "<group>"; };
 		DCD3BAC91C06C67800730528 /* NSURL+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURL+Convenience.swift"; sourceTree = "<group>"; };
+		DCD6F93D1CA75E360011BDC6 /* GLSTileSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLSTileSprite.swift; sourceTree = "<group>"; };
 		DCD94A371C0B7ADE00E266BF /* Set+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Set+Convenience.swift"; sourceTree = "<group>"; };
 		DCD956E11BCE016200A007F4 /* FluctuatingNoise1D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluctuatingNoise1D.swift; sourceTree = "<group>"; };
 		DCE484111BCDF93000AF81C2 /* NoiseArray1D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoiseArray1D.swift; sourceTree = "<group>"; };
@@ -500,6 +502,7 @@
 		DC50F9D11B24910F005A50C8 /* GLSNode */ = {
 			isa = PBXGroup;
 			children = (
+				DCD6F93D1CA75E360011BDC6 /* GLSTileSprite.swift */,
 				DCB3A5B91C02A83C0076A38A /* GLSAlphaHoleSprite.swift */,
 				DC50F9CC1B249062005A50C8 /* GLSBlurSprite.swift */,
 				DC72AA761B166CB20035BF49 /* GLSDoubleSprite.swift */,
@@ -1084,6 +1087,7 @@
 				DC72AAC81B166CB20035BF49 /* GLAttributeBridger.swift in Sources */,
 				DC72AAEB1B166CB20035BF49 /* SCMatrix4.swift in Sources */,
 				DC72AAEC1B166CB20035BF49 /* SCMatrix4+Transformation.swift in Sources */,
+				DCD6F93E1CA75E360011BDC6 /* GLSTileSprite.swift in Sources */,
 				DC72AAD31B166CB20035BF49 /* GLSGroupNode.swift in Sources */,
 				DC5CE0F11B3A0CCD00441A9B /* ButtonSwitch.swift in Sources */,
 				DCB3CCD91BE7289300CA52EF /* CCSoundPlayer.swift in Sources */,
