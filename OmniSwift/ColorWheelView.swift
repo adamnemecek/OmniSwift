@@ -73,10 +73,11 @@ public class ColorWheelView: GLBufferedView, UIGestureRecognizerDelegate {
     public let vertices = TexturedQuadVertices(vertex: UVertex())
     public let gradient = GLGradientTexture2D(gradient: ColorGradient1D.hueGradient)
     
-    private lazy var pinchRecognizer:UIPinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: "handlePinch:")
+    private lazy var pinchRecognizer:UIPinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(handlePinch))
     private var scaleDelta = ScaleDelta(scale: 2.0)
-    private lazy var panRecognizer:UIPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: "handlePan:")
-    private lazy var rotationRecognizer:UIRotationGestureRecognizer = UIRotationGestureRecognizer(target: self, action: "handleRotation:")
+    private lazy var panRecognizer:UIPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
+    private lazy var rotationRecognizer:UIRotationGestureRecognizer = UIRotationGestureRecognizer(target: self, action: #selector(handleRotation))
+ 
     private var wheelAlpha:CGFloat = 1.0
     private var currentWheelAlpha:CGFloat = 1.0
     private let anchorImage = UIImageView(image: UIImage.imageWithPDFFile("CircleAnchor", size: CGSize(square: 48.0)))
@@ -148,11 +149,13 @@ public class ColorWheelView: GLBufferedView, UIGestureRecognizerDelegate {
             let point = TexturedQuad.pointForIndex(index)
             vertex.position = (point * self.frame.size).getGLTuple()
             vertex.texture  = (point * 2.0 - 1.0).getGLTuple()
-            vertex.texture.0 *= -1.0
+            //The following line causes a segmentation fault 11 only when archiving
+            //vertex.texture.0 *= -1.0
+            vertex.texture = (-vertex.texture.0, vertex.texture.1)
         }
         return super.regenerateBuffer()
     }
-    
+    /*
     // MARK: - Logic
     
     private func anchorPositionForColor(color:UIColor) -> CGPoint {
@@ -161,7 +164,7 @@ public class ColorWheelView: GLBufferedView, UIGestureRecognizerDelegate {
         let distance = self.frame.width / 2.0 * comps[1]
         return CGPoint(angle: angle, length: distance) + self.frame.size.center
     }
-    
+    */
     private func regenerateColor(invokeHandler:Bool) {
         self.currentColor = UIColor(hue: self.hue, saturation: self.saturation, brightness: self.brightness, alpha: self.wheelAlpha)
         if invokeHandler {
@@ -175,7 +178,7 @@ public class ColorWheelView: GLBufferedView, UIGestureRecognizerDelegate {
             handler(self.currentColor)
         }
     }
-    
+    /*
     override public func render() {
         glBindFramebuffer(GLenum(GL_FRAMEBUFFER), self.buffer.framebuffer)
         
@@ -198,7 +201,7 @@ public class ColorWheelView: GLBufferedView, UIGestureRecognizerDelegate {
         glFinish()
         self.program.disableAttributes()
     }
-    
+    */
     public func handlePinch(sender:UIPinchGestureRecognizer) {
         self.scaleDelta.handlePinch(sender)
         //Subtract 1.0, because I add 1.0 when I set the scaleDelta
@@ -248,7 +251,7 @@ public class ColorWheelView: GLBufferedView, UIGestureRecognizerDelegate {
         self.invokeColorStoppedChangingHandler(sender)
         self.regenerateColor(true)
     }
-    
+    /*
     public func setColor(color:UIColor, animated:Bool) {
         let comps = color.getHSBComponents()
         if animated {
@@ -292,5 +295,5 @@ public class ColorWheelView: GLBufferedView, UIGestureRecognizerDelegate {
             return false
         }
     }
-    
+    */
 }

@@ -86,7 +86,7 @@ public class BoolList: NSObject, NSCoding, ArrayLiteralConvertible {
         var amount = 0
         for iii in 0..<self.bitCount {
             if (self[iii]) {
-                ++amount
+                amount += 1
             }
         }
         

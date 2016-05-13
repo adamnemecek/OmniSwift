@@ -143,7 +143,7 @@ public class StaticRenderer: NSObject {
         self.tintColors         += node.tintColor.getGLComponents()
         self.tintIntensities    += node.tintIntensity.getGLComponents()
         self.alphas.append(GLfloat(node.alpha))
-        self.count++
+        self.count += 1
     }
     
     private func addBatch() -> Bool {

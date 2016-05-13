@@ -155,7 +155,7 @@ extension Array {
             var jjj = iii
             while jjj > 0 && isOrderedBefore(self[jjj], self[jjj - 1]) {
                 swap(&self[jjj - 1], &self[jjj])
-                jjj--
+                jjj -= 1
             }
         }
         

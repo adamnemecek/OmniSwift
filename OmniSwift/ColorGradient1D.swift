@@ -189,7 +189,8 @@ public class ColorGradient1D: NSObject {
         SCVector4.blueColor,
         SCVector4.magentaColor,
         SCVector4.redColor
-        ], smoothed: false)
+    ], smoothed: false)
+    
 }
 
 

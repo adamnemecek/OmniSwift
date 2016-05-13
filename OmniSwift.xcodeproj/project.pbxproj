@@ -378,7 +378,7 @@
 		DCBED5541B938EF4009CD82B /* NSFileManager+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFileManager+Convenience.swift"; sourceTree = "<group>"; };
 		DCBED5581B93C65E009CD82B /* GLBufferedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLBufferedView.swift; sourceTree = "<group>"; };
 		DCBED55A1B93CD1C009CD82B /* ColorWheelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorWheelView.swift; sourceTree = "<group>"; };
-		DCCFC4671CA4C93900344126 /* BasicCenteredCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BasicCenteredCollectionViewLayout.swift; path = ../Gravity/Gravity/BasicCenteredCollectionViewLayout.swift; sourceTree = "<group>"; };
+		DCCFC4671CA4C93900344126 /* BasicCenteredCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BasicCenteredCollectionViewLayout.swift; path = ../../Gravity/Gravity/BasicCenteredCollectionViewLayout.swift; sourceTree = "<group>"; };
 		DCD0451B1BF3FAE300EC9273 /* CombineIteration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CombineIteration.swift; sourceTree = "<group>"; };
 		DCD34FD91C13E30000D28816 /* BoolList2D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoolList2D.swift; sourceTree = "<group>"; };
 		DCD34FDB1C13E31F00D28816 /* IntPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntPoint.swift; sourceTree = "<group>"; };
@@ -600,7 +600,6 @@
 		DC72AA311B166C7D0035BF49 = {
 			isa = PBXGroup;
 			children = (
-				DCCFC4671CA4C93900344126 /* BasicCenteredCollectionViewLayout.swift */,
 				DC72AA3D1B166C7D0035BF49 /* OmniSwift */,
 				DC72AA4A1B166C7D0035BF49 /* OmniSwiftTests */,
 				DC37E8B71BB740D700313B10 /* OmniSwiftShapes */,
@@ -626,6 +625,7 @@
 				DCB0AF401C0178FD00AB89C2 /* Shaders */,
 				DC72AA581B166CB20035BF49 /* AnimationDelta.swift */,
 				DC72AA5A1B166CB20035BF49 /* AutoOrientingImageView.swift */,
+				DCCFC4671CA4C93900344126 /* BasicCenteredCollectionViewLayout.swift */,
 				DC663BFC1B5D6BB2002F78FF /* BoolList.swift */,
 				DCD34FD91C13E30000D28816 /* BoolList2D.swift */,
 				DC5CE0F01B3A0CCD00441A9B /* ButtonSwitch.swift */,

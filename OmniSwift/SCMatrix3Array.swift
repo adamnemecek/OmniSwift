@@ -23,7 +23,7 @@ public class SCMatrix3Array: NSObject {
     
     public func rangeForIndex(index:Int) -> Range<Int> {
         
-        return Range<Int>(start: 9 * index, end: 9 * index + 9)
+        return (9 * index)..<(9 * index + 9)
         
     }//range of values for index
     

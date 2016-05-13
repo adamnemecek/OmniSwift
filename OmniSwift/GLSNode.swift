@@ -643,7 +643,7 @@ public class GLSNode: NSObject {
         glUniform1i(atLocation, GLint(self.currentTextureIndex))
         glActiveTexture(GLenum(GL_TEXTURE0 + self.currentTextureIndex))
         glBindTexture(GLenum(GL_TEXTURE_2D), tex)
-        ++self.currentTextureIndex
+        self.currentTextureIndex += 1
     }
     
     public func popTextures() {

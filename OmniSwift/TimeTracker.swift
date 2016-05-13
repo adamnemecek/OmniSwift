@@ -53,7 +53,7 @@ public class TimeKeeper: NSObject {
         self.endDate = NSDate()
         
         self.totalDT += self.endDate.timeIntervalSinceDate(self.startDate)
-        ++self.iterations
+        self.iterations += 1
         
         return true
     }//stop timing

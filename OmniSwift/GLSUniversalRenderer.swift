@@ -84,7 +84,7 @@ public class GLSUniversalRenderer: NSObject {
             self.shadeColors += node.shadeColor
             self.alphas.append(GLfloat(node.alpha))
             
-            ++self.currentIndex
+            self.currentIndex += 1
             self.currentVertexIndex += node.vertices.count
             
             //        self.iterateVertices(reference) { (inout vertex:UVertex) in vertex.index = GLfloat(reference.index) }
@@ -130,7 +130,7 @@ public class GLSUniversalRenderer: NSObject {
                 for iii in reference.startIndex..<reference.endIndex {
                     let vIndex = iii - reference.startIndex
                     if (self.renderer.isRendering) {
-                        ++self.insertionCount
+                        self.insertionCount += 1
                         print("Insertion Error \(self.insertionCount)!")
                     }
                     self.vertices.insert(node.vertices[vIndex], atIndex: iii)
@@ -142,7 +142,7 @@ public class GLSUniversalRenderer: NSObject {
                 self.shadeColors.insertVector(node.shadeColor, atIndex: index)
                 self.alphas.insert(GLfloat(node.alpha), atIndex: index)
                 
-                ++self.currentIndex
+                self.currentIndex += 1
                 self.currentVertexIndex += node.vertices.count
                 
                 self.updateIndexForNode(reference)
@@ -215,12 +215,12 @@ public class GLSUniversalRenderer: NSObject {
         self.vertices.removeRange(startIndex..<(startIndex + vertexCount))
         self.alphas.removeAtIndex(index)
         
-        --self.currentIndex
+        self.currentIndex -= 1
         self.currentVertexIndex -= vertexCount
         
         for iii in index..<self.references.count {
             
-            --self.references[iii].index
+            self.references[iii].index -= 1
             self.references[iii].startIndex -= vertexCount
             
             self.updateIndexForNode(self.references[iii])
@@ -332,8 +332,11 @@ public class GLSUniversalRenderer: NSObject {
                     self.shadeColors.setVectors(self.backgroundShadeColors)
                     self.alphas = self.backgroundAlphas
                     
-                    for (var iii = referencesToRemove.count - 1; iii >= 0; --iii) {
-                        self.removeNodeAtIndex_Internal(referencesToRemove[iii])
+                    let count = referencesToRemove.count
+//                    for (var iii = referencesToRemove.count - 1; iii >= 0; --iii) {
+                    for i in 0..<count {
+                        let j = count - i - 1
+                        self.removeNodeAtIndex_Internal(referencesToRemove[j])
                     }
                     
                     self.shouldUpdate = true
@@ -403,7 +406,7 @@ public class GLSUniversalRenderer: NSObject {
             alphas.append(GLfloat(node.alpha))
             
             startIndex += node.vertices.count
-            renderIndex++
+            renderIndex += 1
         }
         
         node.iterateChildrenRecursively(block)

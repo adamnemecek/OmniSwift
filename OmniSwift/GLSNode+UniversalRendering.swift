@@ -110,13 +110,13 @@ public extension GLSNode {
             node.universalRenderIndex = index
             node.universalRenderer = uRend
             
-            ++index
+            index += 1
             
             node.iterateChildrenRecursively() { (childNode:GLSNode) in
                 childNode.universalRenderer = uRend
                 childNode.universalRenderIndex = index
                 uRend.insertNode(childNode, atIndex: index)
-                ++index
+                index += 1
             }
             
             self.setFramebufferOfChild(node)
@@ -174,7 +174,8 @@ public extension GLSNode {
             node.universalRenderIndex = index
             rRend.insertNode(node, atIndex: index)
             node.iterateChildrenRecursively() { [unowned self] in
-                $0.universalRenderIndex = ++index
+                index += 1
+                $0.universalRenderIndex = index
                 rRend.insertNode($0, atIndex: index)
                 $0.recursiveRenderer = rRend
                 $0.framebufferStack = self.framebufferStack

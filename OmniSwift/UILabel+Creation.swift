@@ -92,7 +92,7 @@ public extension UILabel {
         var numberOfLines = 1
         for cur in text.unicodeScalars {
             if (cur == "\n") {
-                ++numberOfLines
+                numberOfLines += 1
             }
         }
         self.numberOfLines = numberOfLines

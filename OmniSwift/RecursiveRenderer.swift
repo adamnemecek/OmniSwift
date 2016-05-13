@@ -438,7 +438,7 @@ public class RecursiveRenderer: NSObject {
         self.vertices += node.vertices
         
         
-        ++self.universalRenderIndex
+        self.universalRenderIndex += 1
     }
     
     private func renderCurrent() {
@@ -496,7 +496,7 @@ public class RecursiveRenderer: NSObject {
 //        var superNode = node.superNode
         while let sNode = node.superNode {
             for child in sNode.children {
-                ++index
+                index += 1
                 if child === node {
                     break
                 }

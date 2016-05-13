@@ -33,7 +33,7 @@ have show the game center controller.
             self.animateGameCenterButton(GameKitHelper.authenticated)
         }
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "authenticationChanged:", name: GKPlayerAuthenticationDidChangeNotificationName, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GameKitAwareController.authenticationChanged(_:)), name: GKPlayerAuthenticationDidChangeNotificationName, object: nil)
     }//authenticate game kit
     
     public func setupGameController() {

@@ -24,7 +24,7 @@ public class GameKitHelper: NSObject {
         
         super.init()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "authenticationChanged:", name: GKPlayerAuthenticationDidChangeNotificationName, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GameKitHelper.authenticationChanged(_:)), name: GKPlayerAuthenticationDidChangeNotificationName, object: nil)
         
         self.available = self.gameKitIsAvailable()
         

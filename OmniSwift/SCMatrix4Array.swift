@@ -26,7 +26,7 @@ public class SCMatrix4Array: NSObject {
     
     public func rangeForIndex(index:Int) -> Range<Int> {
         
-        return Range<Int>(start: 16 * index, end: 16 * index + 16)
+        return (16 * index)..<(16 * index + 16)
         
     }//range of values for index
     
@@ -46,7 +46,7 @@ public class SCMatrix4Array: NSObject {
         let range = self.rangeForIndex(index)
         for iii in range {
             self.values.insert(matrix.values[matrixIndex], atIndex: iii)
-            ++matrixIndex
+            matrixIndex += 1
         }
     }//insert matrix at index
     

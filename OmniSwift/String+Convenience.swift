@@ -131,7 +131,8 @@ public struct StringCharacterGenerator: GeneratorType, SequenceType {
     }
     
     public mutating func next() -> Element? {
-        return self.base[self.index++]
+        self.index += 1
+        return self.base[self.index]
     }
     
     public func generate() -> Generator {

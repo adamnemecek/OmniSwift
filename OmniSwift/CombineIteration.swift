@@ -53,7 +53,7 @@ public struct EnumerateWithGenerator<T: GeneratorType, U: GeneratorType>: Genera
             return nil
         }
         let currentIndex = self.index
-        self.index++
+        self.index += 1
         return (currentIndex, first, second)
     }
     
@@ -85,14 +85,14 @@ public struct EnumerateRangeWithGenerator<T: GeneratorType, U: GeneratorType>: G
             if self.firstGenerator.next() == nil || self.secondGenerator.next() == nil {
                 return nil
             }
-            ++self.index
+            self.index += 1
         }
         
         guard let first = self.firstGenerator.next(), second = self.secondGenerator.next() where self.index < range.endIndex else {
             return nil
         }
         let currentIndex = self.index
-        self.index++
+        self.index += 1
         return (currentIndex, first, second)
     }
     

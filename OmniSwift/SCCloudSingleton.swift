@@ -26,8 +26,8 @@ public class SCCloudSingleton: NSObject {
         
         super.init()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "ubiquityIdentityTokenChanged:", name: NSUbiquityIdentityDidChangeNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyValueStoreChanged:", name: NSUbiquitousKeyValueStoreDidChangeExternallyNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SCCloudSingleton.ubiquityIdentityTokenChanged(_:)), name: NSUbiquityIdentityDidChangeNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SCCloudSingleton.keyValueStoreChanged(_:)), name: NSUbiquitousKeyValueStoreDidChangeExternallyNotification, object: nil)
     }//initialize
     
     public subscript(key:String) -> AnyObject? {

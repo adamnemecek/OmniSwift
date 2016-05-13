@@ -203,7 +203,7 @@ public class SimpleStringParser: NSObject {
                 break
             }
             
-            ++index
+            index += 1
         }
         
         if (index < opers.count - 1) {

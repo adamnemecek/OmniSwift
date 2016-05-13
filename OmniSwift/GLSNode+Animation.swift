@@ -200,9 +200,10 @@ public extension GLSNode {
             
         }//check if finished
         
-        for var iii = indicesToRemove.count - 1; iii >= 0; --iii {
-            
-            self.animations.removeAtIndex(indicesToRemove[iii])
+        let count = indicesToRemove.count
+        for i in 0..<count {
+            let j = count - i - 1
+            self.animations.removeAtIndex(indicesToRemove[j])
         }//remove animations
         
     }//update animations

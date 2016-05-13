@@ -370,10 +370,10 @@ public extension GLSFrameBuffer {
     
     public class func getRetinaScale() -> CGFloat {
         
-        if (UIScreen.mainScreen().respondsToSelector("nativeScale")) {
+        if (UIScreen.mainScreen().respondsToSelector(Selector("nativeScale"))) {
             let nativeScale = UIScreen.mainScreen().nativeScale
             return (nativeScale > 0.0) ? nativeScale : 1.0
-        } else if (UIScreen.mainScreen().respondsToSelector("displayLinkWithTarget:selector:")) {
+        } else if (UIScreen.mainScreen().respondsToSelector(#selector(UIScreen.displayLinkWithTarget(_:selector:)))) {
             //'scale' property only works correctly
             //after 'displayLinkWithTarget:selector:
             //was introduced

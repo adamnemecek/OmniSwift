@@ -74,7 +74,7 @@ public class XMLFileHandler: NSObject, NSXMLParserDelegate {
                 
             }
             
-            ++self.parseIndex
+            self.parseIndex += 1
         }//valid file to load
         
         self.delegate.finishedParsing?()

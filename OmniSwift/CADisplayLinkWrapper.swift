@@ -23,7 +23,7 @@ public class CADisplayLinkWrapper: NSObject {
     public class InternalWrapper: NSObject
     {
         unowned let owner:CADisplayLinkWrapper
-        lazy var displayLink:CADisplayLink = CADisplayLink(target: self, selector: "performAction:")
+        lazy var displayLink:CADisplayLink = CADisplayLink(target: self, selector: #selector(InternalWrapper.performAction(_:)))
         
         private init(owner: CADisplayLinkWrapper) {
             self.owner = owner
