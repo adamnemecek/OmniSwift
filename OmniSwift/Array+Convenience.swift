@@ -306,6 +306,14 @@ public struct SliceEnumerateGenerator<Base: GeneratorType>: GeneratorType, Seque
         return self
     }
     
+    public func allElements(predicate:(Element) -> Bool) -> Bool {
+        return self.reduce(true) { $0 && predicate($1) }
+    }
+    
+    public func noElements(predicate:(Element) -> Bool) -> Bool {
+        return !self.reduce(false) { !$0 && predicate($1) }
+    }
+    
 }
 
 public struct SliceEnumerateSequence<Base: SequenceType>: SequenceType {
