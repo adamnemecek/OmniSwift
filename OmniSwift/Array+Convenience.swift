@@ -78,6 +78,18 @@ extension Array {
         }
     }
     
+    public func find(predicate:(Element) throws -> Bool) -> Element? {
+        do {
+            if let index = try self.indexOf(predicate) {
+                return self[index]
+            } else {
+                return nil
+            }
+        } catch {
+            return nil
+        }
+    }
+    
     /**
     Iterates through the array, comparing elements to find which is the desired one.
     
