@@ -240,4 +240,11 @@ public extension CGPoint {
     public func flip() -> CGPoint {
         return CGPoint(x: self.y, y: self.x)
     }
+    
+    ///Returns true if this point and the other lie on the same axis
+    ///(If ```self.x == other.x```, then they lie on the same vertical axis,
+    ///if ```self.y == other.y```, then they lie on the same horizontal axis)
+    public func liesOnAxisWith(other:CGPoint) -> Bool {
+        return self.x ~= other.x || self.y ~= other.y
+    }
 }//extend
