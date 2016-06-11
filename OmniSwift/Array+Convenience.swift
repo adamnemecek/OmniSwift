@@ -203,6 +203,9 @@ extension Array {
         }
     }
     
+    public func enumerateRepeatFirst() -> RepeatEnumerateSequence<Array> {
+        return RepeatEnumerateSequence(base: self)
+    }
     
     /**
      Removes the elements at the given indices, making sure to remove them in the correct order so the right indices are removed.
@@ -342,6 +345,55 @@ public struct SliceEnumerateSequence<Base: SequenceType>: SequenceType {
 
     public func generate() -> Generator {
         return SliceEnumerateGenerator(base: base.generate(), range: range)
+    }
+    
+}
+
+public struct RepeatEnumerateGenerator<Base: GeneratorType>: GeneratorType, SequenceType {
+    
+    private var base:Base?
+    private var first:Base.Element? = nil
+    private var index = 0
+    
+    public init(base:Base) {
+        self.base = base
+    }
+    
+    public mutating func next() -> (Int, Base.Element)? {
+        if let value = self.base?.next() {
+            if self.first == nil {
+                self.first = value
+            }
+            let index = self.index
+            self.index += 1
+            return (index, value)
+        } else {
+            if let value  = self.first {
+                self.base  = nil
+                self.first = nil
+                return (0, value)
+            } else {
+                return nil
+            }
+        }
+    }
+    
+    public func generate() -> RepeatEnumerateGenerator {
+        return self
+    }
+    
+}
+
+public struct RepeatEnumerateSequence<Base: SequenceType>: SequenceType {
+    
+    private let base:Base
+    
+    init(base:Base) {
+        self.base = base
+    }
+    
+    public func generate() -> RepeatEnumerateGenerator<Base.Generator> {
+        return RepeatEnumerateGenerator(base: base.generate())
     }
     
 }
