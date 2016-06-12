@@ -341,6 +341,15 @@ public extension CGRect {
         return self.divideAt(self.origin + percent * self.size)
     }
     
+    /**
+     Linearly interpolates between the corner of the rectangle.
+     - parameters point: A point with x and y coordinates ranging between [0.0, 1.0]
+     corresponding to the percentage across the rectangle.
+     - returns: The interpolated point inside the rectangle
+     */
+    public func interpolate(point:CGPoint) -> CGPoint {
+        return CGPoint(x: linearlyInterpolate(point.x, left: self.minX, right: self.maxX), y: linearlyInterpolate(point.y, left: self.minY, right: self.maxY))
+    }
 }
 
 // MARK: - Operators

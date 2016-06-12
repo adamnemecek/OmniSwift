@@ -98,4 +98,17 @@ extension UIView {
         }
     }
     
+    public func snapshotImage() -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(self.frame.size, false, GLSFrameBuffer.getRetinaScale())
+        let context = UIGraphicsGetCurrentContext()
+        CGContextSaveGState(context)
+        
+        self.drawViewHierarchyInRect(CGRect(size: self.frame.size), afterScreenUpdates: true)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        
+        CGContextRestoreGState(context)
+        UIGraphicsEndImageContext()
+        
+        return image
+    }
 }
