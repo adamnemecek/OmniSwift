@@ -182,6 +182,7 @@
 		DCD6F93E1CA75E360011BDC6 /* GLSTileSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD6F93D1CA75E360011BDC6 /* GLSTileSprite.swift */; };
 		DCD94A381C0B7ADE00E266BF /* Set+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD94A371C0B7ADE00E266BF /* Set+Convenience.swift */; };
 		DCD956E21BCE016200A007F4 /* FluctuatingNoise1D.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD956E11BCE016200A007F4 /* FluctuatingNoise1D.swift */; };
+		DCDC304C1D0F9C84004BA040 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDC304B1D0F9C84004BA040 /* Math.swift */; };
 		DCE484121BCDF93000AF81C2 /* NoiseArray1D.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE484111BCDF93000AF81C2 /* NoiseArray1D.swift */; };
 		DCE484141BCDF95900AF81C2 /* LinearArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE484131BCDF95900AF81C2 /* LinearArray.swift */; };
 		DCE6F6581BF284B10059D4C6 /* NSNotificationCenter+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC71DBD41BF281F700B38E92 /* NSNotificationCenter+Convenience.swift */; };
@@ -388,6 +389,7 @@
 		DCD6F93D1CA75E360011BDC6 /* GLSTileSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLSTileSprite.swift; sourceTree = "<group>"; };
 		DCD94A371C0B7ADE00E266BF /* Set+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Set+Convenience.swift"; sourceTree = "<group>"; };
 		DCD956E11BCE016200A007F4 /* FluctuatingNoise1D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluctuatingNoise1D.swift; sourceTree = "<group>"; };
+		DCDC304B1D0F9C84004BA040 /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
 		DCE484111BCDF93000AF81C2 /* NoiseArray1D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoiseArray1D.swift; sourceTree = "<group>"; };
 		DCE484131BCDF95900AF81C2 /* LinearArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinearArray.swift; sourceTree = "<group>"; };
 		DCF768011C9F7A6C0090B637 /* StaticRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticRenderer.swift; sourceTree = "<group>"; };
@@ -475,6 +477,7 @@
 				DCD0451B1BF3FAE300EC9273 /* CombineIteration.swift */,
 				DC72AA701B166CB20035BF49 /* GeometrySubclass.swift */,
 				DC67A26B1B29EC3200EE4B09 /* Int+Convenience.swift */,
+				DCDC304B1D0F9C84004BA040 /* Math.swift */,
 				DCBED5541B938EF4009CD82B /* NSFileManager+Convenience.swift */,
 				DC71DBD41BF281F700B38E92 /* NSNotificationCenter+Convenience.swift */,
 				DC72AA8D1B166CB20035BF49 /* NSObject+Convenience.swift */,
@@ -1005,6 +1008,7 @@
 				DCBED5591B93C65E009CD82B /* GLBufferedView.swift in Sources */,
 				DC72AACD1B166CB20035BF49 /* GLSDoubleSprite.swift in Sources */,
 				DC72AABF1B166CB20035BF49 /* CSSShape.swift in Sources */,
+				DCDC304C1D0F9C84004BA040 /* Math.swift in Sources */,
 				DC72AAC11B166CB20035BF49 /* CSSShapeGroup.swift in Sources */,
 				DC72AAF71B166CB20035BF49 /* UIColor+Math.swift in Sources */,
 				DC72AAF31B166CB20035BF49 /* ShaderHelper.swift in Sources */,

@@ -290,20 +290,20 @@ public func /(left:SCVector3, right:CGFloat) -> SCVector3 {
     return SCVector3(xValue: left.x / right, yValue: left.y / right, zValue: left.z / right)
 }//divide
 
-public func +(right:CGFloat, left:SCVector3) -> SCVector3 {
-    return SCVector3(xValue: left.x + right, yValue: left.y + right, zValue: left.z + right)
+public func +(left:CGFloat, right:SCVector3) -> SCVector3 {
+    return SCVector3(xValue: left + right.x, yValue: left + right.y, zValue: left + right.z)
 }//plus
 
-public func -(right:CGFloat, left:SCVector3) -> SCVector3 {
-    return SCVector3(xValue: left.x - right, yValue: left.y - right, zValue: left.z - right)
+public func -(left:CGFloat, right:SCVector3) -> SCVector3 {
+    return SCVector3(xValue: left - right.x, yValue: left - right.y, zValue: left - right.z)
 }//minus
 
-public func *(right:CGFloat, left:SCVector3) -> SCVector3 {
-    return SCVector3(xValue: left.x * right, yValue: left.y * right, zValue: left.z * right)
+public func *(left:CGFloat, right:SCVector3) -> SCVector3 {
+    return SCVector3(xValue: left * right.x, yValue: left * right.y, zValue: left * right.z)
 }//times
 
-public func /(right:CGFloat, left:SCVector3) -> SCVector3 {
-    return SCVector3(xValue: left.x / right, yValue: left.y / right, zValue: left.z / right)
+public func /(left:CGFloat, right:SCVector3) -> SCVector3 {
+    return SCVector3(xValue: left / right.x, yValue: left / right.y, zValue: left / right.z)
 }//divide
 
 
