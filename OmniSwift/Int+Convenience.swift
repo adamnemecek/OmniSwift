@@ -21,6 +21,14 @@ extension Int {
         return values
     }
     
+    public func isOdd() -> Bool {
+        return self % 2 == 1
+    }
+    
+    public func isEven() -> Bool {
+        return self % 2 == 0
+    }
+    
 }
 
 infix operator /% { precedence 150 associativity left }
