@@ -247,4 +247,10 @@ public extension CGPoint {
     public func liesOnAxisWith(other:CGPoint) -> Bool {
         return self.x ~= other.x || self.y ~= other.y
     }
+
+    public func clampDecimals(decimals:Int) -> CGPoint {
+        let decimal = pow(10.0, CGFloat(decimals))
+        return CGPoint(x: round(self.x * decimal), y: round(self.y * decimal)) / decimal
+    }
+    
 }//extend
