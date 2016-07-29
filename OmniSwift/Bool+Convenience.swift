@@ -14,4 +14,9 @@ extension Bool {
         self = !self
     }
     
+    ///Randomly returns true or false.
+    public static func random() -> Bool {
+        return arc4random() % 2 == 0
+    }
+    
 }

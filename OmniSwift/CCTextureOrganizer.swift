@@ -220,7 +220,6 @@ public class CCTextureOrganizer: NSObject, XMLFileHandlerDelegate {
         let image = UIImage.imageWithPDFFile(file, size: size)
         let data = UIImagePNGRepresentation(image!)!
         
-        
         let tex: GLKTextureInfo!
         do {
             tex = try GLKTextureLoader.textureWithContentsOfData(data, options: [GLKTextureLoaderOriginBottomLeft:true])

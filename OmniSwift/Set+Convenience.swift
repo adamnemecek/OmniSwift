@@ -17,6 +17,12 @@ extension Set {
         }
     }
     
+    public mutating func insert(array:[Element]) {
+        for element in array {
+            self.insert(element)
+        }
+    }
+    
     public mutating func removeRandomObject() -> Element? {
         guard let element = self.randomElement() else {
             return nil

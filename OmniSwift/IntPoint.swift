@@ -64,4 +64,64 @@ public struct IntPoint: CustomStringConvertible, Hashable {
     public func distance(point:IntPoint) -> Int {
         return abs(point.x - self.x) + abs(point.y - self.y)
     }
+
+    /**
+     The Von-neumann neighborhood is the right, up, left, and down tiles.
+     - returns: An array of IntPoints representing the offset between a point
+     and its Von-neumann neighborhood.
+     */
+    public static func neumannTiles() -> [IntPoint] {
+        return [
+            IntPoint(x: +1, y: +0),
+            IntPoint(x: +0, y: +1),
+            IntPoint(x: -1, y: +0),
+            IntPoint(x: +0, y: -1)
+        ]
+    }
+    
+    /**
+     The Von-neumann neighborhood is the right, up, left, and down tiles.
+     - returns: The points in this point's Von-neumann neighborhood.
+     */
+    public func neumannNeighbors() -> [IntPoint] {
+        return IntPoint.neumannTiles().map() { self + $0 }
+    }
+    
+    /**
+     The Moore neighborhood is the right, up, left, down, and diagonal tiles.
+     - returns: An array of IntPoints representing the offset between a point
+     and its Moore neighborhood.
+     */
+    public static func mooreTiles() -> [IntPoint] {
+        return [
+            IntPoint(x: +1, y: +0),
+            IntPoint(x: +1, y: +1),
+            IntPoint(x: +0, y: +1),
+            IntPoint(x: -1, y: +1),
+            IntPoint(x: -1, y: +0),
+            IntPoint(x: -1, y: -1),
+            IntPoint(x: +0, y: -1),
+            IntPoint(x: +1, y: -1)
+        ]
+    }
+    
+    /**
+     The Moore neighborhood is the right, up, left, down, and diagonal tiles.
+     - returns: The points in this point's Moore neighborhood.
+     */
+    public func mooreNeighbors() -> [IntPoint] {
+        return IntPoint.mooreTiles().map() { self + $0 }
+    }
+
+    public static func iterateRectangle(size:IntPoint, handler:(IntPoint) -> Void) {
+        for j in 0..<size.y {
+            for i in 0..<size.x {
+                handler(IntPoint(x: i, y: j))
+            }
+        }
+    }
+    
+    public static func iterateWidth(width:Int, height:Int, handler:(IntPoint) -> Void) {
+        return IntPoint.iterateRectangle(IntPoint(x: width, y: height), handler: handler)
+    }
 }
