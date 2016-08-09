@@ -233,10 +233,14 @@ public class CCTextureOrganizer: NSObject, XMLFileHandlerDelegate {
     }//create pdf texture with size
     
     public class func createPNGTexture(file:String, size:CGSize) -> GLKTextureInfo {
-        let path = NSBundle.mainBundle().pathForResource(file, ofType: "png")
-//        let path = self.pathForPNG(file)
+        let path:String
+        if let bundlePath = NSBundle.mainBundle().pathForResource(file, ofType: "png") {
+            path = bundlePath
+        } else {
+            path = "\(file).png"
+        }
         
-        let tex = (try? GLKTextureLoader.textureWithContentsOfFile(path!, options: [GLKTextureLoaderOriginBottomLeft:true]))!
+        let tex = (try? GLKTextureLoader.textureWithContentsOfFile(path, options: [GLKTextureLoaderOriginBottomLeft:true]))!
         
         CCTextureOrganizer.configureTexture(tex)
         

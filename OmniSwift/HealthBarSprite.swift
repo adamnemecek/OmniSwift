@@ -75,14 +75,11 @@ public class HealthBarSprite: NSObject {
     }//initialize
     
     public func colorForPercent(percent:CGFloat) -> SCVector3 {
-        
         return self.emptyColor + (self.fullColor - self.emptyColor) * percent
-        
     }//color for percent
     
     public func applyPercent(percent:CGFloat) {
-        
-        var realPercent = min(max(percent, 0.0), 1.0)
+        let realPercent = min(max(percent, 0.0), 1.0)
         self.foregroundSprite.scaleX = realPercent
         self.foregroundSprite.shadeColor = self.colorForPercent(realPercent)
     }//apply percent

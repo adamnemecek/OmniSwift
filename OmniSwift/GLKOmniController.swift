@@ -77,15 +77,15 @@ public class GLKOmniController: GLKViewController {
     
     // MARK: - Positioning
     
-    public func centerContainer(position:CGPoint) -> CGPoint {
+    public func centerContainer(position:CGPoint, scale containerScale:CGFloat? = nil) -> CGPoint {
         let vSize = self.view.frame.size
-        let scale = self.container.scale
+        let scale = containerScale ?? self.container.scale
         return CGPoint(x: vSize.width / 2.0 - position.x, y: vSize.height / 2.0 - position.y) * scale
     }
     
-    public func clampCenter(center:CGPoint, levelSize oSize:CGSize, minBoundary:CGFloat, maxBoundary:CGFloat, hudHeight:CGFloat) -> CGPoint {
+    public func clampCenter(center:CGPoint, levelSize oSize:CGSize, minBoundary:CGFloat, maxBoundary:CGFloat, hudHeight:CGFloat, scale containerScale:CGFloat? = nil) -> CGPoint {
         
-        let scale = self.container.scale
+        let scale = containerScale ?? self.container.scale
         let vSize = CGSize(width: self.view.frame.size.width, height: self.view.frame.size.height - hudHeight)
         let lSize = oSize * scale
         
@@ -93,7 +93,7 @@ public class GLKOmniController: GLKViewController {
         let oFrame = CGRect(x: oBounds.min, y: 0.0, width: oBounds.max - oBounds.min, height: oSize.height)
 
         let maxX = vSize.width  * (scale - 1.0) / 2.0 - oFrame.minX * scale
-        let maxY = vSize.height * (scale - 1.0) / 2.0 - oFrame.minY * scale
+        let maxY = vSize.height * (scale - 1.0) / 2.0 - oFrame.minY * scale + hudHeight * (scale - 1.0) / 2.0
         let minX = vSize.width  * (scale + 1.0) / 2.0 - oFrame.maxX * scale
         let minY = vSize.height * (scale + 1.0) / 2.0 - oFrame.maxY * scale
         
@@ -109,7 +109,6 @@ public class GLKOmniController: GLKViewController {
         } else {
             ypos = min(max(center.y, minY), maxY)
         }
-        
         return CGPoint(x: xpos, y: ypos)
     }
     
