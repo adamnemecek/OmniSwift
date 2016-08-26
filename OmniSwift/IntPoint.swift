@@ -36,6 +36,11 @@ public struct IntPoint: CustomStringConvertible, Hashable {
         self.y = y
     }
     
+    public init(xy:Int) {
+        self.x = xy
+        self.y = xy
+    }
+    
     public init(point:CGPoint) {
         self.x = Int(point.x)
         self.y = Int(point.y)

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DC014C661D6112F4007E8366 /* IntPoint+Iterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC014C651D6112F4007E8366 /* IntPoint+Iterator.swift */; };
+		DC130CA51D5A8193002C6E83 /* BasicCenteredCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC130CA41D5A8193002C6E83 /* BasicCenteredCollectionViewLayout.swift */; };
 		DC284A561B338F5100C6139A /* HasComponentsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC284A551B338F5100C6139A /* HasComponentsProtocol.swift */; };
 		DC284A611B33AA6900C6139A /* Direction2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC284A601B33AA6900C6139A /* Direction2D.swift */; };
 		DC32D3291B30B3D800FAC796 /* GLSRadialGradientSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC32D3281B30B3D800FAC796 /* GLSRadialGradientSprite.swift */; };
@@ -172,7 +174,6 @@
 		DCBED5551B938EF4009CD82B /* NSFileManager+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBED5541B938EF4009CD82B /* NSFileManager+Convenience.swift */; };
 		DCBED5591B93C65E009CD82B /* GLBufferedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBED5581B93C65E009CD82B /* GLBufferedView.swift */; };
 		DCBED55B1B93CD1C009CD82B /* ColorWheelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBED55A1B93CD1C009CD82B /* ColorWheelView.swift */; };
-		DCCFC4681CA4C93900344126 /* BasicCenteredCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCFC4671CA4C93900344126 /* BasicCenteredCollectionViewLayout.swift */; };
 		DCD0451C1BF3FAE300EC9273 /* CombineIteration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD0451B1BF3FAE300EC9273 /* CombineIteration.swift */; };
 		DCD34FDA1C13E30000D28816 /* BoolList2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD34FD91C13E30000D28816 /* BoolList2D.swift */; };
 		DCD34FDD1C13E31F00D28816 /* IntPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD34FDB1C13E31F00D28816 /* IntPoint.swift */; };
@@ -207,6 +208,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DC014C651D6112F4007E8366 /* IntPoint+Iterator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IntPoint+Iterator.swift"; sourceTree = "<group>"; };
+		DC130CA41D5A8193002C6E83 /* BasicCenteredCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicCenteredCollectionViewLayout.swift; sourceTree = "<group>"; };
 		DC284A551B338F5100C6139A /* HasComponentsProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HasComponentsProtocol.swift; sourceTree = "<group>"; };
 		DC284A601B33AA6900C6139A /* Direction2D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Direction2D.swift; sourceTree = "<group>"; };
 		DC32D3281B30B3D800FAC796 /* GLSRadialGradientSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLSRadialGradientSprite.swift; sourceTree = "<group>"; };
@@ -379,7 +382,6 @@
 		DCBED5541B938EF4009CD82B /* NSFileManager+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFileManager+Convenience.swift"; sourceTree = "<group>"; };
 		DCBED5581B93C65E009CD82B /* GLBufferedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLBufferedView.swift; sourceTree = "<group>"; };
 		DCBED55A1B93CD1C009CD82B /* ColorWheelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorWheelView.swift; sourceTree = "<group>"; };
-		DCCFC4671CA4C93900344126 /* BasicCenteredCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BasicCenteredCollectionViewLayout.swift; path = ../../Gravity/Gravity/BasicCenteredCollectionViewLayout.swift; sourceTree = "<group>"; };
 		DCD0451B1BF3FAE300EC9273 /* CombineIteration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CombineIteration.swift; sourceTree = "<group>"; };
 		DCD34FD91C13E30000D28816 /* BoolList2D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoolList2D.swift; sourceTree = "<group>"; };
 		DCD34FDB1C13E31F00D28816 /* IntPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntPoint.swift; sourceTree = "<group>"; };
@@ -628,7 +630,7 @@
 				DCB0AF401C0178FD00AB89C2 /* Shaders */,
 				DC72AA581B166CB20035BF49 /* AnimationDelta.swift */,
 				DC72AA5A1B166CB20035BF49 /* AutoOrientingImageView.swift */,
-				DCCFC4671CA4C93900344126 /* BasicCenteredCollectionViewLayout.swift */,
+				DC130CA41D5A8193002C6E83 /* BasicCenteredCollectionViewLayout.swift */,
 				DC663BFC1B5D6BB2002F78FF /* BoolList.swift */,
 				DCD34FD91C13E30000D28816 /* BoolList2D.swift */,
 				DC5CE0F01B3A0CCD00441A9B /* ButtonSwitch.swift */,
@@ -648,6 +650,7 @@
 				DC9CB69A1C0B9B9B007E9016 /* HealthBarSprite.swift */,
 				DC72AA881B166CB20035BF49 /* ImageCache.swift */,
 				DCD34FDB1C13E31F00D28816 /* IntPoint.swift */,
+				DC014C651D6112F4007E8366 /* IntPoint+Iterator.swift */,
 				DCD34FDC1C13E31F00D28816 /* IntPoint+Operations.swift */,
 				DC50F9D61B24924F005A50C8 /* Noise */,
 				DC71DBC41BF274E500B38E92 /* SCCloudSingleton.swift */,
@@ -1015,6 +1018,7 @@
 				DC5E1AA31B7C335A002737E1 /* NoiseFadeAnimation.swift in Sources */,
 				DCD94A381C0B7ADE00E266BF /* Set+Convenience.swift in Sources */,
 				DC72AAE51B166CB20035BF49 /* NSOperation+Convenience.swift in Sources */,
+				DC014C661D6112F4007E8366 /* IntPoint+Iterator.swift in Sources */,
 				DC72AAB11B166CB20035BF49 /* AutoOrientingImageView.swift in Sources */,
 				DC72AAEE1B166CB20035BF49 /* SCVector3.swift in Sources */,
 				DC72AACC1B166CB20035BF49 /* GLSCamera.swift in Sources */,
@@ -1039,7 +1043,6 @@
 				DC72AAD21B166CB20035BF49 /* GLSFrameSprite.swift in Sources */,
 				DCABE78D1BD2D8B7000CED7B /* CGRect+Enumeration.swift in Sources */,
 				DCBED55B1B93CD1C009CD82B /* ColorWheelView.swift in Sources */,
-				DCCFC4681CA4C93900344126 /* BasicCenteredCollectionViewLayout.swift in Sources */,
 				DC72AAE01B166CB20035BF49 /* LinearInterpolation.swift in Sources */,
 				DC9276031BE07A6F00334C6D /* GLSRecursivePropertyNode.swift in Sources */,
 				DC72AAFB1B166CB20035BF49 /* UIViewController+Geometry.swift in Sources */,
@@ -1057,6 +1060,7 @@
 				DC72AB011B166CB20035BF49 /* UniversalRenderProgram.swift in Sources */,
 				DC8272471B5AB9D500DF9F97 /* TimeTracker.swift in Sources */,
 				DCB3CCD81BE7289300CA52EF /* CCSound.swift in Sources */,
+				DC130CA51D5A8193002C6E83 /* BasicCenteredCollectionViewLayout.swift in Sources */,
 				DC72AAF21B166CB20035BF49 /* SCVector4+Color.swift in Sources */,
 				DCB786291B168D5B00DC4638 /* String+Convenience.swift in Sources */,
 				DC72AAE31B166CB20035BF49 /* NoiseTexture2D.swift in Sources */,

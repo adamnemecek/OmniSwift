@@ -51,6 +51,9 @@ public enum Direction2D: String, CustomStringConvertible {
             return CGPoint(x: +0.0, y: -1.0)
         }
     }
+    public var integerVector:IntPoint {
+        return IntPoint(point: self.vector)
+    }
     
     public var next:Direction2D {
         switch self {
