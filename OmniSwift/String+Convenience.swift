@@ -118,7 +118,7 @@ extension String {
 
 
 
-public struct StringCharacterGenerator: GeneratorType, SequenceType {
+public struct StringCharacterGenerator: GeneratorType, Sequence {
 
     public typealias Element   = Character
     public typealias Generator = StringCharacterGenerator
@@ -141,7 +141,7 @@ public struct StringCharacterGenerator: GeneratorType, SequenceType {
 
 }
 
-extension String: SequenceType {
+extension String: Sequence {
 
     public typealias Generator = StringCharacterGenerator
 

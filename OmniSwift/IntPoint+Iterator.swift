@@ -21,7 +21,7 @@ extension IntPoint: ForwardIndexType {
     }
 }
 
-public struct IntPointGenerator: SequenceType, GeneratorType {
+public struct IntPointGenerator: Sequence, GeneratorType {
 
     private let start:IntPoint
     private let end:IntPoint
@@ -56,7 +56,7 @@ public struct IntPointGenerator: SequenceType, GeneratorType {
 }
 
 ///Note that IntPointIterator is inclusive.
-public struct IntPointIterator: SequenceType {
+public struct IntPointIterator: Sequence {
 
     public let start:IntPoint
     public let end:IntPoint
@@ -77,7 +77,7 @@ public struct IntPointIterator: SequenceType {
 
 }
 
-extension IntPoint: SequenceType {
+extension IntPoint: Sequence {
 
     public func iteratorFrom(start:IntPoint) -> IntPointIterator {
         return IntPointIterator(start: start, end: self)

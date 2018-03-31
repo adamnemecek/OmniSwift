@@ -146,19 +146,19 @@ public func /(left:UIColor, right:UIColor) -> UIColor {
     return UIColor(red: lComps[0] / rComps[0], green: lComps[1] / rComps[1], blue: lComps[2] / rComps[2], alpha: lComps[3] / rComps[3])
 }// /
 
-public func +=(inout left:UIColor, right:UIColor) {
+public func +=(left: inout UIColor, right:UIColor) {
     left = left + right
 }// +=
 
-public func -=(inout left:UIColor, right:UIColor) {
+public func -=(left: inout UIColor, right:UIColor) {
     left = left - right
 }// -=
 
-public func *=(inout left:UIColor, right:UIColor) {
+public func *=(left: inout UIColor, right:UIColor) {
     left = left * right
 }// *=
 
-public func /=(inout left:UIColor, right:UIColor) {
+public func /=(left: inout UIColor, right:UIColor) {
     left = left / right
 }// /=
 
@@ -187,19 +187,19 @@ public func /(left:UIColor, right:CGFloat) -> UIColor {
     return UIColor(red: lComps[0] / right, green: lComps[1] / right, blue: lComps[2] / right, alpha: lComps[3] / right)
 }// / scalar
 
-public func +=(inout left:UIColor, right:CGFloat) {
+public func +=(left: inout UIColor, right:CGFloat) {
     left = left + right
 }// +=
 
-public func -=(inout left:UIColor, right:CGFloat) {
+public func -=(left: inout UIColor, right:CGFloat) {
     left = left - right
 }// -=
 
-public func *=(inout left:UIColor, right:CGFloat) {
+public func *=(left: inout UIColor, right:CGFloat) {
     left = left * right
 }// *=
 
-public func /=(inout left:UIColor, right:CGFloat) {
+public func /=(left: inout UIColor, right:CGFloat) {
     left = left / right
 }// /=
 
@@ -245,18 +245,18 @@ public func /(left:UIColorTuple4, right:UIColor) -> UIColor {
     return UIColor(red: left.0 / comps[0], green: left.1 / comps[1], blue: left.2 / comps[2], alpha: left.3 / comps[3])
 }
 
-public func +=(inout left:UIColor, right:UIColorTuple4) {
+public func +=(left: inout UIColor, right:UIColorTuple4) {
     left = left + right
 }
 
-public func -=(inout left:UIColor, right:UIColorTuple4) {
+public func -=(left: inout UIColor, right:UIColorTuple4) {
     left = left - right
 }
 
-public func *=(inout left:UIColor, right:UIColorTuple4) {
+public func *=(left: inout UIColor, right:UIColorTuple4) {
     left = left * right
 }
 
-public func /=(inout left:UIColor, right:UIColorTuple4) {
+public func /=(left: inout UIColor, right:UIColorTuple4) {
     left = left / right
 }

@@ -305,7 +305,7 @@ extension CCSoundPlayer {
 
 }
 
-extension CCSoundPlayer: SequenceType {
+extension CCSoundPlayer: Sequence {
 
     public typealias Generator = Array<CCSound>.Generator
 

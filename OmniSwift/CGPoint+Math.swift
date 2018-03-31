@@ -36,19 +36,19 @@ public prefix func -(left:CGPoint) -> CGPoint {
 
 // MARK: - Equals
 
-public func +=(inout left:CGPoint, right:CGPoint) {
+public func +=(left: inout CGPoint, right:CGPoint) {
     left = left + right
 }//plus equals
 
-public func -=(inout left:CGPoint, right:CGPoint) {
+public func -=(left: inout CGPoint, right:CGPoint) {
     left = left - right
 }//minus equals
 
-public func *=(inout left:CGPoint, right:CGPoint) {
+public func *=(left: inout CGPoint, right:CGPoint) {
     left = left * right
 }//multiply equals
 
-public func /=(inout left:CGPoint, right:CGPoint) {
+public func /=(left: inout CGPoint, right:CGPoint) {
     left = left / right
 }//divide equals
 
@@ -89,19 +89,19 @@ public func /(left:CGFloat, right:CGPoint) -> CGPoint {
 
 // MARK: - Equals Scalars
 
-public func +=(inout left:CGPoint, right:CGFloat) {
+public func +=(left: inout CGPoint, right:CGFloat) {
     left = left + right
 }//plus equals scalar
 
-public func -=(inout left:CGPoint, right:CGFloat) {
+public func -=(left: inout CGPoint, right:CGFloat) {
     left = left - right
 }//minus equals scalar
 
-public func *=(inout left:CGPoint, right:CGFloat) {
+public func *=(left: inout CGPoint, right:CGFloat) {
     left = left * right
 }//times equals scalar
 
-public func /=(inout left:CGPoint, right:CGFloat) {
+public func /=(left: inout CGPoint, right:CGFloat) {
     left = left / right
 }//divide equals scalar
 

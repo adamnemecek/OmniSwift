@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct IterateWithGenerator<T: GeneratorType, U: GeneratorType>: GeneratorType, SequenceType {
+public struct IterateWithGenerator<T: GeneratorType, U: GeneratorType>: GeneratorType, Sequence {
 
     public typealias Generator = IterateWithGenerator
     public typealias Element   = (T.Element, U.Element)
@@ -34,7 +34,7 @@ public struct IterateWithGenerator<T: GeneratorType, U: GeneratorType>: Generato
 
 }
 
-public struct EnumerateWithGenerator<T: GeneratorType, U: GeneratorType>: GeneratorType, SequenceType {
+public struct EnumerateWithGenerator<T: GeneratorType, U: GeneratorType>: GeneratorType, Sequence {
 
     public typealias Generator  = EnumerateWithGenerator
     public typealias Element    = (Int, T.Element, U.Element)
@@ -62,7 +62,7 @@ public struct EnumerateWithGenerator<T: GeneratorType, U: GeneratorType>: Genera
     }
 }
 
-public struct EnumerateRangeWithGenerator<T: GeneratorType, U: GeneratorType>: GeneratorType, SequenceType {
+public struct EnumerateRangeWithGenerator<T: GeneratorType, U: GeneratorType>: GeneratorType, Sequence {
 
     public typealias Generator  = EnumerateRangeWithGenerator
     public typealias Element    = (Int, T.Element, U.Element)
@@ -101,17 +101,17 @@ public struct EnumerateRangeWithGenerator<T: GeneratorType, U: GeneratorType>: G
     }
 }
 
-extension SequenceType {
+extension Sequence {
 
-    public func iterateWith<T: SequenceType>(otherSequence:T) -> IterateWithGenerator<Self.Generator, T.Generator> {
+    public func iterateWith<T: Sequence>(otherSequence:T) -> IterateWithGenerator<Self.Generator, T.Generator> {
         return IterateWithGenerator(first: self.generate(), second: otherSequence.generate())
     }
 
-    public func enumerateWith<T: SequenceType>(otherSequence:T) -> EnumerateWithGenerator<Self.Generator, T.Generator> {
+    public func enumerateWith<T: Sequence>(otherSequence:T) -> EnumerateWithGenerator<Self.Generator, T.Generator> {
         return EnumerateWithGenerator(first: self.generate(), second: otherSequence.generate())
     }
 
-    public func enumerateWith<T: SequenceType>(otherSequence:T, range:Range<Int>) -> EnumerateRangeWithGenerator<Self.Generator, T.Generator> {
+    public func enumerateWith<T: Sequence>(otherSequence:T, range:Range<Int>) -> EnumerateRangeWithGenerator<Self.Generator, T.Generator> {
         return EnumerateRangeWithGenerator(first: self.generate(), second: otherSequence.generate(), range: range)
     }
 

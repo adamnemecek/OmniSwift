@@ -256,19 +256,19 @@ prefix func -(unary:SCVector3) -> SCVector3 {
 }//negate
 
 //Equals
-public func +=(inout left:SCVector3, right:SCVector3) {
+public func +=(left: inout SCVector3, right:SCVector3) {
     left = left + right
 }//plus
 
-public func -=(inout left:SCVector3, right:SCVector3) {
+public func -=(left: inout SCVector3, right:SCVector3) {
     left = left - right
 }//minus
 
-public func *=(inout left:SCVector3, right:SCVector3) {
+public func *=(left: inout SCVector3, right:SCVector3) {
     left = left * right
 }//times
 
-public func /=(inout left:SCVector3, right:SCVector3) {
+public func /=(left: inout SCVector3, right:SCVector3) {
     left = left / right
 }//divide
 
@@ -308,19 +308,19 @@ public func /(left:CGFloat, right:SCVector3) -> SCVector3 {
 
 
 //Scalar Equals
-public func +=(inout left:SCVector3, right:CGFloat) {
+public func +=(left: inout SCVector3, right:CGFloat) {
     left = left + right
 }//plus
 
-public func -=(inout left:SCVector3, right:CGFloat) {
+public func -=(left: inout SCVector3, right:CGFloat) {
     left = left - right
 }//minus
 
-public func *=(inout left:SCVector3, right:CGFloat) {
+public func *=(left: inout SCVector3, right:CGFloat) {
     left = left * right
 }//times
 
-public func /=(inout left:SCVector3, right:CGFloat) {
+public func /=(left: inout SCVector3, right:CGFloat) {
     left = left / right
 }//divide
 

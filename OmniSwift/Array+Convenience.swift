@@ -277,7 +277,7 @@ public func array<T>(array:[T], byPadding value:T, toLength length:Int) -> [T] {
 }
 
 // MARK: - Sliced Enumeration
-public struct SliceEnumerateGenerator<Base: GeneratorType>: GeneratorType, SequenceType {
+public struct SliceEnumerateGenerator<Base: GeneratorType>: GeneratorType, Sequence {
 
     public typealias Element = (index: Int, element: Base.Element)
     public typealias Generator = SliceEnumerateGenerator
@@ -331,7 +331,7 @@ public struct SliceEnumerateGenerator<Base: GeneratorType>: GeneratorType, Seque
 
 }
 
-public struct SliceEnumerateSequence<Base: SequenceType>: SequenceType {
+public struct SliceEnumerateSequence<Base: Sequence>: Sequence {
 
     public typealias Generator = SliceEnumerateGenerator<Base.Generator>
 
@@ -349,7 +349,7 @@ public struct SliceEnumerateSequence<Base: SequenceType>: SequenceType {
 
 }
 
-public struct RepeatEnumerateGenerator<Base: GeneratorType>: GeneratorType, SequenceType {
+public struct RepeatEnumerateGenerator<Base: GeneratorType>: GeneratorType, Sequence {
 
     private var base:Base?
     private var first:Base.Element? = nil
@@ -384,7 +384,7 @@ public struct RepeatEnumerateGenerator<Base: GeneratorType>: GeneratorType, Sequ
 
 }
 
-public struct RepeatEnumerateSequence<Base: SequenceType>: SequenceType {
+public struct RepeatEnumerateSequence<Base: Sequence>: Sequence {
 
     private let base:Base
 
@@ -398,11 +398,11 @@ public struct RepeatEnumerateSequence<Base: SequenceType>: SequenceType {
 
 }
 
-public func enumerate<Seq : SequenceType>(sequence:Seq, range:Range<Int>) -> SliceEnumerateSequence<Seq> {
+public func enumerate<Seq : Sequence>(sequence:Seq, range:Range<Int>) -> SliceEnumerateSequence<Seq> {
     return SliceEnumerateSequence(base: sequence, range: range)
 }
 
-extension SequenceType {
+extension Sequence {
 
     ///Enumerates the array, returning (index, element) pairs, but only for a given range.
     public func enumerateRange(range:Range<Int>) -> SliceEnumerateSequence<Self> {

@@ -176,19 +176,19 @@ public func /(left:SCVector4, right:SCVector4) -> SCVector4 {
 
 
 //Equals
-public func +=(inout left:SCVector4, right:SCVector4) {
+public func +=(left: inout SCVector4, right:SCVector4) {
     left = left + right
 }//plus
 
-public func -=(inout left:SCVector4, right:SCVector4) {
+public func -=(left: inout SCVector4, right:SCVector4) {
     left = left - right
 }//minus
 
-public func *=(inout left:SCVector4, right:SCVector4) {
+public func *=(left: inout SCVector4, right:SCVector4) {
     left = left * right
 }//times
 
-public func /=(inout left:SCVector4, right:SCVector4) {
+public func /=(left: inout SCVector4, right:SCVector4) {
     left = left / right
 }//divide
 
@@ -228,19 +228,19 @@ public func /(right:CGFloat, left:SCVector4) -> SCVector4 {
 
 
 //Scalar Equals
-public func +=(inout left:SCVector4, right:CGFloat) {
+public func +=(left: inout SCVector4, right:CGFloat) {
     left = left + right
 }//plus
 
-public func -=(inout left:SCVector4, right:CGFloat) {
+public func -=(left: inout SCVector4, right:CGFloat) {
     left = left - right
 }//minus
 
-public func *=(inout left:SCVector4, right:CGFloat) {
+public func *=(left: inout SCVector4, right:CGFloat) {
     left = left * right
 }//times
 
-public func /=(inout left:SCVector4, right:CGFloat) {
+public func /=(left: inout SCVector4, right:CGFloat) {
     left = left / right
 }//divide
 
