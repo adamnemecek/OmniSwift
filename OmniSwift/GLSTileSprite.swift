@@ -14,28 +14,28 @@ import UIKit
 public class GLSTileSprite: GLSSprite {
 
     // MARK: - Properties
-    
+
     public var textureSize:CGSize = CGSize(square: 1.0) {
         didSet {
             self.setTextureOfVertices()
         }
     }
-    
+
     // MARK: - Setup
-    
+
     public init(size:CGSize, textureSize:CGSize, texture:CCTexture?) {
         self.textureSize = textureSize
         super.init(position: CGPoint.zero, size: size, texture: texture)
         self.setTextureOfVertices()
     }
-    
+
     // MARK: - Logic
-    
+
     public override func contentSizeChanged() {
         super.contentSizeChanged()
         self.setTextureOfVertices()
     }
-    
+
     public func setTextureOfVertices() {
 
         let verts = TexturedQuadVertices(vertices: self.vertices)

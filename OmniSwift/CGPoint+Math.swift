@@ -150,65 +150,65 @@ public func *(lhs:CGPoint, rhs:CGSize) -> CGPoint {
 public extension CGPoint {
 
     public var isZero:Bool { return self.x ~= 0.0 && self.y ~= 0.0 }
-    
+
     public init(x:CGFloat) {
         self.init(x: x, y: 0.0)
     }
-    
+
     public init(y:CGFloat) {
         self.init(x: 0.0, y: y)
     }
-    
+
     ///Initializes x and y values with the same value.
     public init(xy:CGFloat) {
         self.init(x: xy, y: xy)
     }
-    
+
     public init(angle:CGFloat, length:CGFloat=1.0) {
         self.init(x: length * cos(angle), y: length * sin(angle))
     }//normalized vector with angle
-    
+
     public init(tupleCG:(CGFloat, CGFloat)) {
         self.init(x: tupleCG.0, y: tupleCG.1)
     }//initialize with tuple
-    
+
     public init(tuple:(Float, Float)) {
         self.init(x: CGFloat(tuple.0), y: CGFloat(tuple.1))
     }//initialize with tuple
-    
+
     public init(tupleGL:(GLfloat, GLfloat)) {
         self.init(x: CGFloat(tupleGL.0), y: CGFloat(tupleGL.1))
     }//initialize with tuple (GLfloat)
-    
+
     public func length() -> CGFloat {
         return sqrt(x * x + y * y)
     }//get length
-    
+
     public func getTuple() -> (CGFloat, CGFloat) {
         return (x, y)
     }//get point as tuple
-    
+
     public func getTupleCG() -> (CGFloat, CGFloat) {
         return (x, y)
     }//get point as tuple (CGFloat)
-    
+
     public func getGLTuple() -> (GLfloat, GLfloat) {
         return (GLfloat(x), GLfloat(y))
     }//get point as tuple (GLfloat)
-    
-    
+
+
     public func distanceFrom(point:CGPoint) -> CGFloat {
         return sqrt((x - point.x) * (x - point.x) + (y - point.y) * (y - point.y))
     }//distance from/to other point
-    
+
     public func angleTo(point:CGPoint) -> CGFloat {
         return atan2(point.y - self.y, point.x - self.x)
     }//angle to point
-    
+
     public func angle() -> CGFloat {
         return atan2(self.y, self.x)
     }//returns angle (using atan2)
-    
+
     public func unit() -> CGPoint {
         let len = self.length()
         if (len ~= 0.0) {
@@ -217,30 +217,30 @@ public extension CGPoint {
             return self / len
         }
     }//get unit vector
-    
+
     ///Returns a vector (point) in the same direction as *self* but with the given length *length*
     public func makeLength(length:CGFloat) -> CGPoint {
         return self.unit() * length
     }
-    
+
     public func dot(point:CGPoint) -> CGFloat {
         return self.x * point.x + self.y * point.y
     }
-    
+
     public func componentsInDirection(vector:CGPoint) -> CGPoint {
-        
+
         if (self.isZero || vector.isZero) {
             return CGPoint.zero
         }
-        
+
         let unitVector = vector.unit()
         return self.dot(unitVector) * unitVector
     }//components in direction of 'vector'
-    
+
     public func flip() -> CGPoint {
         return CGPoint(x: self.y, y: self.x)
     }
-    
+
     ///Returns true if this point and the other lie on the same axis
     ///(If ```self.x == other.x```, then they lie on the same vertical axis,
     ///if ```self.y == other.y```, then they lie on the same horizontal axis)
@@ -252,5 +252,5 @@ public extension CGPoint {
         let decimal = pow(10.0, CGFloat(decimals))
         return CGPoint(x: round(self.x * decimal), y: round(self.y * decimal)) / decimal
     }
-    
+
 }//extend

@@ -11,25 +11,25 @@ import UIKit
 public class LabeledView: NSObject, HasFrame, ContainsViewsProtocol {
 
     // MARK: - Properties
-    
+
     public let label:UILabel
     public let title:String
     public private(set) var view:HasFrame
-    
+
     ///How much extra space is placed between *label* and *view*.
     public var buffer:CGFloat = 0.0 {
         didSet {
             self.pinViews()
         }
     }
-    
+
     ///A boolean value determining whether the label aligned horizontally or vertically.
     public var horizontal = true {
         didSet {
             self.pinViews()
         }
     }
-    
+
     public var frame:CGRect {
         get {
             if self.horizontal {
@@ -48,12 +48,12 @@ public class LabeledView: NSObject, HasFrame, ContainsViewsProtocol {
         }
         set {
             if self.horizontal {
-                
+
                 self.label.frame.leftMiddle = CGPoint(x: newValue.minX, y: newValue.midY)
                 let vx = self.label.frame.maxX + self.buffer
                 let vw = newValue.maxX - vx
                 self.view.frame = CGRect(x: vx, y: newValue.minY, width: vw, height: newValue.height)
-                
+
             } else {
                 self.label.frame.topMiddle = CGPoint(x: newValue.midX, y: newValue.minY)
                 let vy = self.label.frame.maxY + self.buffer
@@ -62,7 +62,7 @@ public class LabeledView: NSObject, HasFrame, ContainsViewsProtocol {
             }
         }
     }
-    
+
     public var views:[UIView] {
         if let view = self.view as? UIView {
             return [self.label, view]
@@ -70,7 +70,7 @@ public class LabeledView: NSObject, HasFrame, ContainsViewsProtocol {
             return [self.label]
         }
     }
-    
+
     ///Accessor for label's text color.
     public var textColor:UIColor? {
         get {
@@ -93,30 +93,30 @@ public class LabeledView: NSObject, HasFrame, ContainsViewsProtocol {
             }
         }
     }
-    
+
     // MARK: - Setup
-    
+
     public init(title:String, view:HasFrame) {
         self.title  = title
         self.label  = UILabel.labelWithText(title)
         self.view   = view
-        
+
         super.init()
-        
+
         self.pinViews()
     }
-    
+
     // MARK: - Logic
-    
+
     ///Pins *view* to correct side of *label* according to *horizontal*.
     public func pinViews() {
-        
+
         if self.horizontal {
             self.view.frame.leftMiddle = self.label.frame.rightMiddle + CGPoint(x: self.buffer)
         } else {
             self.view.frame.topMiddle = self.label.frame.bottomMiddle + CGPoint(y: self.buffer)
         }
-        
+
     }
-    
+
 }

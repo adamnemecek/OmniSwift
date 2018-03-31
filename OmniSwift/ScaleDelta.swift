@@ -9,13 +9,13 @@
 import UIKit
 
 public class ScaleDelta: NSObject {
-   
+
     // MARK: - Properties
-    
+
     private var initialScale:CGFloat = 1.0
     private var internalScale:CGFloat = 1.0
     public var currentScale:CGFloat { return self.internalScale }
-    
+
     public var minimumScale:CGFloat = 0.0 {
         didSet {
             if (self.internalScale < self.minimumScale) {
@@ -30,7 +30,7 @@ public class ScaleDelta: NSObject {
             }
         }
     }
-    
+
     ///A float value in range [0.0, 1.0] to scale, where 0.0 maps to *minimumScale* and 1.0 maps to *maximumScale*.
     ///Values in between are linearly interpolated (if *minimumScale* == *maximumScale*, value is 1.0).
     public var percent:CGFloat {
@@ -42,22 +42,22 @@ public class ScaleDelta: NSObject {
             }
         }
     }
-    
+
     // MARK: - Setup
-    
+
     public init(scale:CGFloat) {
-        
+
         self.initialScale = scale
         self.internalScale = scale
-        
+
         super.init()
-        
+
     }//initialize with default scale
-    
+
     // MARK: - Logic
-    
+
     public func handlePinch(sender:UIPinchGestureRecognizer) {
-        
+
         switch sender.state {
         case .Began, .Changed:
             self.internalScale = self.initialScale * sender.scale
@@ -68,12 +68,12 @@ public class ScaleDelta: NSObject {
         default:
             break
         }
-        
+
         self.internalScale = min(max(self.internalScale, self.minimumScale), self.maximumScale)
     }//handle pinch
-    
+
     public func setExtremaWithSize(size:CGSize, inSize:CGSize) {
-        
+
         if size.width <= inSize.width && size.height <= inSize.height {
             self.minimumScale = 1.0
             self.maximumScale = 1.0

@@ -9,15 +9,15 @@
 import Foundation
 
 extension SCCloudSingleton {
-    
+
     public func arrayForKey(key:String) -> [AnyObject]? {
         return NSUbiquitousKeyValueStore.defaultStore().arrayForKey(key)
     }
-    
+
     public func setArray(array:[AnyObject]?, forKey key:String) {
         NSUbiquitousKeyValueStore.defaultStore().setArray(array, forKey: key)
     }
-    
+
     public func boolArrayForKey(key:String) -> [BoolList.BoolType]? {
         if let array = self.arrayForKey(key) as? [String] {
             return self.boolsFromStrings(array)
@@ -25,11 +25,11 @@ extension SCCloudSingleton {
             return nil
         }
     }
-    
+
     public func setBoolArray(array:[BoolList.BoolType], forKey key:String) {
         self.setArray(self.stringsFromBools(array), forKey: key)
     }
-    
+
     public func stringsFromBools(boolValues:[BoolList.BoolType]) -> [String] {
         var strs:[String] = []
         for cur in boolValues {
@@ -37,7 +37,7 @@ extension SCCloudSingleton {
         }
         return strs
     }
-    
+
     public func boolsFromStrings(stringValues:[String]) -> [BoolList.BoolType] {
         var bools:[BoolList.BoolType] = []
         for cur in stringValues {
@@ -45,5 +45,5 @@ extension SCCloudSingleton {
         }
         return bools
     }
-    
+
 }

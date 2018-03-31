@@ -9,11 +9,11 @@
 import Foundation
 
 extension NSURL {
-    
+
     public class func URLForPath(path:String, pathExtension:String) -> NSURL {
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
         let documentURL = NSURL(fileURLWithPath: paths[0] as String, isDirectory: true)
         return documentURL.URLByAppendingPathComponent(path).URLByAppendingPathExtension(pathExtension)
     }
-    
+
 }

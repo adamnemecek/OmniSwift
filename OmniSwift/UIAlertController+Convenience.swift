@@ -9,32 +9,32 @@
 import UIKit
 
 extension UIAlertController {
-    
+
     public convenience init(title:String?, message:String?, cancel:String, confirm:String, confirmHandler:((UIAlertAction!) -> Void)!) {
-        
+
         self.init(title: title, message: message, preferredStyle: .Alert)
-        
+
         self.addCancelAction(cancel)
         self.addActionWithTitle(confirm, style: .Default, handler: confirmHandler)
     }
-    
+
     /**
     Initializes a UIAlertController object that displays a message and provides a button to dismiss.
     Used for displaying information, not for requesting anything.
-    
+
     - parameter title: The title of the alert.
     - parameter message: The message of the alert.
     - parameter dismiss: The title of the button that dismisses the alert.
     */
     public convenience init(title:String?, message:String?, dismiss:String) {
         self.init(title: title, message: message, preferredStyle: .Alert)
-        
+
         self.addCancelAction(dismiss)
     }
-    
+
     /**
     Creates a *UIAlertAction* object with parameters, then adds it to alert controller.
-    
+
     - parameter title: The title of the action.
     - parameter style: The style of the action.
     - parameter handler: The handler to use when the corresponding button is clicked.
@@ -42,7 +42,7 @@ extension UIAlertController {
     public func addActionWithTitle(title: String, style: UIAlertActionStyle, handler: ((UIAlertAction!) -> Void)!) {
         self.addAction(UIAlertAction(title: title, style: style, handler: handler))
     }
-    
+
     /**
     Creates a *UIAlertAction* object with *title* and .Cancel style, then adds it to alert controller.
 
@@ -52,15 +52,15 @@ extension UIAlertController {
         let cancelAction = UIAlertAction(title: title, style: .Cancel) { action in }
         self.addAction(cancelAction)
     }
-    
+
     ///Adds a text field with no configuration handler.
     public func addTextField() {
         self.addTextFieldWithConfigurationHandler() { _ in }
     }
-    
+
     /**
     Gets the text of a specific text field.
-    
+
     - parameter index: The index of the text field.
     - returns: The text of the text field at index *index*, or nil if there is no text field.
     */
@@ -71,8 +71,8 @@ extension UIAlertController {
             return nil
         }
     }
-    
+
     ///Returns the text of the first text field, if it exists.
     public var firstText:String? { return self.textAt(0) }
-    
+
 }

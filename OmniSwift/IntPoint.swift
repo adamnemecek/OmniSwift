@@ -9,62 +9,62 @@
 import UIKit
 
 public struct IntPoint: CustomStringConvertible, Hashable {
-    
+
     // MARK: - Properties
-    
+
     public var x = 0
     public var y = 0
     public var description:String { return "(\(self.x), \(self.y))" }
     public var hashValue:Int { return self.x << 16 | self.y }
-    
+
     // MARK: - Setup
-    
+
     public init() {
-        
+
     }
-    
+
     public init(x:Int, y:Int) {
         self.x = x
         self.y = y
     }
-    
+
     public init(x:Int) {
         self.x = x
     }
-    
+
     public init(y:Int) {
         self.y = y
     }
-    
+
     public init(xy:Int) {
         self.x = xy
         self.y = xy
     }
-    
+
     public init(point:CGPoint) {
         self.x = Int(point.x)
         self.y = Int(point.y)
     }
-    
+
     public init(string:String) {
         self.init(point: CGPointFromString(string))
     }
-    
+
     // MARK: - Logic
-    
+
     ///Returns true if 0 <= x < width and 0 <= y < height.
     public func withinGridWidth(width:Int, height:Int) -> Bool {
         return 0 <= self.x && self.x < width && 0 <= self.y && self.y < height
     }
-    
+
     public func getCGPoint() -> CGPoint {
         return CGPoint(x: self.x, y: self.y)
     }
-    
+
     public func getString() -> String {
         return NSStringFromCGPoint(self.getCGPoint()) as String
     }
-    
+
     ///Uses manhattan distance, becaase euclidian distance just doesn't make sense.
     public func distance(point:IntPoint) -> Int {
         return abs(point.x - self.x) + abs(point.y - self.y)
@@ -83,7 +83,7 @@ public struct IntPoint: CustomStringConvertible, Hashable {
             IntPoint(x: +0, y: -1)
         ]
     }
-    
+
     /**
      The Von-neumann neighborhood is the right, up, left, and down tiles.
      - returns: The points in this point's Von-neumann neighborhood.
@@ -91,7 +91,7 @@ public struct IntPoint: CustomStringConvertible, Hashable {
     public func neumannNeighbors() -> [IntPoint] {
         return IntPoint.neumannTiles().map() { self + $0 }
     }
-    
+
     /**
      The Moore neighborhood is the right, up, left, down, and diagonal tiles.
      - returns: An array of IntPoints representing the offset between a point
@@ -109,7 +109,7 @@ public struct IntPoint: CustomStringConvertible, Hashable {
             IntPoint(x: +1, y: -1)
         ]
     }
-    
+
     /**
      The Moore neighborhood is the right, up, left, down, and diagonal tiles.
      - returns: The points in this point's Moore neighborhood.
@@ -125,7 +125,7 @@ public struct IntPoint: CustomStringConvertible, Hashable {
             }
         }
     }
-    
+
     public static func iterateWidth(width:Int, height:Int, handler:(IntPoint) -> Void) {
         return IntPoint.iterateRectangle(IntPoint(x: width, y: height), handler: handler)
     }

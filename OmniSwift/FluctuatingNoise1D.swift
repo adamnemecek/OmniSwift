@@ -9,11 +9,11 @@
 import Foundation
 
 public class FluctuatingNoise1D: CustomStringConvertible {
-    
+
     // MARK: - Properties
-    
+
     public let noise:NoiseArray1D
-    
+
     ///The internal time used to calculate the noise.
     public private(set) var time:CGFloat = 0.0
     ///The speed at which the time increases (negative values cause the time to decrease).
@@ -41,13 +41,13 @@ public class FluctuatingNoise1D: CustomStringConvertible {
             self.lowerValue = newValue.low
         }
     }
-    
+
     ///The value the noise is divided by to fix its range to [-1.0, 1.0].
     public let noiseDivisor:CGFloat = 0.7
-    
+
     ///The type of noise used.
     public var noiseType = GLSPerlinNoiseSprite.NoiseType.Default
-    
+
     private var storedValue:CGFloat = 0.0
     public var value:CGFloat {
         switch self.noiseType {
@@ -62,33 +62,33 @@ public class FluctuatingNoise1D: CustomStringConvertible {
             return sin(CGFloat(M_PI) * self.time + val)
         }
     }
-    
+
     public var description:String { return "Noise(\(self.noise.seed)) \(self.extremeValues)" }
-    
+
     // MARK: - Setup
-    
+
     ///Initialize with a random seed.
     public convenience init() {
         self.init(noise: NoiseArray1D())
     }
-    
+
     ///Initialize with a specific Noise object.
     public init(noise:NoiseArray1D) {
         self.noise = noise
     }
-    
+
     ///Initialize with a specific Noise object with a given seed.
     public convenience init(seed:UInt32) {
         self.init(noise: NoiseArray1D(seed: seed))
     }
-    
+
     // MARK: - Logic
-    
+
     ///Update the time given a delta.
     public func update(dt:CGFloat) {
         self.time += self.speed * dt
     }
-    
+
     private func baseNoise(iterations:Int) -> CGFloat {
         var noiseValue:CGFloat = 0.0
         for i in 1...iterations {

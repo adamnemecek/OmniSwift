@@ -13,7 +13,7 @@ public class AutoOrientingImageView: UIImageView {
 
     public var portraitImage:UIImage? = nil
     public var landscapeImage:UIImage? = nil
-    
+
     override public var frame:CGRect {
         didSet {
             if (self.frame.size.width < self.frame.size.height) {
@@ -23,14 +23,14 @@ public class AutoOrientingImageView: UIImageView {
             }
         }
     }
-    
+
     public init(portrait:UIImage, landscape:UIImage) {
-        
+
         self.portraitImage = portrait
         self.landscapeImage = landscape
-        
+
         super.init(image: portrait)
-        
+
     }//initialize
 
     required public init?(coder aDecoder: NSCoder) {

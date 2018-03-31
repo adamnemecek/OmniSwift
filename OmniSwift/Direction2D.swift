@@ -13,7 +13,7 @@ public enum Direction2D: String, CustomStringConvertible {
     case Up     = "Up"
     case Left   = "Left"
     case Down   = "Down"
-    
+
     public var integerValue:Int {
         switch self {
         case .Right:
@@ -26,7 +26,7 @@ public enum Direction2D: String, CustomStringConvertible {
             return 3
         }
     }
-    
+
     public var angle:CGFloat {
         switch self {
         case .Right:
@@ -54,7 +54,7 @@ public enum Direction2D: String, CustomStringConvertible {
     public var integerVector:IntPoint {
         return IntPoint(point: self.vector)
     }
-    
+
     public var next:Direction2D {
         switch self {
         case .Right:
@@ -91,7 +91,7 @@ public enum Direction2D: String, CustomStringConvertible {
             return .Up
         }
     }
-    
+
     public init(integer:Int) {
         switch integer % 4 {
         case 0:
@@ -109,11 +109,11 @@ public enum Direction2D: String, CustomStringConvertible {
             self = .Right
         }
     }
-    
+
     public static let allValues:[Direction2D] = [.Right, .Up, .Left, .Down]
-    
-    
-    
+
+
+
     public var description:String { return self.rawValue }
-    
+
 }

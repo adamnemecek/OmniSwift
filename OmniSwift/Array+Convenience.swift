@@ -9,18 +9,18 @@
 import Foundation
 
 extension Array {
-    
+
     public var range:Range<Int> { return 0..<self.count }
-    
+
     public func size() -> Int {
-        
+
             if (self.count == 0) {
                     return 0
             }//no elements
-        
+
         return sizeofValue(self[0]) * self.count
     }//get size
-    
+
     /*
      *  For some reason, casting arc4random() to Int
      *  crashes on iPad 2 device. Casting the result
@@ -28,32 +28,32 @@ extension Array {
      *  is itself cast to UInt32) to Int succeeds
      */
     public func randomObject() -> Element? {
-        
+
         if (self.count <= 0) {
             return nil
         }
-        
+
         let index = Int(arc4random() % UInt32(self.count))
         return self[index]
     }//get a random object
-    
+
     /**
     Removes a random object from the array.
-    
+
     - returns: The element removed, or nil if the array was empty.
     */
     public mutating func removeRandomObject() -> Element? {
         if self.count <= 0 {
             return nil
         }
-        
+
         let index = Int(arc4random() % UInt32(self.count))
         return self.removeAtIndex(index)
     }
-    
+
     /**
     Safely gets the object at the index from the array.
-    
+
     - parameter index: The index of the object to get.
     - returns: The object at *index*, or nil if no object exists.
     */
@@ -64,20 +64,20 @@ extension Array {
 
         return self[index]
     }
-    
+
     /**
     Adds enough values to the end the array so that it has a specified length.
-    
+
     - parameter value: The value to be repeated.
     - parameter length: The final length of the array.
     */
     public mutating func pad(value:Element, toLength length:Int) {
-        
+
         while self.count < length {
             self.append(value)
         }
     }
-    
+
     public func find(predicate:(Element) throws -> Bool) -> Element? {
         do {
             if let index = try self.indexOf(predicate) {
@@ -89,10 +89,10 @@ extension Array {
             return nil
         }
     }
-    
+
     /**
     Iterates through the array, comparing elements to find which is the desired one.
-    
+
     - parameter isBetter: A closure that takes two elements and returns which one is considered better.
     - returns: The element that was determined to be the best, according to *isBetter* or nil if the array is empty.
     */
@@ -103,13 +103,13 @@ extension Array {
         for (_, element) in self.enumerateSkipFirst() {
             bestElement = isBetter(bestElement, element)
         }
-        
+
         return bestElement
     }
-    
+
     /**
     Iterates through the array, comparing elements to find which is the desired one.
-    
+
     - parameter isBetter: A closure that takes two elements and returns true if the first is considered better.
     - returns: The element that was determined to be the best, according to *isBetter* or nil if the array is empty.
     */
@@ -122,26 +122,26 @@ extension Array {
         }
         return bestElement
     }
-    
+
     /**
     Copies this array and adds enough values to the end so that it has a specified length.
-    
+
     - parameter value: The value to be repeated.
     - parameter length: The final length of the array.
     - returns: An array with length *length*.
     */
     public func arrayByPadding(value:Element, toLength length:Int) -> [Element] {
-        
+
         var newArray = self
         newArray.pad(value, toLength: length)
         return newArray
     }
-    
-    
+
+
     public func recursiveReduce(firstValue:Element, handler:(Element) -> [Element]) -> [Element] {
         return [firstValue] + handler(firstValue).recursiveReduce(handler)
     }
-    
+
     public func recursiveReduce(handler:(Element) -> [Element]) -> [Element] {
         var array:[Element] = []
         for value in self {
@@ -150,19 +150,19 @@ extension Array {
         }
         return array
     }
-    
-    
+
+
     /**
     Uses the insertion sort algorithm to sort this array. Stable.
-    
+
     - parameter isOrderedBefore: A closure taking two elements and returning whether the 1st should be placed before the 2nd.
     */
     public mutating func insertionSortInPlace(@noescape isOrderedBefore:(Element, Element) -> Bool) {
-        
+
         if self.count <= 1 {
             return
         }
-        
+
         for iii in 1..<self.count {
             var jjj = iii
             while jjj > 0 && isOrderedBefore(self[jjj], self[jjj - 1]) {
@@ -170,12 +170,12 @@ extension Array {
                 jjj -= 1
             }
         }
-        
+
     }
-    
+
     /**
     Uses the insertion sort algorithm to sort a copy of this array. Stable.
-    
+
     - parameter isOrderedBefore: A closure taking two elements and returning whether the 1st should be placed before the 2nd.
     - returns: A copy of this array, sorted according to isOrderedBefore.
     */
@@ -184,9 +184,9 @@ extension Array {
         sortedArray.insertionSortInPlace(isOrderedBefore)
         return sortedArray
     }
-    
-    
-    
+
+
+
     public func enumerateSkipFirst() -> SliceEnumerateSequence<Array> {
         if self.count == 0 {
             return SliceEnumerateSequence(base: self, range: 0..<0)
@@ -194,7 +194,7 @@ extension Array {
             return self.enumerateRange(1..<self.count)
         }
     }
-    
+
     public func enumerateSkipLast() -> SliceEnumerateSequence<Array> {
         if self.count == 0 {
             return SliceEnumerateSequence(base: self, range: 0..<0)
@@ -202,14 +202,14 @@ extension Array {
             return self.enumerateRange(0..<self.count - 1)
         }
     }
-    
+
     public func enumerateRepeatFirst() -> RepeatEnumerateSequence<Array> {
         return RepeatEnumerateSequence(base: self)
     }
-    
+
     /**
      Removes the elements at the given indices, making sure to remove them in the correct order so the right indices are removed.
-     
+
      - parameter indices: The indices to remove. It is a set because trying to remove the same index twice would screw up.
      - returns: The elements at the removed indices.
     */
@@ -221,28 +221,28 @@ extension Array {
 
         return removedElements
     }
-    
+
 }//extend Array
 
 public func removeObject<T: AnyObject>(object:T, inout fromArray:Array<T>) -> T? {
-    
+
     for iii in 0..<fromArray.count {
-        
+
         if (object === fromArray[iii])
         {//found object
             fromArray.removeAtIndex(iii)
             return object
         }//found object
-        
+
     }//loop through array
-    
+
     return nil
 }//remove object
 
 public func removeObjects<T: AnyObject>(objects:[T], inout fromArray:[T]) {
-    
+
     for curObject in objects {
-        
+
         /*for iii in 0..<fromArray.count {
             if (curObject === fromArray[iii]) {
                 fromArray.removeAtIndex(iii)
@@ -250,17 +250,17 @@ public func removeObjects<T: AnyObject>(objects:[T], inout fromArray:[T]) {
             }
         }*/
         removeObject(curObject, fromArray: &fromArray)
-        
+
     }
-    
+
 }//remove objects
 
 public func object<T>(array:[T], atIndex index:Int) -> T? {
-    
+
     if index < 0 || index >= array.count {
         return nil
     }
-    
+
     return array[index]
 }
 
@@ -278,66 +278,66 @@ public func array<T>(array:[T], byPadding value:T, toLength length:Int) -> [T] {
 
 // MARK: - Sliced Enumeration
 public struct SliceEnumerateGenerator<Base: GeneratorType>: GeneratorType, SequenceType {
-    
+
     public typealias Element = (index: Int, element: Base.Element)
     public typealias Generator = SliceEnumerateGenerator
-    
+
     private var base:Base
     private let range:Range<Int>
 //    private var index = 0
     private var index:RangeGenerator<Int>
     private var firstTime = true
-    
+
     init(base: Base, range:Range<Int>) {
         self.base   = base
         self.range  = range
         self.index  = range.generate()
     }
-    
+
     mutating public func next() -> Element? {
-        
+
         //Makes sure you start at right index,
         //otherwise you start generating at the
         //first index, which is not what I want.
         if self.firstTime {
-            
+
             for _ in 0..<self.range.startIndex {
                 if self.base.next() == nil {
                     return nil
                 }
             }
-            
+
             self.firstTime = false
         }
-        
+
         if let nextBase = base.next(), currentIndex = self.index.next() {
             return (index: currentIndex, element: nextBase)
         } else {
             return nil
         }
     }
-    
+
     public func generate() -> Generator {
         return self
     }
-    
+
     public func allElements(predicate:(Element) -> Bool) -> Bool {
         return self.reduce(true) { $0 && predicate($1) }
     }
-    
+
     public func noElements(predicate:(Element) -> Bool) -> Bool {
         return !self.reduce(false) { !$0 && predicate($1) }
     }
-    
+
 }
 
 public struct SliceEnumerateSequence<Base: SequenceType>: SequenceType {
-    
+
     public typealias Generator = SliceEnumerateGenerator<Base.Generator>
-    
+
     private var base:Base
     private let range:Range<Int>
-    
+
     init(base:Base, range:Range<Int>) {
         self.base   = base
         self.range  = range
@@ -346,19 +346,19 @@ public struct SliceEnumerateSequence<Base: SequenceType>: SequenceType {
     public func generate() -> Generator {
         return SliceEnumerateGenerator(base: base.generate(), range: range)
     }
-    
+
 }
 
 public struct RepeatEnumerateGenerator<Base: GeneratorType>: GeneratorType, SequenceType {
-    
+
     private var base:Base?
     private var first:Base.Element? = nil
     private var index = 0
-    
+
     public init(base:Base) {
         self.base = base
     }
-    
+
     public mutating func next() -> (Int, Base.Element)? {
         if let value = self.base?.next() {
             if self.first == nil {
@@ -377,25 +377,25 @@ public struct RepeatEnumerateGenerator<Base: GeneratorType>: GeneratorType, Sequ
             }
         }
     }
-    
+
     public func generate() -> RepeatEnumerateGenerator {
         return self
     }
-    
+
 }
 
 public struct RepeatEnumerateSequence<Base: SequenceType>: SequenceType {
-    
+
     private let base:Base
-    
+
     init(base:Base) {
         self.base = base
     }
-    
+
     public func generate() -> RepeatEnumerateGenerator<Base.Generator> {
         return RepeatEnumerateGenerator(base: base.generate())
     }
-    
+
 }
 
 public func enumerate<Seq : SequenceType>(sequence:Seq, range:Range<Int>) -> SliceEnumerateSequence<Seq> {
@@ -403,27 +403,27 @@ public func enumerate<Seq : SequenceType>(sequence:Seq, range:Range<Int>) -> Sli
 }
 
 extension SequenceType {
-    
+
     ///Enumerates the array, returning (index, element) pairs, but only for a given range.
     public func enumerateRange(range:Range<Int>) -> SliceEnumerateSequence<Self> {
         return SliceEnumerateSequence(base: self, range: range)
     }
-    
+
 }
 
 extension CollectionType {
-    
+
     public func randomElement() -> Self.Generator.Element? {
-        
+
         guard self.count > 0 else {
             return nil
         }
-        
+
         let index = Int(arc4random() % UInt32(self.count.toIntMax()))
         for (i, element) in self.enumerate() where i == index {
             return element
         }
         return nil
     }
-    
+
 }

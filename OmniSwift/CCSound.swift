@@ -19,27 +19,27 @@ To use the terminal to convert sounds to .caf, use *afconvert* like so:
   -c 2 -o OUTPUT_FILE
 */
 public class CCSound: NSObject {
-    
+
     private enum State {
         case Ready
         case Playing
         case Paused
         case Invalid
     }
-    
+
     private let engine = AVAudioEngine()
     private let player = AVAudioPlayerNode()
-    
+
     ///Whether or not the sound can play.
     public let canPlay:Bool
     private var state = State.Invalid
-    
+
     private let file:AVAudioFile?
     private let buffer:AVAudioPCMBuffer?
-    
+
     ///The file name passed in during initialization.
     public let fileName:String
-    
+
     ///The default volume to play, used on *.play()*.
     public var defaultVolume:CGFloat = 1.0 {
         didSet {
@@ -50,13 +50,13 @@ public class CCSound: NSObject {
             }
         }
     }
-    
+
     ///Whether or not the file loops indefinitely. Default value is *false*.
     public var loops = false
     public internal(set) var isMusic = false
-    
+
     public var isPlaying:Bool { return self.state == .Playing }
-    
+
     public var propertyDictionary:[String:String] {
         get {
             return [
@@ -77,33 +77,33 @@ public class CCSound: NSObject {
             }
         }
     }
-    
+
     /**
     Initialize a *CCSound* object by loading *file* in the main bundle.
     :param: _ The file (including extension) in the main bundle to load.
     :return: A *CCSound* object.
      */
     public init(file:String) {
-        
+
         self.fileName = file
-        
+
         self.engine.attachNode(self.player)
         self.engine.connect(self.player, to: self.engine.mainMixerNode, format: self.engine.mainMixerNode.outputFormatForBus(0))
-        
+
         if let path = NSBundle.mainBundle().pathForResource(fileName, ofType: nil){
-            
+
             do {
                 let url = NSURL(fileURLWithPath: path)
-                
+
                 let file = try AVAudioFile(forReading: url/*, error: &loadFileError*/)
                 let buffer = AVAudioPCMBuffer(PCMFormat: file.processingFormat, frameCapacity: AVAudioFrameCount(file.length))
-                
+
                 try file.readIntoBuffer(buffer/*, error: &readFileError*/)
-                
+
                 self.engine.prepare()
                 try self.engine.start()
                 self.canPlay = true
-                
+
                 self.file   = file
                 self.buffer = buffer
                 self.state  = .Ready
@@ -117,9 +117,9 @@ public class CCSound: NSObject {
             self.buffer = nil
             self.canPlay = false
         }
-        
+
     }//initialize
-    
+
     ///Invokes start on engine, returning true if successful and false if not, setting state accordingly.
     private func tryStart() -> Bool {
         do {
@@ -128,10 +128,10 @@ public class CCSound: NSObject {
             self.state = .Invalid
             return false
         }
-        
+
         return true
     }
-    
+
     /**
     Prepares the sound to play depending on the current state.
 
@@ -141,7 +141,7 @@ public class CCSound: NSObject {
         if !self.engine.running {
             return self.tryStart()
         }
-        
+
         switch self.state {
         case .Ready:
             return true
@@ -152,17 +152,17 @@ public class CCSound: NSObject {
         case .Invalid:
             return false
         }
-        
+
     }
-    
+
     private func playSound() -> Bool {
-        
+
         if let buffer = self.buffer where self.canPlay {
-        
+
             if !self.prepare() {
                 return false
             }
-            
+
             var options = AVAudioPlayerNodeBufferOptions.Interrupts
             if self.loops {
                 options.unionInPlace(.Loops)
@@ -174,32 +174,32 @@ public class CCSound: NSObject {
             self.state = .Playing
             return true
         }
-        
+
         return false
     }
-    
+
     ///Resets all variables to defaults, then plays sound.
     public func play() -> Bool {
-        
+
         self.player.volume = Float(self.defaultVolume)
-        
+
         return self.playSound()
-        
+
     }//play
-    
+
     /**
     Sets volume, then plays sound.
-    
+
     :param: _ The volume of the sound (will be clamped to [0.0, 1.0]).
     :returns: Whether or not the sound will play.
 */
     public func playAtVolume(volume:CGFloat) -> Bool {
-        
+
         self.player.volume = Float(volume)
-        
+
         return self.playSound()
     }
-    
+
     ///Stops playing the sound. Returns true if the sound was previously playing and false otherwise.
     public func stop() -> Bool {
         if self.player.playing {
@@ -208,10 +208,10 @@ public class CCSound: NSObject {
         }
         return false
     }
-    
+
     /**
      Pauses the sound.
-     
+
      : returns - true if the sound was succesfully paused, false otherwise.
     */
     public func pause() -> Bool {
@@ -224,5 +224,5 @@ public class CCSound: NSObject {
             return false
         }
     }
-    
+
 }

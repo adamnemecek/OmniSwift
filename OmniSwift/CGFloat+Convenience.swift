@@ -11,9 +11,9 @@ import UIKit
 
 infix operator ~= { precedence 130 }
 public func ~=(left:CGFloat, right:CGFloat) -> Bool {
-    
+
     let epsilon:CGFloat = 0.001
-    
+
     return abs(left - right) <= epsilon
 }//about equals operator
 
@@ -36,30 +36,30 @@ return (left ~= right)
 */
 
 extension CGFloat {
-    
+
     public mutating func decrementTowardsZeroBy(decrementValue:CGFloat) {
-        
+
         if (self > 0.0) {
             self -= decrementValue
         } else {
             self += decrementValue
         }
-        
+
         if (abs(self) <= decrementValue / 2.0) {
             self = 0.0
         }
     }//decrement towards zero by
-    
+
     public func nearestTo(values:(CGFloat, CGFloat)) -> CGFloat {
-        
+
         if (abs(self - values.0) < abs(self - values.1)) {
             return values.0
         } else {
             return values.1
         }
-        
+
     }//get value that is nearest to this value
-    
+
     public func signOf() -> CGFloat {
         if self < 0.0 {
             return -1.0
@@ -69,33 +69,33 @@ extension CGFloat {
             return 00.0
         }
     }
-    
+
     public func floorTowardZero() -> CGFloat {
         return floor(abs(self)) * self.signOf()
     }
-    
+
     public func ceilTowardZero() -> CGFloat {
         return ceil(abs(self)) * self.signOf()
     }
-    
+
 }//CGFloat
 
 // MARK: - Random
 
 extension CGFloat {
-    
+
     public static func random() -> CGFloat {
         return CGFloat(drand48())
     }
-    
+
     public static func randomBetween(lower:CGFloat, and upper:CGFloat) -> CGFloat {
         return linearlyInterpolate(CGFloat.random(), left: lower, right: upper)
     }
-    
+
     public static func randomMiddle(middle:CGFloat, range:CGFloat) -> CGFloat {
         return linearlyInterpolate(CGFloat.random(), left: middle - range / 2.0, right: middle + range / 2.0)
     }
-    
+
 }
 
 public func positions(count:Int, ofSize objectSize:CGFloat, inSize windowSize:CGFloat) -> [CGFloat] {

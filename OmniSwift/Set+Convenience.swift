@@ -9,20 +9,20 @@
 import Foundation
 
 extension Set {
-    
+
     public init(array:[Element]) {
         self.init(minimumCapacity: array.count)
         for value in array {
             self.insert(value)
         }
     }
-    
+
     public mutating func insert(array:[Element]) {
         for element in array {
             self.insert(element)
         }
     }
-    
+
     public mutating func removeRandomObject() -> Element? {
         guard let element = self.randomElement() else {
             return nil
@@ -30,5 +30,5 @@ extension Set {
         self.remove(element)
         return element
     }
-    
+
 }

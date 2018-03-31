@@ -9,14 +9,14 @@
 import Foundation
 
 extension Bool {
-    
+
     public mutating func flip() {
         self = !self
     }
-    
+
     ///Randomly returns true or false.
     public static func random() -> Bool {
         return arc4random() % 2 == 0
     }
-    
+
 }

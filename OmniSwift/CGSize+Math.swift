@@ -99,33 +99,33 @@ public func /=(inout left:CGSize, right:CGFloat) {
 
 
 public extension CGSize {
-    
+
     public var center:CGPoint { return CGPoint(x: self.width / 2.0, y: self.height / 2.0) }
-    
+
     public var maximum:CGFloat { return max(self.width, self.height) }
     public var minimum:CGFloat { return min(self.width, self.height) }
-    
+
     public var portrait:Bool    { return self.width < self.height }
     public var landscape:Bool   { return self.width > self.height }
-    
+
     public init(square:CGFloat) {
         self.init(width: square, height: square)
     }//initialize as square
-    
+
     public func getCGPoint() -> CGPoint {
-        
+
         return CGPoint(x: width, y: height)
-        
+
     }//get as CGPoint
-    
+
     public func flip() -> CGSize {
         return CGSize(width: self.height, height: self.width)
     }
-    
+
 }//size
 /*
 public extension CGSize: FloatLiteralConvertible {
-    
+
     public init(floatLiteral value: FloatLiteralType) {
         self.init(square: CGFloat(value))
     }

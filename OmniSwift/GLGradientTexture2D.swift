@@ -9,11 +9,11 @@
 import GLKit
 
 public class GLGradientTexture2D: NSObject {
-    
+
     // MARK: - Properties
     public private(set) var gradient:ColorGradient1D
     public private(set) var textureName:GLuint = 0
-    
+
     ///Controls whether texture repeats or clamps.
     ///*true* for Repeat (jump from 0.0 to 1.0 and vice-versa).
     ///*false* for Clamp (numbers below 0.0 become 0.0, and numbers above 1.0 become 1.0)
@@ -27,20 +27,20 @@ public class GLGradientTexture2D: NSObject {
             }
         }
     }
-    
+
     // MARK: - Setup
     public init(gradient:ColorGradient1D) {
-        
+
         self.gradient = gradient
         //Generate Texture
-        
+
         glGenTextures(1, &self.textureName)
-        
+
         let texEnum = GLenum(GL_TEXTURE_2D)
         glBindTexture(texEnum, self.textureName)
         glTexParameteri(texEnum, GLenum(GL_TEXTURE_MAG_FILTER), GL_LINEAR)
         glTexParameteri(texEnum, GLenum(GL_TEXTURE_MIN_FILTER), GL_LINEAR)
-        
+
         /*
          *  The incongruities in the Perlin Sin Noise Shader appears
          *  to be caused by setting GL_TEXTURE_WRAP_S to GL_REPEAT.
@@ -55,19 +55,19 @@ public class GLGradientTexture2D: NSObject {
          */
         glTexParameteri(texEnum, GLenum(GL_TEXTURE_WRAP_S), GL_CLAMP_TO_EDGE)
         glTexParameteri(texEnum, GLenum(GL_TEXTURE_WRAP_T), GL_CLAMP_TO_EDGE)
-        
+
         glTexImage2D(texEnum, 0, GLint(GL_RGBA), GLsizei(self.gradient.size), 1, 0, GLenum(GL_RGBA), GLenum(GL_UNSIGNED_BYTE), self.gradient.colorArray)
-        
+
         super.init()
     }//initialize
-    
+
     // MARK: - Quick Look Debug
     public func debugQuickLookObject() -> AnyObject {
         /*
         UIGraphicsBeginImageContext(size)
         let context = UIGraphicsGetCurrentContext()
         CGContextSaveGState(context)
-        
+
         for iii in 0..<256 {
         let r = self.colorArray[iii * 4]
         let g = self.colorArray[iii * 4 + 1]
@@ -77,20 +77,20 @@ public class GLGradientTexture2D: NSObject {
         CGContextSetFillColorWithColor(context, color.CGColor)
         CGContextFillRect(context, CGRect(x: CGFloat(iii), y: 0.0, width: 1.0, height: size.height))
         }
-        
+
         let im = UIGraphicsGetImageFromCurrentImageContext()
         CGContextRestoreGState(context)
         UIGraphicsEndImageContext()
-        
+
         return im
         */
         return self.gradient.getImage()
     }
-    
+
     // MARK: - Clean Up
     deinit {
         glDeleteTextures(1, &self.textureName)
         self.textureName = 0
     }
-    
+
 }

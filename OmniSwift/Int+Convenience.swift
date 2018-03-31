@@ -9,7 +9,7 @@
 import Foundation
 
 extension Int {
-    
+
     ///Enumerates from 0..<x and 0..<y, as if this int was a 2-dimensional array.
     public func enumerate2D(length:Int) -> [(x:Int, y:Int)] {
         var values:[(x:Int, y:Int)] = []
@@ -20,15 +20,15 @@ extension Int {
         }
         return values
     }
-    
+
     public func isOdd() -> Bool {
         return self % 2 == 1
     }
-    
+
     public func isEven() -> Bool {
         return self % 2 == 0
     }
-    
+
 }
 
 infix operator /% { precedence 150 associativity left }

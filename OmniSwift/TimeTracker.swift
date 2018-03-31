@@ -11,54 +11,54 @@ import UIKit
 // MARK: - TimeKeeper
 
 public class TimeKeeper: NSObject {
-    
+
     public let name:String?
-    
+
     private var startDate = NSDate()
     private var endDate = NSDate()
     private var timing = false
     public var isTiming:Bool { return self.timing }
-    
+
     private var totalDT:NSTimeInterval = 0.0
     private var iterations = 0
     public var averageTime:NSTimeInterval { return self.totalDT / NSTimeInterval(iterations) }
-    
+
     public init(name:String? = nil) {
-        
+
         self.name = name
-        
+
         super.init()
-        
+
     }//initialize
-    
+
     public func start() -> Bool {
-        
+
         if (self.timing) {
             return false
         }
-        
+
         self.timing = true
         self.startDate = NSDate()
-        
+
         return true
     }//start timing
-    
+
     public func stop() -> Bool {
-        
+
         if (!self.timing) {
             return false
         }
-        
+
         self.timing = false
         self.endDate = NSDate()
-        
+
         self.totalDT += self.endDate.timeIntervalSinceDate(self.startDate)
         self.iterations += 1
-        
+
         return true
     }//stop timing
-    
-    
+
+
     public override var description:String {
         if let name = self.name {
             return "\(name):\(self.averageTime)"
@@ -66,7 +66,7 @@ public class TimeKeeper: NSObject {
             return "\(self.averageTime)"
         }
     }
-    
+
     public func msString(precision:Int) -> String {
         var string:String
         if let name = self.name {
@@ -74,7 +74,7 @@ public class TimeKeeper: NSObject {
         } else {
             string = " "
         }
-        
+
         var averageStr = "\(self.averageTime * 1000.0)"
         if let decimalRange = averageStr.rangeOfString(".", options: NSStringCompareOptions(), range: nil, locale: nil) {
             let decimalIndex = averageStr.startIndex.distanceTo(decimalRange.startIndex)
@@ -84,7 +84,7 @@ public class TimeKeeper: NSObject {
         }
         string += averageStr
         string += " ms"
-        
+
         return string
     }
 }

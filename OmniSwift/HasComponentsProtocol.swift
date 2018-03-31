@@ -11,29 +11,29 @@ import UIKit
 // MARK: - Protocol Definition
 public typealias ComponentFunction = (CGFloat) -> CGFloat
 public protocol HasComponents {
-    
+
     static var numberOfComponents:Int { get }
-    
+
     var components:[CGFloat] { get }
-    
+
     init(components:[CGFloat])
-    
+
 }
 
 // MARK: - Functions
 public func iterateComponents(array:[CGFloat], withBlock block:ComponentFunction) -> [CGFloat] {
-    
+
     var comps:[CGFloat] = []
-    
+
     for comp in array {
         comps.append(block(comp))
     }
-    
+
     return comps
 }
 
 public func iterateComponents<T: HasComponents>(c:T, withBlock block:ComponentFunction) -> T {
-    
+
     let comps = iterateComponents(c.components, withBlock: block)
     return T(components: comps)
 }
@@ -49,7 +49,7 @@ public func >>>(lhs:[CGFloat], rhs:ComponentFunction) -> [CGFloat] {
 }
 
 public func >>><T: HasComponents>(LHS:T.Type, rhs:(Int) -> CGFloat) -> T {
-    
+
     var comps:[CGFloat] = []
     for iii in 0..<LHS.numberOfComponents {
         comps.append(rhs(iii))
@@ -59,35 +59,35 @@ public func >>><T: HasComponents>(LHS:T.Type, rhs:(Int) -> CGFloat) -> T {
 
 // MARK: - Conformance Extensions
 extension CGFloat: HasComponents {
-    
+
     public static let numberOfComponents = 1
-    
+
     public var components:[CGFloat] { return [self] }
-    
+
     public init(components:[CGFloat]) {
         let comps = components.arrayByPadding(0.0, toLength: 1)
-        
+
         self = comps[0]
     }
-    
+
 }
 
 extension CGPoint: HasComponents {
-    
+
     public static let numberOfComponents = 2
-    
+
     public var components:[CGFloat] { return [self.x, self.y] }
-    
+
     public init(components:[CGFloat]) {
         let comps = components.arrayByPadding(0.0, toLength: 2)
-        
+
         self.init(x: comps[0], y: comps[1])
     }
-    
+
 }
 
 extension CGSize: HasComponents {
-    
+
     public static let numberOfComponents = 2
     public var components:[CGFloat] { return [self.width, self.height] }
     public init(components:[CGFloat]) {
@@ -97,7 +97,7 @@ extension CGSize: HasComponents {
 }
 
 extension CGRect: HasComponents {
-    
+
     public static let numberOfComponents = 4
     public var components:[CGFloat] { return [self.origin.x, self.origin.y, self.size.width, self.size.height] }
     public init(components:[CGFloat]) {
@@ -107,31 +107,31 @@ extension CGRect: HasComponents {
 }
 
 extension SCVector3: HasComponents {
-    
+
     public static let numberOfComponents = 3
-    
+
     public var components:[CGFloat] { return [self.x, self.y, self.z] }
-    
+
     public init(components:[CGFloat]) {
-        
+
         let comps = components.arrayByPadding(0.0, toLength: 3)
-        
+
         self.init(x: comps[0], y: comps[1], z: comps[2])
     }
-    
+
 }
 
 extension SCVector4: HasComponents {
-    
+
     public static let numberOfComponents = 4
-    
+
     public var components:[CGFloat] { return [self.x, self.y, self.z, self.w] }
-    
+
     public init(components:[CGFloat]) {
-        
+
         let comps = components.arrayByPadding(0.0, toLength: 4)
-        
+
         self.init(x: comps[0], y: comps[1], z: comps[2], w: comps[3])
     }
-    
+
 }

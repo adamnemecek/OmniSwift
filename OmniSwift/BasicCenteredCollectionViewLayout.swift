@@ -11,7 +11,7 @@ import UIKit
 public class BasicCenteredCollectionViewLayout: UICollectionViewLayout {
 
     // MARK: - Properties
-    
+
     public let numberOfCells:Int
     public let cellSize:CGSize
     public var interitemSpacing:CGFloat = 8.0
@@ -48,7 +48,7 @@ public class BasicCenteredCollectionViewLayout: UICollectionViewLayout {
         }
         set { self.internalMinorAxisLength = newValue }
     }
-    
+
     public var axisCount:Int {
         return Int(ceil(CGFloat(self.numberOfCells) / CGFloat(self.itemsInAxis)))
     }
@@ -62,31 +62,31 @@ public class BasicCenteredCollectionViewLayout: UICollectionViewLayout {
         }
         return Int(floor((self.majorAxisLength - self.interitemSpacing) / (cellLength + self.interitemSpacing)))
     }
-    
+
     // MARK: - Setup
-    
+
     public init(numberOfCells:Int, cellSize:CGSize) {
         self.numberOfCells = numberOfCells
         self.cellSize = cellSize
         super.init()
     }
-    
+
     required public init?(coder aDecoder: NSCoder) {
         self.numberOfCells = aDecoder.decodeIntegerForKey("numberOfCells")
         self.cellSize = aDecoder.decodeCGSizeForKey("cellSize")
         self.interitemSpacing = CGFloat(aDecoder.decodeDoubleForKey("interitemSpacing"))
         super.init(coder: aDecoder)
     }
-    
+
     public override func encodeWithCoder(aCoder: NSCoder) {
         super.encodeWithCoder(aCoder)
         aCoder.encodeInteger(self.numberOfCells, forKey: "numberOfCells")
         aCoder.encodeCGSize(self.cellSize, forKey: "cellSize")
         aCoder.encodeDouble(Double(self.interitemSpacing), forKey: "interitemSpacing")
     }
-    
+
     // MARK: - Logic
-    
+
     public override func collectionViewContentSize() -> CGSize {
         let n = CGFloat(self.numberOfCells)
         let m = CGFloat(self.axisCount)
@@ -98,7 +98,7 @@ public class BasicCenteredCollectionViewLayout: UICollectionViewLayout {
             return CGSize(width: minorAxisLength, height: self.cellSize.height * m + self.interitemSpacing * (m + 1.0))
         }
     }
-    
+
     public override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         var attributes:[UICollectionViewLayoutAttributes] = []
         for i in 0..<self.numberOfCells {
@@ -106,12 +106,12 @@ public class BasicCenteredCollectionViewLayout: UICollectionViewLayout {
                 attributes.append(attribute)
             }
         }
-        
+
         return attributes
     }
-    
+
     public override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
-        
+
         guard indexPath.item >= 0 && indexPath.item < self.numberOfCells else {
             return nil
         }
@@ -141,7 +141,7 @@ public class BasicCenteredCollectionViewLayout: UICollectionViewLayout {
         attributes.frame = CGRect(center: center, size: self.cellSize)
         return attributes
     }
-    
+
     public override func shouldInvalidateLayoutForBoundsChange(newBounds: CGRect) -> Bool {
         return true
     }

@@ -10,12 +10,12 @@
 import UIKit
 
 public class NoiseFadeAnimation: NSObject {
-    
+
     // MARK: - Properties
-    
+
     private let entranceHelper:GLSAnimationHelper
     private let exitHelper:GLSAnimationHelper
-    
+
     public let sprite:GLSPerlinNoiseSprite
     public let duration:CGFloat
     public let appearing:Bool
@@ -25,7 +25,7 @@ public class NoiseFadeAnimation: NSObject {
         //        let colors = [SCVector4(x: 0.0, y: 0.0, z: 0.0, w: 0.0), SCVector4.blackColor]
         let weights:[CGFloat]
         let smoothed = false
-        
+
         switch (self.appearing, self.entering) {
         case (false, true):
             weights = [0.0, self.entranceHelper.realTime]
@@ -36,29 +36,29 @@ public class NoiseFadeAnimation: NSObject {
         case (true, false):
             weights = [0.0, 1.0 - self.exitHelper.realTime]
         }
-        
+
         return ColorGradient1D(colors: colors, weights: weights, smoothed: smoothed)
     }
-    
+
     public var completionHandler:(() -> Void)? = nil
-    
+
     public var isFinished:Bool { return self.exitHelper.isFinished }
-    
+
     // MARK: - Setup
-    
+
     public init(sprite:GLSPerlinNoiseSprite, duration:CGFloat, appearing:Bool) {
         self.sprite = sprite
         self.duration = duration
         self.appearing = appearing
-        
+
         self.entranceHelper = GLSAnimationHelper(mode: .EaseIn, duration: self.duration / 2.0)
         self.exitHelper     = GLSAnimationHelper(mode: .EaseOut, duration: self.duration / 2.0)
-        
+
         super.init()
     }
-    
+
     // MARK: - Logic
-    
+
     public func update(dt:CGFloat) {
         if self.entering {
             self.entranceHelper.update(dt)
@@ -72,5 +72,5 @@ public class NoiseFadeAnimation: NSObject {
         self.sprite.gradient = GLGradientTexture2D(gradient: grad)
         self.sprite.renderToTexture()
     }
-    
+
 }

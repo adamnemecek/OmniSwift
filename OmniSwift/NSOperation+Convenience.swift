@@ -9,13 +9,13 @@
 import Foundation
 
 public extension NSOperation {
-    
+
     public func addOptionalDependency(operation:NSOperation?) {
-        
+
         if let o = operation {
             self.addDependency(o)
         }
-        
+
     }//add optional dependency
-    
+
 }//Convenience

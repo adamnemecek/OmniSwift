@@ -11,7 +11,7 @@ import UIKit
 public protocol AnimationDeltaProtocol: Interpolatable {
 //    func *(CGFloat, Self) -> Self
 //    func +(Self, Self) -> Self
-    func -(_: Self, _: Self) -> Self
+    static func -(_: Self, _: Self) -> Self
 }
 
 public func *(lhs:CGFloat, rhs:Int) -> Int { return Int(lhs * CGFloat(rhs)) }
@@ -26,37 +26,37 @@ extension SCVector3:    AnimationDeltaProtocol {}
 extension SCVector4:    AnimationDeltaProtocol {}
 
 public class AnimationDelta<T: AnimationDeltaProtocol>: CustomStringConvertible {
-    
+
     public let initialValue:T
     public let deltaValue:T
-    
+
     public var description:String { return "Initial = \(self.initialValue), Delta = \(self.deltaValue)" }
-    
+
     public init(start:T, delta:T) {
-        
+
         self.initialValue = start
         self.deltaValue = delta
-        
+
     }//initialize
-    
+
     public convenience init(start:T, end:T) {
-        
+
         self.init(start: start, delta: end - start)
-        
+
     }//initialize
-    
+
     public convenience init(delta:T, end:T) {
-        
+
         self.init(start: end - delta, delta: delta)
-        
+
     }//initialize
-    
+
     public func valueForTime(time:CGFloat) -> T {
         return self.initialValue + time * self.deltaValue
     }
-    
+
     public subscript(time:CGFloat) -> T {
         return self.valueForTime(time)
     }
-    
+
 }

@@ -15,11 +15,11 @@ public class GLSEmitterReference: NSObject {
     public var textureName:GLuint {
         return self.emitter?.particleTexture?.name ?? CCTextureOrganizer.textureForString("White Tile")!.name
     }
-    
+
     public var startIndex = 0
     public var vertexCount = 0
     public var endIndex:Int { return self.startIndex + self.vertexCount }
-    
+
     public var hidden:Bool {
         return self.emitter?.hidden ?? true
     }
@@ -27,17 +27,17 @@ public class GLSEmitterReference: NSObject {
         return self.emitter?.removeFromUniversalRenderer ?? true
     }
 
-    
+
     public init(emitter:GLSParticleEmitter, startIndex:Int) {
         self.emitter = emitter
         self.startIndex = startIndex
-        
+
         super.init()
     }
-    
+
     public func updateIndices(start:Int) {
         self.startIndex = start
         self.vertexCount = self.emitter?.particles.count ?? 0
     }
-    
+
 }

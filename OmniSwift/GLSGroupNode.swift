@@ -37,19 +37,19 @@ public class GLSGroupNode: GLSNode {
     }
     */
     public init(title:String = "") {
-        
+
         super.init(position: CGPoint.zero, size: CGSize.zero)
-        
+
         self.title = title
-        
+
     }//initialize
-    
+
     override public func modelMatrix(renderingSelf: Bool = true) -> SCMatrix4 {
         return SCMatrix4()
     }
-    
+
     override public func recursiveModelMatrix(renderingSelf: Bool = true) -> SCMatrix4 {
         return super.recursiveModelMatrix(renderingSelf)
     }//recursive model matrix
-    
+
 }

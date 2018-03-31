@@ -15,9 +15,9 @@ Renders to a background texture with a configurable circular alpha attenuation.
 public class GLSAlphaHoleSprite: GLSSprite, DoubleBuffered {
 
     // MARK: - Types
-    
+
     private class AlphaHoleShader: GLProgramDictionary {
-        
+
         private init() {
             let program = ShaderHelper.programForString("Alpha Hole Shader")!
             let locations = [
@@ -34,11 +34,11 @@ public class GLSAlphaHoleSprite: GLSSprite, DoubleBuffered {
             ]
             super.init(program: program, locations: locations)
         }
-        
+
     }
-    
+
     // MARK: - Properties
-    
+
     private let alphaProgram            = AlphaHoleShader()
     ///The position at which the attenuation is centered.
     public var fadePosition:CGPoint     = CGPoint.zero {
@@ -47,7 +47,7 @@ public class GLSAlphaHoleSprite: GLSSprite, DoubleBuffered {
                 self.add2Animation(oldValue, end: self.fadePosition) { [unowned self] in self.fadePosition = $0 }
                 self.fadePosition = oldValue
             }
-            
+
             self.bufferIsDirty = true
         }
     }
@@ -58,7 +58,7 @@ public class GLSAlphaHoleSprite: GLSSprite, DoubleBuffered {
                 self.add1Animation(oldValue, end: self.innerRadius) { [unowned self] in self.innerRadius = $0 }
                 self.innerRadius = oldValue
             }
-            
+
             self.bufferIsDirty = true
         }
     }
@@ -69,7 +69,7 @@ public class GLSAlphaHoleSprite: GLSSprite, DoubleBuffered {
                 self.add1Animation(oldValue, end: self.outerRadius) { [unowned self] in self.outerRadius = $0 }
                 self.outerRadius = oldValue
             }
-            
+
             self.bufferIsDirty = true
         }
     }
@@ -80,7 +80,7 @@ public class GLSAlphaHoleSprite: GLSSprite, DoubleBuffered {
                 self.add1Animation(oldValue, end: self.innerAlpha) { [unowned self] in self.innerAlpha = $0 }
                 self.innerAlpha = oldValue
             }
-            
+
             self.bufferIsDirty = true
         }
     }
@@ -91,7 +91,7 @@ public class GLSAlphaHoleSprite: GLSSprite, DoubleBuffered {
                 self.add1Animation(oldValue, end: self.outerAlpha) { [unowned self] in self.outerAlpha = $0 }
                 self.outerAlpha = oldValue
             }
-            
+
             self.bufferIsDirty = true
         }
     }
@@ -110,16 +110,16 @@ public class GLSAlphaHoleSprite: GLSSprite, DoubleBuffered {
     public var active                   = true
     public var shouldRedraw             = false
     public private(set) var bufferIsDirty = false
-    
+
     private let alphaVertices = TexturedQuadVertices(vertex: UVertex())
     ///The offscreen buffer the texture is rendered to.
     public let buffer:GLSFrameBuffer
-    
+
     // MARK: - Setup
-    
+
     ///Initialize with a given size and texture.
     public init(size:CGSize, texture:CCTexture?) {
-        
+
         self.alphaTexture = texture
         self.buffer = GLSFrameBuffer(size: size)
         self.alphaVertices.iterateWithHandler() { index, vertex in
@@ -127,18 +127,18 @@ public class GLSAlphaHoleSprite: GLSSprite, DoubleBuffered {
             vertex.position = (point * size).getGLTuple()
             vertex.texture = point.getGLTuple()
         }
-        
+
         super.init(position: CGPoint.zero, size: size, texture: self.buffer.ccTexture)
-        
+
         if let tFrame = texture?.frame {
             self.alphaVertices.alterWithFrame(tFrame) { (point:CGPoint, inout vertex:UVertex) in
                 vertex.texture = point.getGLTuple()
             }
         }
     }
-    
+
     // MARK: - Logic
-    
+
     ///Invoked when the content size is changed. Updates the vertices for the new size.
     public override func contentSizeChanged() {
         self.alphaVertices.iterateWithHandler() { [unowned self] index, vertex in
@@ -146,15 +146,15 @@ public class GLSAlphaHoleSprite: GLSSprite, DoubleBuffered {
             vertex.position = (point * self.contentSize).getGLTuple()
         }
     }
-    
+
     ///Renders to the background buffer.
     public func renderToTexture() {
         self.framebufferStack?.pushGLSFramebuffer(self.buffer)
         SCVector4().bindGLClearColor()
-        
+
         self.alphaProgram.use()
         self.alphaVertices.bufferDataWithVertexBuffer(self.alphaProgram.vertexBuffer)
-        
+
         let proj = self.projection
         let model = self.modelMatrix()
 
@@ -165,18 +165,18 @@ public class GLSAlphaHoleSprite: GLSSprite, DoubleBuffered {
         glUniform1f(self.alphaProgram["u_OuterRadius"], GLfloat(self.outerRadius))
         glUniform1f(self.alphaProgram["u_InnerAlpha"], self.active ? GLfloat(self.innerAlpha) : 1.0)
         glUniform1f(self.alphaProgram["u_OuterAlpha"], self.active ? GLfloat(self.outerAlpha) : 1.0)
-        
+
         glBindTexture(GLenum(GL_TEXTURE_2D), self.alphaTexture?.name ?? 0)
         glUniform1i(self.alphaProgram["u_Texture2D"], 0)
-        
+
         self.alphaProgram.enableAttributes()
         self.alphaProgram.bridgeAttributesWithSizes([2, 2], stride: sizeof(UVertex))
-        
+
         self.alphaVertices.drawArrays()
         self.alphaProgram.disableAttributes()
-        
+
         self.framebufferStack?.popFramebuffer()
         self.bufferIsDirty = false
     }
-    
+
 }
